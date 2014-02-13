@@ -1,0 +1,23 @@
+{
+    "name": "ledgr/banking",
+    "description": "Data types for accounts in the swedish banking system",
+    "keywords": ["Nordea", "SEB", "PlusGiro", "Bankgiro", "Swedbank"],
+    "homepage": "https://github.com/ledgr/banking",
+    "type": "library",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Hannes Forsgård",
+            "email": "hannes.forsgard@fripost.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ledgr\\banking\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "ledgr/utils": "dev-master"
+    }
+}
