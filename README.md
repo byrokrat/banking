@@ -1,4 +1,4 @@
-# ledgr/banking [![Code Coverage](https://scrutinizer-ci.com/g/ledgr/banking/badges/coverage.png?s=6cf9972ea30cd3a2f7f89c032eceac422f5148cb)](https://scrutinizer-ci.com/g/ledgr/banking/)
+# ledgr/banking [![Build Status](https://travis-ci.org/ledgr/banking.png?branch=master)](https://travis-ci.org/ledgr/banking) [![Code Coverage](https://scrutinizer-ci.com/g/ledgr/banking/badges/coverage.png?s=6cf9972ea30cd3a2f7f89c032eceac422f5148cb)](https://scrutinizer-ci.com/g/ledgr/banking/)
 
 
 Data types for accounts in the swedish banking system.
