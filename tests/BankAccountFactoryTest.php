@@ -30,6 +30,22 @@ class BankAccountFactoryTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testCreateBankgiro()
+    {
+        $this->assertInstanceOf(
+            "ledgr\\banking\\Bankgiro",
+            BankAccountFactory::create('111-1111')
+        );
+    }
+
+    public function testCreateBankgiroUnvalidCheckdigit()
+    {
+        $this->assertInstanceOf(
+            "ledgr\\banking\\UnknownAccount",
+            BankAccountFactory::create('111-1112')
+        );
+    }
+
     /**
      * @expectedException ledgr\banking\Exception
      */

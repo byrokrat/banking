@@ -20,8 +20,6 @@
 
 namespace ledgr\banking;
 
-use ledgr\banking\Exception\InvalidClearingException;
-
 /**
  * Create bank account object from account number
  *
@@ -39,6 +37,8 @@ class BankAccountFactory
         'SwedbankTyp1',
         'SwedbankTyp2',
         'SEB',
+        'PlusGiro',
+        'Bankgiro',
         'UnknownAccount'
     );
 
@@ -56,7 +56,7 @@ class BankAccountFactory
                 // Create and return account object
                 $class = "\\ledgr\\banking\\$class";
                 return new $class($account);
-            } catch (InvalidClearingException $e) {
+            } catch (Exception $e) {
                 // Invalid clearing, try next class
                 continue;
             }
