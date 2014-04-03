@@ -3,8 +3,6 @@
 
 Data types for accounts in the swedish banking system
 
-**License**: [GPL](/LICENSE)
-
 
 Installation using [composer](http://getcomposer.org/)
 ------------------------------------------------------

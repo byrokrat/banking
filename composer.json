@@ -4,7 +4,7 @@
     "keywords": ["Nordea", "SEB", "PlusGiro", "Bankgiro", "Swedbank"],
     "homepage": "https://github.com/ledgr/banking",
     "type": "library",
-    "license": "GPL",
+    "license": "WTFPL",
     "authors": [
         {
             "name": "Hannes Forsgård",
