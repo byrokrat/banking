@@ -20,6 +20,8 @@
 
 namespace ledgr\banking;
 
+use ledgr\banking\Exception\UnableToCreateBankAccountException;
+
 /**
  * Create bank account object from account number
  *
@@ -63,6 +65,6 @@ class BankAccountFactory
         }
 
         // Unable to create class
-        throw new Exception("Unable to create account for number '{$account}'");
+        throw new UnableToCreateBankAccountException("Unable to create account for number <{$account}>");
     }
 }

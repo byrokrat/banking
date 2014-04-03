@@ -23,6 +23,6 @@ namespace ledgr\banking;
 /**
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class Exception extends \Exception
+interface Exception
 {
 }

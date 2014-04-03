@@ -21,10 +21,11 @@
 namespace ledgr\banking\Exception;
 
 use ledgr\banking\Exception;
+use RuntimeException;
 
 /**
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class InvalidCheckDigitException extends Exception
+class InvalidCheckDigitException extends RuntimeException implements Exception
 {
 }

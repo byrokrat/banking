@@ -21,10 +21,11 @@
 namespace ledgr\banking\Exception;
 
 use ledgr\banking\Exception;
+use RuntimeException;
 
 /**
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class InvalidClearingException extends Exception
+class InvalidClearingException extends RuntimeException implements Exception
 {
 }
