@@ -20,7 +20,7 @@
 
 namespace ledgr\banking;
 
-use ledgr\utils\Modulo10;
+use ledgr\checkdigit\Modulo10;
 
 /**
  * SwedbankTyp2 account
