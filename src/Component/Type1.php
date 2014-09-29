@@ -7,34 +7,26 @@
  * http://www.wtfpl.net/ for more details.
  */
 
-namespace ledgr\banking;
+namespace ledgr\banking\Component;
 
 /**
- * Fake account, all is valid
+ * Helper that implements getStructure() for Type1 accounts
  *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class UnknownAccount implements AccountNumber
+trait Type1
 {
-    use Component\Constructor;
-
-    /**
-     * Get string describing account type (implements AccountNumber)
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return "Unknown";
-    }
+    use Constructor;
 
     /**
      * Get regular expression describing structure (from Component\Constructor)
+     *
+     * Type1 accounts share the structure xxxx,00000xxxxxxC
      *
      * @return string
      */
     protected function getStructure()
     {
-        return "/^(\d{4}),?(\d{6,11})(\d)$/";
+        return "/^(\d{4}),?0{0,5}(\d{6})(\d)$/";
     }
 }

@@ -14,32 +14,29 @@ use ledgr\checkdigit\Modulo10;
 /**
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class NordeaPerson extends AbstractBankAccount
+class SwedbankType2 implements AccountNumber
 {
+    use Component\Constructor;
+
     public function getType()
     {
-        return "Nordea";
-    }
-
-    public function __tostring()
-    {
-        return $this->getClearing() . ',' . substr($this->getNumber(), strlen($this->getNumber()) - 10);
+        return "Swedbank";
     }
 
     protected function getStructure()
     {
-        return "/^0{0,2}\d{10}$/";
+        return "/^(\d{4}),?0{0,2}(\d{1,9})(\d)$/";
     }
 
     protected function isValidClearing()
     {
-        return $this->getClearing() == 3300 || $this->getClearing() == 3782;
+        return $this->getClearing() >= 8000 && $this->getClearing() <= 8999;
     }
 
     protected function isValidCheckDigit()
     {
         return Modulo10::verify(
-            substr($this->getNumber(), strlen($this->getNumber()) - 10)
+            $this->getSerialNumber() . $this->getCheckDigit()
         );
     }
 }

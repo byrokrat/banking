@@ -4,88 +4,92 @@ namespace ledgr\banking;
 
 class PlusGiroTest extends \PHPUnit_Framework_TestCase
 {
-    public function validProvider()
+    public function invalidStructuresProvider()
     {
-        return array(
-            array('210918-9'),
-            array('4395094-8'),
-            array('956404-8'),
-            array('465658-3'),
-            array('205835-2'),
-            array('9048-0'),
-        );
+        return [
+            ['-1'],
+            ['-12'],
+            ['1-'],
+            ['1'],
+            ['1-12'],
+            ['12345678'],
+            ['12345678-1'],
+            ['1234567-12'],
+            ['1234,9048-0']
+        ];
+    }
+
+    /**
+     * @dataProvider invalidStructuresProvider
+     * @expectedException ledgr\banking\Exception\InvalidStructureException
+     */
+    public function testInvalidStructure($number)
+    {
+        new PlusGiro($number);
     }
 
     public function invalidCheckDigitProvider()
     {
-        return array(
-            array('210918-0'),
-            array('4395094-0'),
-            array('956404-0'),
-            array('465658-0'),
-            array('205835-0'),
-            array('9048-1'),
-        );
-    }
-
-    public function invalidStructuresProvider()
-    {
-        return array(
-            array('-1'),
-            array('-12'),
-            array('1-'),
-            array('1'),
-            array('1-12'),
-            array('12345678'),
-            array('12345678-1'),
-            array('1234567-12'),
-        );
+        return [
+            ['210918-0'],
+            ['4395094-0'],
+            ['956404-0'],
+            ['465658-0'],
+            ['205835-0'],
+            ['9048-1']
+        ];
     }
 
     /**
-     * @expectedException \ledgr\banking\Exception\InvalidClearingException
+     * @dataProvider invalidCheckDigitProvider
+     * @expectedException ledgr\banking\Exception\InvalidCheckDigitException
      */
-    public function testInvalidClearing()
+    public function testInvalidCheckDigit($number)
     {
-        new PlusGiro('1234,9048-0');
+        new PlusGiro($number);
+    }
+
+    public function validProvider()
+    {
+        return [
+            ['210918-9'],
+            ['4395094-8'],
+            ['956404-8'],
+            ['465658-3'],
+            ['205835-2'],
+            ['9048-0']
+        ];
     }
 
     /**
      * @dataProvider validProvider
      */
-    public function testConstruct($num)
+    public function testValidNumber($number)
     {
-        new PlusGiro($num);
-        $this->assertTrue(true);
-    }
-
-    /**
-     * @dataProvider invalidStructuresProvider
-     * @expectedException \ledgr\banking\Exception\InvalidStructureException
-     */
-    public function testInvalidStructure($num)
-    {
-        new PlusGiro($num);
-    }
-
-    /**
-     * @dataProvider invalidCheckDigitProvider
-     * @expectedException \ledgr\banking\Exception\InvalidCheckDigitException
-     */
-    public function testInvalidCheckDigit($num)
-    {
-        new PlusGiro($num);
+        $this->assertTrue(!!new PlusGiro($number));
     }
 
     public function testToString()
     {
-        $m = new PlusGiro('9048-0');
-        $this->assertEquals((string)$m, '9048-0');
+        $this->assertSame(
+            '9048-0',
+            (string)new PlusGiro('9048-0')
+        );
+    }
+
+    public function testTo16()
+    {
+        $this->assertSame(
+            '0000000000090480',
+            (new PlusGiro('9048-0'))->to16()
+        );
     }
 
     public function testGetType()
     {
-        $m = new PlusGiro('9048-0');
-        $this->assertEquals($m->getType(), 'PlusGiro');
+        $this->assertSame(
+            'PlusGiro',
+            (new PlusGiro('9048-0'))->getType()
+        );
     }
 }

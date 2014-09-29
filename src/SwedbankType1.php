@@ -9,37 +9,20 @@
 
 namespace ledgr\banking;
 
-use ledgr\checkdigit\Modulo11;
-
 /**
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class SwedbankTyp1 extends AbstractBankAccount
+class SwedbankType1 implements AccountNumber
 {
+    use Component\Type1A;
+
     public function getType()
     {
         return "Swedbank";
     }
 
-    public function __tostring()
-    {
-        return $this->getClearing() . ',' . substr($this->getNumber(), strlen($this->getNumber()) - 7);
-    }
-
-    protected function getStructure()
-    {
-        return "/^0{0,5}\d{7}$/";
-    }
-
     protected function isValidClearing()
     {
         return $this->getClearing() >= 7000 && $this->getClearing() <= 7999;
-    }
-
-    protected function isValidCheckDigit()
-    {
-        return Modulo11::verify(
-            substr($this->getClearing(), 1) . substr($this->getNumber(), strlen($this->getNumber()) - 7)
-        );
     }
 }

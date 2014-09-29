@@ -10,41 +10,62 @@
 namespace ledgr\banking;
 
 /**
- * Account interface
+ * The basic account interface
  *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-interface BankAccountInterface
+interface AccountNumber
 {
     /**
      * Get account as string
      *
      * @return string
      */
-    public function __toString();
+    public function __tostring();
 
     /**
-     * Get account as a 16 digit number
-     *
-     * Clearing number + x number of ceros + account number
+     * Get account as string
      *
      * @return string
      */
-    public function to16();
+    public function getNumber();
 
     /**
-     * Get clearing number
+     * Get clearing number, 4 digits
      *
      * @return string
      */
     public function getClearing();
 
     /**
-     * Get account number
+     * Get the check digit of the clearing number
+     *
+     * @return string Empty if not applicable
+     */
+    public function getClearingCheckDigit();
+
+    /**
+     * Get account serial number
      *
      * @return string
      */
-    public function getNumber();
+    public function getSerialNumber();
+
+    /**
+     * Get account check digit
+     *
+     * @return string
+     */
+    public function getCheckDigit();
+
+    /**
+     * Get account as a 16 digit number
+     *
+     * Clearing number (4 digits) + x number of ceros + account number
+     *
+     * @return string
+     */
+    public function to16();
 
     /**
      * Get string describing account type

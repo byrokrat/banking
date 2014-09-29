@@ -9,12 +9,11 @@
 
 namespace ledgr\banking\Exception;
 
-use ledgr\banking\Exception;
-use RuntimeException;
-
 /**
+ * Exception thrown when a clearing number is unknown or invalid
+ *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class InvalidClearingException extends RuntimeException implements Exception
+class InvalidClearingNumberException extends InvalidAccountNumberException
 {
 }

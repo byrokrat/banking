@@ -2,25 +2,8 @@
 
 namespace ledgr\banking;
 
-class SwedbankTyp2Test extends \PHPUnit_Framework_TestCase
+class SwedbankType2Test extends \PHPUnit_Framework_TestCase
 {
-    public function invalidClearingProvider()
-    {
-        return array(
-            array('7999,1'),
-            array('9000,1'),
-        );
-    }
-
-    /**
-     * @expectedException \ledgr\banking\Exception\InvalidClearingException
-     * @dataProvider invalidClearingProvider
-     */
-    public function testInvalidClearing($nr)
-    {
-        new SwedbankTyp2($nr);
-    }
-
     public function invalidStructuresProvider()
     {
         return array(
@@ -32,11 +15,28 @@ class SwedbankTyp2Test extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidStructuresProvider
-     * @expectedException \ledgr\banking\Exception\InvalidStructureException
+     * @expectedException ledgr\banking\Exception\InvalidStructureException
      */
-    public function testInvalidStructure($nr)
+    public function testInvalidStructure($number)
     {
-        new SwedbankTyp2($nr);
+        new SwedbankType2($number);
+    }
+
+    public function invalidClearingProvider()
+    {
+        return array(
+            array('7999,11'),
+            array('9000,11'),
+        );
+    }
+
+    /**
+     * @expectedException ledgr\banking\Exception\InvalidClearingNumberException
+     * @dataProvider invalidClearingProvider
+     */
+    public function testInvalidClearing($number)
+    {
+        new SwedbankType2($number);
     }
 
     public function invalidCheckDigitProvider()
@@ -57,11 +57,11 @@ class SwedbankTyp2Test extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidCheckDigitProvider
-     * @expectedException \ledgr\banking\Exception\InvalidCheckDigitException
+     * @expectedException ledgr\banking\Exception\InvalidCheckDigitException
      */
-    public function testInvalidCheckDigit($nr)
+    public function testInvalidCheckDigit($number)
     {
-        new SwedbankTyp2($nr);
+        new SwedbankType2($number);
     }
 
     public function validProvider()
@@ -84,24 +84,23 @@ class SwedbankTyp2Test extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider validProvider
      */
-    public function testConstruct($nr)
+    public function testConstruct($number)
     {
-        new SwedbankTyp2($nr);
-        $this->assertTrue(true);
+        $this->assertTrue(!!new SwedbankType2($number));
     }
 
     public function testToString()
     {
-        $m = new SwedbankTyp2('8000,001111111116');
-        $this->assertEquals('8000,1111111116', (string)$m);
+        $swedbank = new SwedbankType2('8000,001111111116');
+        $this->assertEquals('8000,1111111116', (string)$swedbank);
 
-        $m = new SwedbankTyp2('8105,744202466');
-        $this->assertEquals('8105,744202466', (string)$m);
+        $swedbank = new SwedbankType2('8105,744202466');
+        $this->assertEquals('8105,744202466', (string)$swedbank);
     }
 
     public function testGetType()
     {
-        $m = new SwedbankTyp2('8000,1111111');
-        $this->assertEquals($m->getType(), 'Swedbank');
+        $swedbank = new SwedbankType2('8000,1111111');
+        $this->assertEquals($swedbank->getType(), 'Swedbank');
     }
 }

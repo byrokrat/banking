@@ -10,12 +10,14 @@
 namespace ledgr\banking;
 
 /**
- * BankAccountInterface null object
+ * Account number null object
  *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class NullAccount implements BankAccountInterface
+class NullAccount implements AccountNumber
 {
+    use Component\BaseImplementation;
+
     /**
      * @var string String returned instead of account number
      */
@@ -32,26 +34,21 @@ class NullAccount implements BankAccountInterface
         self::$str = $str;
     }
 
-    public function __toString()
-    {
-        return $this->getNumber();
-    }
-
-    public function to16()
-    {
-        return $this->getNumber();
-    }
-
-    public function getClearing()
-    {
-        return '-';
-    }
-
+    /**
+     * Get account as string
+     *
+     * @return string
+     */
     public function getNumber()
     {
         return self::$str;
     }
 
+    /**
+     * Get string describing account type
+     *
+     * @return string
+     */
     public function getType()
     {
         return '-';

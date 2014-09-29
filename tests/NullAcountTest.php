@@ -6,22 +6,34 @@ class NullAccountTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetClearing()
     {
-        $account = new NullAccount();
-        $this->assertEquals('-', $account->getClearing());
+        $this->assertSame(
+            '0000',
+            (new NullAccount)->getClearing()
+        );
+    }
+
+    public function testTo16()
+    {
+        $this->assertSame(
+            '0000000000000000',
+            (new NullAccount)->to16()
+        );
     }
 
     public function testGetType()
     {
-        $account = new NullAccount();
-        $this->assertEquals('-', $account->getType());
+        $this->assertSame(
+            '-',
+            (new NullAccount)->getType()
+        );
     }
 
     public function testGetString()
     {
         NullAccount::setString('foobar');
-        $account = new NullAccount();
-        $this->assertEquals('foobar', (string)$account);
-        $this->assertEquals('foobar', $account->getNumber());
-        $this->assertEquals('foobar', $account->to16());
+        $this->assertSame(
+            'foobar',
+            (string)new NullAccount
+        );
     }
 }

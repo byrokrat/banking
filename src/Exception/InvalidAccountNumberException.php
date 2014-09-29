@@ -10,10 +10,10 @@
 namespace ledgr\banking\Exception;
 
 /**
- * Exception thrown when a check digit is invalid
+ * Subclasses of this exception are thrown when a account number is invalid
  *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class InvalidCheckDigitException extends InvalidAccountNumberException
+class InvalidAccountNumberException extends \RuntimeException implements \ledgr\banking\Exception
 {
 }

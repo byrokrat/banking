@@ -9,12 +9,11 @@
 
 namespace ledgr\banking\Exception;
 
-use ledgr\banking\Exception;
-use RuntimeException;
-
 /**
+ * Exception thrown when factory fails to create account number
+ *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class UnableToCreateBankAccountException extends RuntimeException implements Exception
+class UnableToCreateAccountException extends \RuntimeException implements \ledgr\banking\Exception
 {
 }

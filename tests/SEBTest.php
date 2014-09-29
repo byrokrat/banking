@@ -4,126 +4,137 @@ namespace ledgr\banking;
 
 class SEBTest extends \PHPUnit_Framework_TestCase
 {
-    public function invalidClearingProvider()
-    {
-        return array(
-            array('4999,1'),
-            array('6000,1'),
-            array('9119,1'),
-            array('9125,1'),
-            array('9129,1'),
-            array('9150,1'),
-        );
-    }
-
-    /**
-     * @expectedException \ledgr\banking\Exception\InvalidClearingException
-     * @dataProvider invalidClearingProvider
-     */
-    public function testInvalidClearing($nr)
-    {
-        new SEB($nr);
-    }
-
     public function invalidStructuresProvider()
     {
-        return array(
-            array('5000,111111'),
-            array('5000,11111'),
-            array('5000,11111111'),
-            array('5000,0000001111111'),
-        );
+        return [
+            ['5000,111111'],
+            ['5000,11111'],
+            ['5000,11111111'],
+            ['5000,0000001111111']
+        ];
     }
 
     /**
      * @dataProvider invalidStructuresProvider
-     * @expectedException \ledgr\banking\Exception\InvalidStructureException
+     * @expectedException ledgr\banking\Exception\InvalidStructureException
      */
-    public function testInvalidStructure($nr)
+    public function testInvalidStructure($number)
     {
-        new SEB($nr);
+        new SEB($number);
+    }
+
+    public function invalidClearingProvider()
+    {
+        return [
+            ['4999,1111111'],
+            ['6000,1111111'],
+            ['9119,1111111'],
+            ['9125,1111111'],
+            ['9129,1111111'],
+            ['9150,1111111']
+        ];
+    }
+
+    /**
+     * @expectedException ledgr\banking\Exception\InvalidClearingNumberException
+     * @dataProvider invalidClearingProvider
+     */
+    public function testInvalidClearing($number)
+    {
+        new SEB($number);
     }
 
     public function invalidCheckDigitProvider()
     {
-        return array(
-            array('5000,1111111'),
-            array('5681,0047150'),
-            array('5102,0158750'),
-            array('5624,0179270'),
-            array('5011,0137390'),
-            array('5169,0027450'),
-            array('5007,0042700'),
-            array('5502,0038521'),
-            array('5504,0017150'),
-            array('5624,0017790'),
-        );
+        return [
+            ['5000,1111111'],
+            ['5681,0047150'],
+            ['5102,0158750'],
+            ['5624,0179270'],
+            ['5011,0137390'],
+            ['5169,0027450'],
+            ['5007,0042700'],
+            ['5502,0038521'],
+            ['5504,0017150'],
+            ['5624,0017790']
+        ];
     }
 
     /**
      * @dataProvider invalidCheckDigitProvider
-     * @expectedException \ledgr\banking\Exception\InvalidCheckDigitException
+     * @expectedException ledgr\banking\Exception\InvalidCheckDigitException
      */
-    public function testInvalidCheckDigit($nr)
+    public function testInvalidCheckDigit($number)
     {
-        new SEB($nr);
+        new SEB($number);
     }
 
     public function validProvider()
     {
-        return array(
-            array('5000,1111116'),
-            array('5000,000001111116'),
-            array('5681,0047158'),
-            array('5102,0158751'),
-            array('5624,0179272'),
-            array('5011,0137396'),
-            array('5169,0027452'),
-            array('5007,0042705'),
-            array('5502,0038520'),
-            array('5504,0017154'),
-            array('5624,0017795'),
-        );
+        return [
+            ['5000,1111116'],
+            ['5000,000001111116'],
+            ['5681,0047158'],
+            ['5102,0158751'],
+            ['5624,0179272'],
+            ['5011,0137396'],
+            ['5169,0027452'],
+            ['5007,0042705'],
+            ['5502,0038520'],
+            ['5504,0017154'],
+            ['5624,0017795']
+        ];
     }
 
     /**
      * @dataProvider validProvider
      */
-    public function testConstruct($nr)
+    public function testConstruct($number)
     {
-        new SEB($nr);
-        $this->assertTrue(true);
+        $this->assertTrue(!!new SEB($number));
     }
 
     public function testToString()
     {
-        $m = new SEB('5000,000001111116');
-        $this->assertEquals((string)$m, '5000,1111116');
+        $this->assertSame(
+            '5000,1111116',
+            (string)new SEB('5000,000001111116')
+        );
     }
 
     public function testTo16()
     {
-        $m = new SEB('5000,1111116');
-        $this->assertEquals($m->to16(), '5000000001111116');
+        $this->assertSame(
+            '5000000001111116',
+            (new SEB('5000,1111116'))->to16()
+        );
     }
 
     public function testGetClearing()
     {
-        $m = new SEB('5000,1111116');
-        $this->assertEquals($m->getClearing(), '5000');
+        $this->assertSame(
+            '5000',
+            (new SEB('5000,1111116'))->getClearing()
+        );
     }
 
-    public function testGetNumber()
+    public function testGetSerialNumber()
     {
-        $m = new SEB('5000,1111116');
-        $this->assertEquals($m->getNumber(), '1111116');
-        $m = new SEB('5000,001111116');
-        $this->assertEquals($m->getNumber(), '001111116');
+        $this->assertSame(
+            '111111',
+            (new SEB('5000,1111116'))->getSerialNumber()
+        );
+        $this->assertSame(
+            '111111',
+            (new SEB('5000,001111116'))->getSerialNumber()
+        );
     }
 
     public function testGetType()
     {
-        $m = new SEB('5000,1111116');
-        $this->assertEquals($m->getType(), 'SEB');
+        $this->assertSame(
+            'SEB',
+            (new SEB('5000,1111116'))->getType()
+        );
     }
 }

@@ -9,12 +9,11 @@
 
 namespace ledgr\banking\Exception;
 
-use ledgr\banking\Exception;
-use RuntimeException;
-
 /**
+ * Exception thrown when account structure is unknown or invalid
+ *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class InvalidStructureException extends RuntimeException implements Exception
+class InvalidStructureException extends InvalidAccountNumberException
 {
 }

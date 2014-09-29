@@ -9,37 +9,30 @@
 
 namespace ledgr\banking;
 
-use ledgr\checkdigit\Modulo11;
-
 /**
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class NordeaTyp1B extends AbstractBankAccount
+class NordeaType1B implements AccountNumber
 {
+    use Component\Type1B;
+
+    /**
+     * Get string describing account type (implements AccountNumber)
+     *
+     * @return string
+     */
     public function getType()
     {
         return "Nordea";
     }
 
-    public function __tostring()
-    {
-        return $this->getClearing() . ',' . substr($this->getNumber(), strlen($this->getNumber()) - 7);
-    }
-
-    protected function getStructure()
-    {
-        return "/^0{0,5}\d{7}$/";
-    }
-
+    /**
+     * Validate clearing number (from Component\Constructor)
+     *
+     * @return boolean
+     */
     protected function isValidClearing()
     {
         return $this->getClearing() >= 4000 &&  $this->getClearing() <= 4999;
-    }
-
-    protected function isValidCheckDigit()
-    {
-        return Modulo11::verify(
-            $this->getClearing() . substr($this->getNumber(), strlen($this->getNumber()) - 7)
-        );
     }
 }

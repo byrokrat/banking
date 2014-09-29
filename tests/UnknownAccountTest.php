@@ -4,55 +4,65 @@ namespace ledgr\banking;
 
 class UnknownAccountTest extends \PHPUnit_Framework_TestCase
 {
-    public function invalidClearingProvider()
+    public function invalidStructureProvider()
     {
-        return array(
-            array('915,1'),
-            array('91115,1'),
-        );
+        return [
+            ['123,1234567'],
+            ['12345,1234567'],
+            ['1234,123456'],
+            ['1234,1234567890123'],
+            ['1234123456']
+        ];
     }
 
     /**
-     * @expectedException \ledgr\banking\Exception\InvalidClearingException
-     * @dataProvider invalidClearingProvider
+     * @expectedException ledgr\banking\Exception\InvalidStructureException
+     * @dataProvider invalidStructureProvider
      */
-    public function testInvalidClearing($nr)
+    public function testInvalidStructure($number)
     {
-        new UnknownAccount($nr);
+        new UnknownAccount($number);
     }
 
     public function validProvider()
     {
-        return array(
-            array('5000,1111116'),
-            array('5000,000001111116'),
-        );
+        return [
+            ['1234,1234567'],
+            ['1234,1234567890'],
+            ['12341234567'],
+            ['1234000001234567']
+        ];
     }
 
     /**
      * @dataProvider validProvider
      */
-    public function testConstruct($nr)
+    public function testValidStructure($number)
     {
-        new UnknownAccount($nr);
-        $this->assertTrue(true);
+        $this->assertTrue(!!new UnknownAccount($number));
     }
 
     public function testToString()
     {
-        $m = new UnknownAccount('5000,000001111116');
-        $this->assertEquals((string)$m, '5000,000001111116');
+        $this->assertSame(
+            '1234,1234567',
+            (string)new UnknownAccount('1234,1234567')
+        );
     }
 
     public function testTo16()
     {
-        $m = new UnknownAccount('5000,1111116');
-        $this->assertEquals($m->to16(), '5000000001111116');
+        $this->assertSame(
+            '1234000001234567',
+            (new UnknownAccount('1234,1234567'))->to16()
+        );
     }
 
     public function testGetType()
     {
-        $m = new UnknownAccount('5000,1111116');
-        $this->assertEquals($m->getType(), 'Unknown');
+        $this->assertSame(
+            'Unknown',
+            (new UnknownAccount('1234,1234567'))->getType()
+        );
     }
 }

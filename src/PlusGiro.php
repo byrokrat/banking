@@ -10,17 +10,54 @@
 namespace ledgr\banking;
 
 /**
+ * Account number for PlusGirot (formerly PostGirot) clearing system
+ *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class PlusGiro extends AbstractGiro
+class PlusGiro implements AccountNumber
 {
+    use Component\Giro;
+
+    /**
+     * Get string describing account type (implements AccountNumber)
+     *
+     * @return string
+     */
     public function getType()
     {
         return "PlusGiro";
     }
 
+    /**
+     * Get account as string (implements AccountNumber)
+     *
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->getSerialNumber()
+            . '-'
+            . $this->getCheckDigit();
+    }
+
+    /**
+     * Get regular expression describing structure (from Component\Constructor)
+     *
+     * @return string
+     */
     protected function getStructure()
     {
-        return "/^\d{1,7}-\d$/";
+        return "/^(\d{1,7})-(\d)$/";
+    }
+
+    /**
+     * Load data returned by parsing regular expression (from Component\Constructor)
+     *
+     * @param  array $matches
+     * @return void
+     */
+    protected function setup(array $matches)
+    {
+        list($this->serial, $this->checkDigit) = $matches;
     }
 }
