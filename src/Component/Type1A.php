@@ -31,7 +31,7 @@ trait Type1A
     protected function isValidCheckDigit()
     {
         return Modulo11::verify(
-            substr($this->getClearing(), 1) . $this->getSerialNumber() . $this->getCheckDigit()
+            substr($this->getClearingNumber(), 1) . $this->getSerialNumber() . $this->getCheckDigit()
         );
     }
 }

@@ -26,30 +26,19 @@ class NullAccount implements AccountNumber
     /**
      * Set string returned instead of account number
      *
-     * @param  string $str
-     * @return void
+     * @param string $str
      */
     public static function setString($str)
     {
         self::$str = $str;
     }
 
-    /**
-     * Get account as string
-     *
-     * @return string
-     */
     public function getNumber()
     {
         return self::$str;
     }
 
-    /**
-     * Get string describing account type
-     *
-     * @return string
-     */
-    public function getType()
+    public function getBankName()
     {
         return '-';
     }

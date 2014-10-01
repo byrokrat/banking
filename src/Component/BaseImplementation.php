@@ -43,7 +43,7 @@ trait BaseImplementation
      */
     public function getNumber()
     {
-        return $this->getClearing()
+        return $this->getClearingNumber()
             . ','
             . $this->getSerialNumber()
             . $this->getCheckDigit();
@@ -64,7 +64,7 @@ trait BaseImplementation
      *
      * @return string
      */
-    public function getClearing()
+    public function getClearingNumber()
     {
         return $this->clearing;
     }
@@ -102,13 +102,13 @@ trait BaseImplementation
     /**
      * Get account as a 16 digit number
      *
-     * Clearing number (4 digits) + x number of ceros + account number
+     * Clearing number (4 digits) + x number of ceros + serial number
      *
      * @return string
      */
-    public function to16()
+    public function get16()
     {
-        return $this->getClearing()
+        return $this->getClearingNumber()
             .str_pad($this->getSerialNumber(), 11, '0', STR_PAD_LEFT)
             .$this->getCheckDigit();
     }

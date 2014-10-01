@@ -19,13 +19,11 @@ class Bankgiro implements AccountNumber
     use Component\Giro;
 
     /**
-     * Get string describing account type (implements AccountNumber)
-     *
-     * @return string
+     * Get name of Bank this number belongs to (implements AccountNumber)
      */
-    public function getType()
+    public function getBankName()
     {
-        return "Bankgiro";
+        return self::BANK_BANKGIRO;
     }
 
     /**

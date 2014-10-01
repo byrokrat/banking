@@ -28,13 +28,11 @@ class NordeaPersonal implements AccountNumber
     private $personalId;
 
     /**
-     * Get string describing account type (implements AccountNumber)
-     *
-     * @return string
+     * Get name of Bank this number belongs to (implements AccountNumber)
      */
-    public function getType()
+    public function getBankName()
     {
-        return "Nordea personkonto";
+        return self::BANK_NORDEA;
     }
 
     /**

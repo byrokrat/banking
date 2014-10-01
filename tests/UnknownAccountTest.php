@@ -50,19 +50,19 @@ class UnknownAccountTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testTo16()
+    public function testGet16()
     {
         $this->assertSame(
             '1234000001234567',
-            (new UnknownAccount('1234,1234567'))->to16()
+            (new UnknownAccount('1234,1234567'))->get16()
         );
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $this->assertSame(
             'Unknown',
-            (new UnknownAccount('1234,1234567'))->getType()
+            (new UnknownAccount('1234,1234567'))->getBankName()
         );
     }
 }

@@ -102,19 +102,19 @@ class SEBTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testTo16()
+    public function testGet16()
     {
         $this->assertSame(
             '5000000001111116',
-            (new SEB('5000,1111116'))->to16()
+            (new SEB('5000,1111116'))->get16()
         );
     }
 
-    public function testGetClearing()
+    public function testGetClearingNumber()
     {
         $this->assertSame(
             '5000',
-            (new SEB('5000,1111116'))->getClearing()
+            (new SEB('5000,1111116'))->getClearingNumber()
         );
     }
 
@@ -130,11 +130,11 @@ class SEBTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $this->assertSame(
             'SEB',
-            (new SEB('5000,1111116'))->getType()
+            (new SEB('5000,1111116'))->getBankName()
         );
     }
 }

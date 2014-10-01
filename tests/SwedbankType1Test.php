@@ -82,9 +82,9 @@ class SwedbankType1Test extends \PHPUnit_Framework_TestCase
         $this->assertEquals((string)$swedbank, '7000,1111116');
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $swedbank = new SwedbankType1('7000,1111116');
-        $this->assertEquals($swedbank->getType(), 'Swedbank');
+        $this->assertEquals($swedbank->getBankName(), 'Swedbank');
     }
 }

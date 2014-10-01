@@ -14,7 +14,7 @@ namespace ledgr\banking;
  *
  * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-interface AccountNumber
+interface AccountNumber extends Data\BankNames
 {
     /**
      * Get account as string
@@ -35,7 +35,7 @@ interface AccountNumber
      *
      * @return string
      */
-    public function getClearing();
+    public function getClearingNumber();
 
     /**
      * Get the check digit of the clearing number
@@ -61,16 +61,16 @@ interface AccountNumber
     /**
      * Get account as a 16 digit number
      *
-     * Clearing number (4 digits) + x number of ceros + account number
+     * Clearing number (4 digits) + x number of ceros + serial number
      *
      * @return string
      */
-    public function to16();
+    public function get16();
 
     /**
-     * Get string describing account type
+     * Get name of Bank this number belongs to
      *
-     * @return string
+     * @return string One of the Data\BankNames constants
      */
-    public function getType();
+    public function getBankName();
 }

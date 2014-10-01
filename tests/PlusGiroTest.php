@@ -77,19 +77,19 @@ class PlusGiroTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testTo16()
+    public function testGet16()
     {
         $this->assertSame(
             '0000000000090480',
-            (new PlusGiro('9048-0'))->to16()
+            (new PlusGiro('9048-0'))->get16()
         );
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $this->assertSame(
             'PlusGiro',
-            (new PlusGiro('9048-0'))->getType()
+            (new PlusGiro('9048-0'))->getBankName()
         );
     }
 }

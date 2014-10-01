@@ -89,19 +89,19 @@ class BankgiroTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testTo16()
+    public function testGet16()
     {
         $this->assertSame(
             '0000000005501051',
-            (new Bankgiro('550-1051'))->to16()
+            (new Bankgiro('550-1051'))->get16()
         );
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $this->assertSame(
             'Bankgiro',
-            (new Bankgiro('5050-1055'))->getType()
+            (new Bankgiro('5050-1055'))->getBankName()
         );
     }
 }

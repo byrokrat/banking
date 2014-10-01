@@ -19,11 +19,9 @@ class UnknownAccount implements AccountNumber
     use Component\Constructor;
 
     /**
-     * Get string describing account type (implements AccountNumber)
-     *
-     * @return string
+     * Get name of Bank this number belongs to (implements AccountNumber)
      */
-    public function getType()
+    public function getBankName()
     {
         return "Unknown";
     }

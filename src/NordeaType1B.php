@@ -17,13 +17,11 @@ class NordeaType1B implements AccountNumber
     use Component\Type1B;
 
     /**
-     * Get string describing account type (implements AccountNumber)
-     *
-     * @return string
+     * Get name of Bank this number belongs to (implements AccountNumber)
      */
-    public function getType()
+    public function getBankName()
     {
-        return "Nordea";
+        return self::BANK_NORDEA;
     }
 
     /**
@@ -33,6 +31,6 @@ class NordeaType1B implements AccountNumber
      */
     protected function isValidClearing()
     {
-        return $this->getClearing() >= 4000 &&  $this->getClearing() <= 4999;
+        return $this->getClearingNumber() >= 4000 &&  $this->getClearingNumber() <= 4999;
     }
 }

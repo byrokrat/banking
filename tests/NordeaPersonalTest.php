@@ -76,19 +76,19 @@ class NordeaPersonalTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testTo16()
+    public function testGet16()
     {
         $this->assertSame(
             '3300001111111116',
-            (new NordeaPersonal('3300,1111111116'))->to16()
+            (new NordeaPersonal('3300,1111111116'))->get16()
         );
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $this->assertSame(
-            'Nordea personkonto',
-            (new NordeaPersonal('3300,001111111116'))->getType()
+            'Nordea',
+            (new NordeaPersonal('3300,001111111116'))->getBankName()
         );
     }
 

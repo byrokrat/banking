@@ -100,19 +100,19 @@ class NordeaType1ATest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testTo16()
+    public function testGet16()
     {
         $this->assertSame(
             '3000000001111116',
-            (new NordeaType1A('3000,1111116'))->to16()
+            (new NordeaType1A('3000,1111116'))->get16()
         );
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $this->assertSame(
             'Nordea',
-            (new NordeaType1A('3000,1111116'))->getType()
+            (new NordeaType1A('3000,1111116'))->getBankName()
         );
     }
 }

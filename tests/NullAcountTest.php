@@ -4,27 +4,27 @@ namespace ledgr\banking;
 
 class NullAccountTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetClearing()
+    public function testGetClearingNumber()
     {
         $this->assertSame(
             '0000',
-            (new NullAccount)->getClearing()
+            (new NullAccount)->getClearingNumber()
         );
     }
 
-    public function testTo16()
+    public function testGet16()
     {
         $this->assertSame(
             '0000000000000000',
-            (new NullAccount)->to16()
+            (new NullAccount)->get16()
         );
     }
 
-    public function testGetType()
+    public function testGetBankName()
     {
         $this->assertSame(
             '-',
-            (new NullAccount)->getType()
+            (new NullAccount)->getBankName()
         );
     }
 

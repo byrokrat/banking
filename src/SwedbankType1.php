@@ -16,13 +16,16 @@ class SwedbankType1 implements AccountNumber
 {
     use Component\Type1A;
 
-    public function getType()
+    /**
+     * Get name of Bank this number belongs to (implements AccountNumber)
+     */
+    public function getBankName()
     {
-        return "Swedbank";
+        return self::BANK_SWEDBANK;
     }
 
     protected function isValidClearing()
     {
-        return $this->getClearing() >= 7000 && $this->getClearing() <= 7999;
+        return $this->getClearingNumber() >= 7000 && $this->getClearingNumber() <= 7999;
     }
 }

@@ -18,9 +18,12 @@ class SwedbankType2 implements AccountNumber
 {
     use Component\Constructor;
 
-    public function getType()
+    /**
+     * Get name of Bank this number belongs to (implements AccountNumber)
+     */
+    public function getBankName()
     {
-        return "Swedbank";
+        return self::BANK_SWEDBANK;
     }
 
     protected function getStructure()
@@ -30,7 +33,7 @@ class SwedbankType2 implements AccountNumber
 
     protected function isValidClearing()
     {
-        return $this->getClearing() >= 8000 && $this->getClearing() <= 8999;
+        return $this->getClearingNumber() >= 8000 && $this->getClearingNumber() <= 8999;
     }
 
     protected function isValidCheckDigit()
