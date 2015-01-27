@@ -1,8 +1,8 @@
 <?php
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
-use ledgr\id\PersonalId;
+use byrokrat\id\PersonalId;
 
 class NordeaPersonalTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,7 +17,7 @@ class NordeaPersonalTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidStructuresProvider
-     * @expectedException ledgr\banking\Exception\InvalidStructureException
+     * @expectedException byrokrat\banking\Exception\InvalidStructureException
      */
     public function testInvalidStructure($number)
     {
@@ -26,20 +26,20 @@ class NordeaPersonalTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidClearing()
     {
-        $this->setExpectedException('ledgr\banking\Exception\InvalidClearingNumberException');
+        $this->setExpectedException('byrokrat\banking\Exception\InvalidClearingNumberException');
         new NordeaPersonal('3301,8411283941');
     }
 
     public function testInvalidCheckDigit()
     {
-        $this->setExpectedException('ledgr\banking\Exception\InvalidCheckDigitException');
+        $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
         // Check digit should be 1
         new NordeaPersonal('3300,8411283940');
     }
 
     public function testInvalidDate()
     {
-        $this->setExpectedException('ledgr\banking\Exception\InvalidAccountNumberException');
+        $this->setExpectedException('byrokrat\banking\Exception\InvalidAccountNumberException');
         // Month number 13 does not exist
         new NordeaPersonal('3300,8413283949');
     }

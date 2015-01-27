@@ -1,6 +1,6 @@
 <?php
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
 class NullAccountTest extends \PHPUnit_Framework_TestCase
 {

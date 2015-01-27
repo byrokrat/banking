@@ -1,6 +1,6 @@
 <?php
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
 class NordeaType1BTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class NordeaType1BTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidStructuresProvider
-     * @expectedException ledgr\banking\Exception\InvalidStructureException
+     * @expectedException byrokrat\banking\Exception\InvalidStructureException
      */
     public function testInvalidStructure($number)
     {
@@ -32,7 +32,7 @@ class NordeaType1BTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException ledgr\banking\Exception\InvalidClearingNumberException
+     * @expectedException byrokrat\banking\Exception\InvalidClearingNumberException
      * @dataProvider invalidClearingProvider
      */
     public function testInvalidClearing($number)
@@ -42,7 +42,7 @@ class NordeaType1BTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidCheckDigit()
     {
-        $this->setExpectedException('ledgr\banking\Exception\InvalidCheckDigitException');
+        $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
         new NordeaType1B('4000,1111111');
     }
 

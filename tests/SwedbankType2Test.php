@@ -1,6 +1,6 @@
 <?php
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
 class SwedbankType2Test extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +15,7 @@ class SwedbankType2Test extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidStructuresProvider
-     * @expectedException ledgr\banking\Exception\InvalidStructureException
+     * @expectedException byrokrat\banking\Exception\InvalidStructureException
      */
     public function testInvalidStructure($number)
     {
@@ -31,7 +31,7 @@ class SwedbankType2Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException ledgr\banking\Exception\InvalidClearingNumberException
+     * @expectedException byrokrat\banking\Exception\InvalidClearingNumberException
      * @dataProvider invalidClearingProvider
      */
     public function testInvalidClearing($number)
@@ -57,7 +57,7 @@ class SwedbankType2Test extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidCheckDigitProvider
-     * @expectedException ledgr\banking\Exception\InvalidCheckDigitException
+     * @expectedException byrokrat\banking\Exception\InvalidCheckDigitException
      */
     public function testInvalidCheckDigit($number)
     {

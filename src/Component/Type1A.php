@@ -1,20 +1,11 @@
 <?php
-/**
- * This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details.
- */
 
-namespace ledgr\banking\Component;
+namespace byrokrat\banking\Component;
 
-use ledgr\checkdigit\Modulo11;
+use byrokrat\checkdigit\Modulo11;
 
 /**
  * Helper that implements isValidCheckDigit() for Type1A accounts
- *
- * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
 trait Type1A
 {
@@ -27,10 +18,11 @@ trait Type1A
      * of the first digit, and seven digits of the actual account number.
      *
      * @return boolean
+     * @todo   Should use validator instead
      */
     protected function isValidCheckDigit()
     {
-        return Modulo11::verify(
+        return (new Modulo11)->isValid(
             substr($this->getClearingNumber(), 1) . $this->getSerialNumber() . $this->getCheckDigit()
         );
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
 class UnknownAccountTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class UnknownAccountTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException ledgr\banking\Exception\InvalidStructureException
+     * @expectedException byrokrat\banking\Exception\InvalidStructureException
      * @dataProvider invalidStructureProvider
      */
     public function testInvalidStructure($number)

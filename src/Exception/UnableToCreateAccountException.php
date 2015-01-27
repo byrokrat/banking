@@ -1,19 +1,10 @@
 <?php
-/**
- * This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details.
- */
 
-namespace ledgr\banking\Exception;
+namespace byrokrat\banking\Exception;
 
 /**
  * Exception thrown when factory fails to create account number
- *
- * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
-class UnableToCreateAccountException extends \RuntimeException implements \ledgr\banking\Exception
+class UnableToCreateAccountException extends \RuntimeException implements \byrokrat\banking\Exception
 {
 }

@@ -1,20 +1,11 @@
 <?php
-/**
- * This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details.
- */
 
-namespace ledgr\banking\Component;
+namespace byrokrat\banking\Component;
 
-use ledgr\checkdigit\Modulo10;
+use byrokrat\checkdigit\Modulo10;
 
 /**
  * Helper that implements isValidCheckDigit() for Bankgiro and PlusGiro
- *
- * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
 trait Giro
 {
@@ -24,10 +15,11 @@ trait Giro
      * Validate check digit (from Component\Constructor)
      *
      * @return boolean
+     * @todo   Should use validator instead
      */
     protected function isValidCheckDigit()
     {
-        return Modulo10::verify(
+        return (new Modulo10)->isValid(
             $this->getSerialNumber() . $this->getCheckDigit()
         );
     }

@@ -1,18 +1,11 @@
 <?php
-/**
- * This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details.
- */
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
-use ledgr\checkdigit\Modulo10;
+use byrokrat\checkdigit\Modulo10;
 
 /**
- * @author Hannes Forsgård <hannes.forsgard@fripost.org>
+ * Swedbank type 2 account
  */
 class SwedbankType2 implements AccountNumber
 {
@@ -36,9 +29,12 @@ class SwedbankType2 implements AccountNumber
         return $this->getClearingNumber() >= 8000 && $this->getClearingNumber() <= 8999;
     }
 
+    /**
+     * @todo Should use validator instead
+     */
     protected function isValidCheckDigit()
     {
-        return Modulo10::verify(
+        return (new Modulo10)->isValid(
             $this->getSerialNumber() . $this->getCheckDigit()
         );
     }

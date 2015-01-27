@@ -1,22 +1,13 @@
 <?php
-/**
- * This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details.
- */
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
-use ledgr\id\PersonalId;
-use ledgr\id\Exception\RuntimeException as IdException;
-use ledgr\id\Exception\InvalidCheckDigitException as IdInvalidCheckDigitException;
+use byrokrat\id\PersonalId;
+use byrokrat\id\Exception\RuntimeException as IdException;
+use byrokrat\id\Exception\InvalidCheckDigitException as IdInvalidCheckDigitException;
 
 /**
  * Account number where serial number is a swedish personal id
- *
- * @author Hannes Forsgård <hannes.forsgard@fripost.org>
  */
 class NordeaPersonal implements AccountNumber
 {

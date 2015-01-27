@@ -1,6 +1,6 @@
 <?php
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
 class BankgiroTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,7 +24,7 @@ class BankgiroTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidStructuresProvider
-     * @expectedException ledgr\banking\Exception\InvalidStructureException
+     * @expectedException byrokrat\banking\Exception\InvalidStructureException
      */
     public function testInvalidStructure($number)
     {
@@ -47,7 +47,7 @@ class BankgiroTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidCheckDigitProvider
-     * @expectedException ledgr\banking\Exception\InvalidCheckDigitException
+     * @expectedException byrokrat\banking\Exception\InvalidCheckDigitException
      */
     public function testInvalidCheckDigit($number)
     {

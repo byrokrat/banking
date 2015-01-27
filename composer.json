@@ -1,8 +1,8 @@
 {
-    "name": "ledgr/banking",
+    "name": "byrokrat/banking",
     "description": "Data types for accounts in the swedish banking system",
     "keywords": ["Nordea", "SEB", "PlusGiro", "Bankgiro", "Swedbank"],
-    "homepage": "https://github.com/ledgr/banking",
+    "homepage": "https://github.com/byrokrat/banking",
     "type": "library",
     "license": "WTFPL",
     "authors": [
@@ -13,12 +13,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "ledgr\\banking\\": "src/"
+            "byrokrat\\banking\\": "src/"
         }
     },
     "require": {
         "php": ">=5.4",
-        "ledgr/checkdigit": "1.*",
-        "ledgr/id": ">=2.0.1,<3.0"
+        "byrokrat/checkdigit": "~1.0",
+        "byrokrat/id": "~1.0"
     }
 }

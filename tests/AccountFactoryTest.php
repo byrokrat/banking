@@ -1,13 +1,13 @@
 <?php
 
-namespace ledgr\banking;
+namespace byrokrat\banking;
 
 class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreate()
     {
         $this->assertInstanceOf(
-            "ledgr\\banking\\NordeaPersonal",
+            "byrokrat\\banking\\NordeaPersonal",
             (new AccountFactory)->create('3300,1111111116')
         );
     }
@@ -15,7 +15,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateSetClassList()
     {
         $this->assertInstanceOf(
-            "ledgr\\banking\\UnknownAccount",
+            "byrokrat\\banking\\UnknownAccount",
             (new AccountFactory(['UnknownAccount']))->create('3300,1111111116')
         );
     }
@@ -23,20 +23,20 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateBankgiro()
     {
         $this->assertInstanceOf(
-            "ledgr\\banking\\Bankgiro",
+            "byrokrat\\banking\\Bankgiro",
             (new AccountFactory)->create('111-1111')
         );
     }
 
     public function testCreateBankgiroInvalidCheckdigit()
     {
-        $this->setExpectedException('ledgr\banking\Exception\UnableToCreateAccountException');
+        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         (new AccountFactory)->create('111-1112');
     }
 
     public function testClassMissingError()
     {
-        $this->setExpectedException('ledgr\banking\Exception\UnableToCreateAccountException');
+        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         (new AccountFactory)->create('12345,1');
     }
 }
