@@ -61,7 +61,7 @@
         "struct": "$struct_unknown",
         "bank": "$bank_unknown",
         "clearing": [
-            [0000, 9999]
+            [1000, 9999]
         ],
         "validators": [],
         "comment": "Special case account where all is valid"
