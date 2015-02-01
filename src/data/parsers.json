@@ -1,0 +1,60 @@
+{
+    "NordeaType1A": {
+        "struct": "$structure_type1",
+        "bank": "Nordea",
+        "clearing": [
+            [1100, 1199],
+            [1400, 2099],
+            [3000, 3299],
+            [3301, 3399],
+            [3410, 3781],
+            [3783, 3999]
+        ],
+        "validators": [
+            "$checkdigit_type1A"
+        ]
+    },
+    "NordeaType1B": {
+        "struct": "$structure_type1",
+        "bank": "Nordea",
+        "clearing": [
+            [4000, 4999]
+        ],
+        "validators": [
+            "$checkdigit_type1B"
+        ]
+    },
+    "SEB": {
+        "struct": "$structure_type1",
+        "bank": "SEB",
+        "clearing": [
+            [5000, 5999],
+            [9120, 9124],
+            [9130, 9149]
+        ],
+        "validators": [
+            "$checkdigit_type1A"
+        ]
+    },
+    "SwedbankType1": {
+        "struct": "$structure_type1",
+        "bank": "Swedbank",
+        "clearing": [
+            [7000, 7999]
+        ],
+        "validators": [
+            "$checkdigit_type1A"
+        ]
+    },
+    "SwedbankType2": {
+        "struct": "/^(\\d{4})(),?0{0,10}(\\d{1,9})-?(\\d)$/",
+        "bank": "Swedbank",
+        "clearing": [
+            [8000, 8999]
+        ],
+        "validators": [
+            "$checkdigit_type2"
+        ],
+        "comment": "In rare occasions some of Swedbank's accounts cannot be validated by a checksum calculation"
+    }
+}

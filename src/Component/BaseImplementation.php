@@ -3,7 +3,7 @@
 namespace byrokrat\banking\Component;
 
 /**
- * Base implementation of the AccountNumber interface
+ * @todo Kan raderas när inga referenser finns längre
  */
 trait BaseImplementation
 {

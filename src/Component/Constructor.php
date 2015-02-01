@@ -7,7 +7,7 @@ use byrokrat\banking\Exception\InvalidStructureException;
 use byrokrat\banking\Exception\InvalidCheckDigitException;
 
 /**
- * Helper that implements construction and validation
+ * @todo Kan raderas när inga referenser finns längre
  */
 trait Constructor
 {

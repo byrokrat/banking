@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * Fake account, all is valid
  */
-class UnknownAccount implements AccountNumber
+class UnknownAccount implements AccountNumberInterface
 {
     use Component\Constructor;
 

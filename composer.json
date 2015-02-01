@@ -16,6 +16,11 @@
             "byrokrat\\banking\\": "src/"
         }
     },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
     "require": {
         "php": ">=5.4",
         "byrokrat/checkdigit": "~1.0",

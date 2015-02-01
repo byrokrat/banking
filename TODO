@@ -1,4 +1,5 @@
-27/1-2015
+todo
+====
 
 när jag har fått ordning på det här så att det kan användas ska
     paketet läggas till packagist
@@ -8,73 +9,22 @@ när jag har fått ordning på det här så att det kan användas ska
 
 ---------------------------------------
 
-Note!
-    Max antal siffror för ett konto är 16
-    Alla klasser ska dynamiskt kunna hantera utfyllning av nullor upp till 16
-    to16() formatet måste alltid kunna parsas
+Hur göra med UnknownAccount??
+    jag behöver stödja något liknande här
+    tror att det ganska enkelt kan gå in i samma format som de andra..
 
-    Gå igenom detta för alla klasser och kontrollera att jag har test för det
+NordeaPersonal
+    kräver en egen validator som kontrollerar personnummer-delen
+    Ska kräva clearing för alla personnummer.. (läs på: används båda för personnummer-konto??)
+    OBS: nu finns ett flaky test, ibland blir det fel med datum...
 
-    Giro-klasserna kan som de står nu inte skapas från 16 formatet
-        de kräver att de skrivs med -
-        hur ska jag göra med det?
+Swedbank
+    oklart från BG910.pdf vilka swedbank konton som har en clearing-number checkdigit
+    måste gå direkt till swedbank för att lösa detta..
+    kräver ändringar i structure mm...
 
----------------------------------------
+Krävs det andra typer av lösningar för att implementera giro klasserna??
+    Ska jag i så fall istället använda BankAccount (istället för AccountNumber) för de "vanliga" typerna?
 
-Kontroll av clearingnummer
-    Eller kan jag skapa detta som en rak array, men den binary search?
-        I så fall kan listan på clearingnummer vara en statisk property
-        vilket blir snabbt med bit-code generation
-        se https://github.com/paugay/code-dojo/blob/master/random-problems/binary-search.php
-            för inspiration
-    Jag vill göra detta i AccountFactory istället
-        eget API för att kontrollera ett clearingnummer
-        $factory->isKnownClearing()
-        $factory->getClearingType() // hämta vilken bank ett visst clearingnummer tillhör
-    Ska verkligen NordeaPersonal få fungera utan clearing??
-        det verkar bättre att 3300 måste anges vid create()
-            annars riskeras det att blandas ihop med Bankgiro och PlusGiro...
-
-    Baserat på vilket clearingnummer det är måste den sedan välja
-        type (const i interface)
-        klass (BankGiro är annan klass osv...) (const i interface)
-        parsing regexp (const i interface)
-        samt validator class (const i interface)
-
-    **BgcData** INNEHÅLLER MER TODO SOM ÄR RELEVANT HÄR!!
-
-Kontroll av check digit
-    Skriv validators som egna klasser
-        har lämnat flera @todo i koden där validators inte används...
-    Tar ett AccountNumber och validerar check digit
-    Kan också validera annat (läs clearing number check digit)
-        för typer som har stöd för det
-    Abstrahera med trait på något sätt??
-    Flytta Validator.php till project root
-    Skriv Validators.php som är ett interface med konstanter
-        som pekar till de olika validators som finns tillgängliga...
-        alternativet är att använda AbstractFactory (men det verkar onödigt krångligt...)
-
-Structure todo:
-    det ska vara optional att ha ett bindestreck mellan serial number och check digit
-    det ska vara optional att ha clearing number check digit (även bindestreck)
-        gäller såklart bara för de konton som använder sig av clearing check digit
-
-    definiera vad som finns i ett nummer:
-        clearing, clearing check-didigt, seria samt serial check digit
-        __constructor() kan helt enkelt ta dessa fyra värden
-        structure regular expressions måste alltid fånga 4, även om bara 3 finns
-            tom parentes...
-
-Baserat på detta kan AccountNumber vara ett rent ValueObject
-    Men implementationer
-        BankAccount (för de kontotyper som finns i pdf)
-        Bankgiro
-        PlusGiro
-
-Kanske ska AccountFactory bara skapa BankAccount - object
-    alltså den data som finns i pdf (BankAccountFactory)
-    Vill vi skapa även plus och/eller bankgiro kanske vi ska decorera factory
-        på liknande sätt som i ID
-    UnknownAccountFactory laddas på samma sätt
-        wrappas av BankAccountFactory
+Ska NumberFactory verkligen heta NumberFactory?
+    eller är det ett tillfälligt namn??

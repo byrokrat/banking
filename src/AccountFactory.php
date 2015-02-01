@@ -12,11 +12,6 @@ class AccountFactory
      */
     private $classes = array(
         'NordeaPersonal',
-        'NordeaType1A',
-        'NordeaType1B',
-        'SwedbankType1',
-        'SwedbankType2',
-        'SEB',
         'PlusGiro',
         'Bankgiro',
         'UnknownAccount'

@@ -3,7 +3,7 @@
 namespace byrokrat\banking\Data;
 
 /**
- * Bank identifier constants
+ * @todo Ta bort härifrån allt eftersom jag inte använder dessa längre..
  */
 interface BankNames
 {
@@ -30,11 +30,9 @@ interface BankNames
     const BANK_RIKSGALDEN = "Riksgälden";
     const BANK_ROYAL_OF_SCOTLAND = "Royal bank of Scotland ";
     const BANK_SBAB = "SBAB";
-    const BANK_SEB = "SEB";
     const BANK_SKANDIABANKEN = "Skandiabanken";
     const BANK_SPARBANKEN_SYD = "Sparbanken Syd";
     const BANK_SPARBANKEN_ORESUND = "Sparbanken Öresund AB";
-    const BANK_SWEDBANK = "Swedbank";
     const BANK_ALANDSBANKEN = "Ålandsbanken Sverige AB";
     const BANK_BANKGIRO = "Bankgiro";
     const BANK_PLUSGIRO = "PlusGiro";

@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Validator;
 
-use byrokrat\banking\AccountNumber;
+use byrokrat\banking\AccountNumberInterface;
 use byrokrat\banking\Exception\InvalidAccountNumberException;
 
 /**
@@ -11,10 +11,10 @@ use byrokrat\banking\Exception\InvalidAccountNumberException;
 interface Validator
 {
     /**
-     * Validate number (throws exception if not valid)
+     * Validate number (throw exception if invalid)
      *
-     * @param  AccountNumber $number
+     * @param  AccountNumberInterface $number
      * @throws InvalidAccountNumberException If $number is not valid
      */
-    public function validate(AccountNumber $number);
+    public function validate(AccountNumberInterface $number);
 }

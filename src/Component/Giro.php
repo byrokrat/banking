@@ -5,7 +5,7 @@ namespace byrokrat\banking\Component;
 use byrokrat\checkdigit\Modulo10;
 
 /**
- * Helper that implements isValidCheckDigit() for Bankgiro and PlusGiro
+ * @todo Kan raderas när inga referenser finns längre
  */
 trait Giro
 {
@@ -15,7 +15,6 @@ trait Giro
      * Validate check digit (from Component\Constructor)
      *
      * @return boolean
-     * @todo   Should use validator instead
      */
     protected function isValidCheckDigit()
     {
