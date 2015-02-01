@@ -18,8 +18,8 @@ class AccountFactory
     public function __construct()
     {
         $this->parsers = (new ParserFactory)->createParsers(
-            json_decode(file_get_contents(__DIR__ . '/Data/parsers.json'), true),
-            new Data\Resolver(json_decode(file_get_contents(__DIR__ . '/Data/keys.json'), true))
+            json_decode(file_get_contents(__DIR__ . '/data/parsers.json'), true),
+            new Resolver(json_decode(file_get_contents(__DIR__ . '/data/keys.json'), true))
         );
     }
 

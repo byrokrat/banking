@@ -10,11 +10,11 @@ class ParserFactory
     /**
      * Create parser collection
      *
-     * @param  array         $data
-     * @param  Data\Resolver $resolver
+     * @param  array    $data
+     * @param  Resolver $resolver
      * @return Parser[]
      */
-    public function createParsers(array $data, Data\Resolver $resolver)
+    public function createParsers(array $data, Resolver $resolver)
     {
         $parsers = [];
 

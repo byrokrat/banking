@@ -9,7 +9,7 @@ class ParserFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateParsers()
     {
-        $resolver = $this->getMockBuilder('byrokrat\banking\Data\Resolver')
+        $resolver = $this->getMockBuilder('byrokrat\banking\Resolver')
             ->disableOriginalConstructor()
             ->getMock();
 

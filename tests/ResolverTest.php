@@ -1,6 +1,6 @@
 <?php
 
-namespace byrokrat\banking\Data;
+namespace byrokrat\banking;
 
 class ResolverTest extends \PHPUnit_Framework_TestCase
 {

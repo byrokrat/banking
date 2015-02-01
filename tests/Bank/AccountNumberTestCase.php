@@ -3,7 +3,7 @@
 namespace byrokrat\banking\Bank;
 
 use byrokrat\banking\ParserFactory;
-use byrokrat\banking\Data\Resolver;
+use byrokrat\banking\Resolver;
 
 abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -16,8 +16,8 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     {
         if (!isset(self::$parsers)) {
             self::$parsers = (new ParserFactory)->createParsers(
-                json_decode(file_get_contents(__DIR__ . '/../../src/Data/parsers.json'), true),
-                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/Data/keys.json'), true))
+                json_decode(file_get_contents(__DIR__ . '/../../src/data/parsers.json'), true),
+                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/data/keys.json'), true))
             );
         }
     }

@@ -1,8 +1,6 @@
 <?php
 
-namespace byrokrat\banking\Data;
-
-use byrokrat\banking\Exception\LogicException;
+namespace byrokrat\banking;
 
 /**
  * Resolve data identifiers
@@ -47,14 +45,14 @@ class Resolver
      *
      * @param  string $key
      * @return string
-     * @throws LogicException If key does not exist
+     * @throws Exception\LogicException If key does not exist
      */
     private function translate($key)
     {
         if (array_key_exists($key, $this->translations)) {
             return $this->translations[$key];
         }
-        throw new LogicException("Key $key does not exist in resolver");
+        throw new Exception\LogicException("Key $key does not exist in resolver");
     }
 
     /**
