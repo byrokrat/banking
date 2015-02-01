@@ -1,0 +1,14 @@
+{
+    "$struct_type1":          "/^(\\d{4})(),?0{0,5}(\\d{6})-?(\\d)$/",
+    "$struct_type2":          "/^(\\d{4})(),?0{0,2}(\\d{9})-?(\\d)$/",
+    "$struct_handelsbanken":  "/^(\\d{4})(),?0{0,3}(\\d{8})-?(\\d)$/",
+    "$struct_swedbank_type2": "/^(\\d{4})(),?0{0,10}(\\d{1,9})-?(\\d)$/",
+    "$struct_unknown":        "/^(\\d{4})(),?(\\d{6,11})-?(\\d)$/",
+    "$checkdigit_type1A": "\\byrokrat\\banking\\Validator\\Checkdigit1A",
+    "$checkdigit_type1B": "\\byrokrat\\banking\\Validator\\Checkdigit1B",
+    "$checkdigit_type2":  "\\byrokrat\\banking\\Validator\\Checkdigit2",
+    "$bank_nordea":   "\\byrokrat\\banking\\Bank\\Nordea",
+    "$bank_seb":      "\\byrokrat\\banking\\Bank\\SEB",
+    "$bank_swedbank": "\\byrokrat\\banking\\Bank\\Swedbank",
+    "$bank_unknown":  "\\byrokrat\\banking\\Bank\\Unknown"
+}

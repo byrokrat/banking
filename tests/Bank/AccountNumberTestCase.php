@@ -1,8 +1,9 @@
 <?php
 
-namespace byrokrat\banking\Data;
+namespace byrokrat\banking\Bank;
 
 use byrokrat\banking\ParserFactory;
+use byrokrat\banking\Data\Resolver;
 
 abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -11,43 +12,26 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
      */
     private static $parsers;
 
-    /**
-     * Load parsers once on each test run
-     */
     public static function setUpBeforeClass()
     {
         if (!isset(self::$parsers)) {
             self::$parsers = (new ParserFactory)->createParsers(
                 json_decode(file_get_contents(__DIR__ . '/../../src/Data/parsers.json'), true),
-                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/Data/validators.json'), true)),
-                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/Data/structures.json'), true))
+                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/Data/keys.json'), true))
             );
         }
     }
 
     /**
      * Get name of parser to test against
-     *
-     * @return string
      */
     abstract public function getParserName();
 
-    /**
-     * Get parser to test against
-     *
-     * @return Parser
-     */
     public function getParser()
     {
         return self::$parsers[$this->getParserName()];
     }
 
-    /**
-     * Create account object
-     *
-     * @param  string $number
-     * @return AccountNumberInterface
-     */
     public function buildAccount($number)
     {
         return $this->getParser()->parse($number);
@@ -90,6 +74,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     abstract public function invalidCheckDigitProvider();
 
     /**
+     * @covers byrokrat\banking\AbstractAccount
      * @dataProvider validProvider
      */
     public function testValidNumber($number)
@@ -97,7 +82,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         $account = $this->buildAccount($number);
 
         $this->assertInstanceOf(
-            'byrokrat\banking\AccountNumberInterface',
+            'byrokrat\banking\AccountNumber',
             $account
         );
 
@@ -116,6 +101,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     abstract public function validProvider();
 
     /**
+     * @covers byrokrat\banking\AbstractAccount
      * @dataProvider validProvider
      */
     public function testParse16($number)
@@ -145,8 +131,6 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * Get expected bank name
-     *
-     * @return string
      */
     abstract public function getBankName();
 }

@@ -3,118 +3,51 @@
 namespace byrokrat\banking;
 
 /**
- * Account number implementation
+ * The basic account interface
  */
-class AccountNumber implements AccountNumberInterface
+interface AccountNumber
 {
     /**
-     * @var string Name of bank
-     */
-    private $bankName;
-
-    /**
-     * @var string Account clearing number
-     */
-    private $clearing;
-
-    /**
-     * @var string Check digit of the clearing number
-     */
-    private $clearingCheckDigit;
-
-    /**
-     * @var string Account serial number
-     */
-    private $serial;
-
-    /**
-     * @var string Check digit
-     */
-    private $checkDigit;
-
-    /**
-     * Load account number data
+     * Get account as string
      *
-     * @param string $bankName
-     * @param string $clearing
-     * @param string $clearingCheckDigit
-     * @param string $serial
-     * @param string $checkDigit
+     * @return string
      */
-    public function __construct($bankName, $clearing, $clearingCheckDigit, $serial, $checkDigit)
-    {
-        $this->bankName = $bankName;
-        $this->clearing = $clearing;
-        $this->clearingCheckDigit = $clearingCheckDigit;
-        $this->serial = $serial;
-        $this->checkDigit = $checkDigit;
-    }
+    public function __toString();
 
     /**
      * Get account as string
      *
      * @return string
      */
-    public function __toString()
-    {
-        return $this->getNumber();
-    }
-
-    /**
-     * Get account as string
-     *
-     * @return string
-     */
-    public function getNumber()
-    {
-        return sprintf(
-            '%s%s,%s-%s',
-            $this->getClearingNumber(),
-            $this->getClearingCheckDigit() ? '-' . $this->getClearingCheckDigit() : '',
-            $this->getSerialNumber(),
-            $this->getCheckDigit()
-        );
-    }
+    public function getNumber();
 
     /**
      * Get clearing number, 4 digits
      *
      * @return string
      */
-    public function getClearingNumber()
-    {
-        return $this->clearing;
-    }
+    public function getClearingNumber();
 
     /**
      * Get the check digit of the clearing number
      *
      * @return string Empty if not applicable
      */
-    public function getClearingCheckDigit()
-    {
-        return $this->clearingCheckDigit;
-    }
+    public function getClearingCheckDigit();
 
     /**
      * Get account serial number
      *
      * @return string
      */
-    public function getSerialNumber()
-    {
-        return $this->serial;
-    }
+    public function getSerialNumber();
 
     /**
      * Get account check digit
      *
      * @return string
      */
-    public function getCheckDigit()
-    {
-        return $this->checkDigit;
-    }
+    public function getCheckDigit();
 
     /**
      * Get account as a 16 digit number
@@ -123,20 +56,12 @@ class AccountNumber implements AccountNumberInterface
      *
      * @return string
      */
-    public function get16()
-    {
-        return $this->getClearingNumber()
-            . str_pad($this->getSerialNumber(), 11, '0', STR_PAD_LEFT)
-            . $this->getCheckDigit();
-    }
+    public function get16();
 
     /**
      * Get name of Bank this number belongs to
      *
      * @return string
      */
-    public function getBankName()
-    {
-        return $this->bankName;
-    }
+    public function getBankName();
 }

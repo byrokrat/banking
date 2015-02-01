@@ -3,7 +3,7 @@
 namespace byrokrat\banking\Validator;
 
 use byrokrat\checkdigit\Modulo10;
-use byrokrat\banking\AccountNumberInterface;
+use byrokrat\banking\AccountNumber;
 use byrokrat\banking\Exception\InvalidCheckDigitException;
 
 /**
@@ -32,11 +32,11 @@ class Checkdigit2 implements Validator
      * Checksum calculation is made on the last ten digits serial number
      * using the modulus 10 check.
      *
-     * @param  AccountNumberInterface $number
+     * @param  AccountNumber $number
      * @return null
      * @throws InvalidCheckDigitException If check digit is not valid
      */
-    public function validate(AccountNumberInterface $number)
+    public function validate(AccountNumber $number)
     {
         if (!$this->checksum->isValid($number->getSerialNumber() . $number->getCheckDigit())) {
             throw new InvalidCheckDigitException("Invalid check digit {$number->getCheckDigit()} in $number");

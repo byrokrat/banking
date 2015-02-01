@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * Account number for Bankgirot clearing system
  */
-class Bankgiro implements AccountNumberInterface
+class Bankgiro implements AccountNumber
 {
     use Component\Giro;
 

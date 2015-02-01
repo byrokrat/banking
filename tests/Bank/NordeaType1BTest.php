@@ -1,9 +1,9 @@
 <?php
 
-namespace byrokrat\banking\Data;
+namespace byrokrat\banking\Bank;
 
 /**
- * @coversNothing
+ * @covers \byrokrat\banking\Bank\Nordea
  */
 class NordeaType1BTest extends AccountNumberTestCase
 {

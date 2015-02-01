@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * Account number for PlusGirot (formerly PostGirot) clearing system
  */
-class PlusGiro implements AccountNumberInterface
+class PlusGiro implements AccountNumber
 {
     use Component\Giro;
 

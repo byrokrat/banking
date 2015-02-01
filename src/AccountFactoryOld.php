@@ -15,7 +15,7 @@ class AccountFactoryOld
 
     /**
      * @param  string $number
-     * @return AccountNumberInterface
+     * @return AccountNumber
      */
     public function create($number)
     {

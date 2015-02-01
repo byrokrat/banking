@@ -1,5 +1,0 @@
-{
-    "$checkdigit_type1A": "\\byrokrat\\banking\\Validator\\Checkdigit1A",
-    "$checkdigit_type1B": "\\byrokrat\\banking\\Validator\\Checkdigit1B",
-    "$checkdigit_type2": "\\byrokrat\\banking\\Validator\\Checkdigit2"
-}

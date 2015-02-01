@@ -3,7 +3,7 @@
 namespace byrokrat\banking\Validator;
 
 use byrokrat\checkdigit\Modulo11;
-use byrokrat\banking\AccountNumberInterface;
+use byrokrat\banking\AccountNumber;
 use byrokrat\banking\Exception\InvalidCheckDigitException;
 
 /**
@@ -32,11 +32,11 @@ class Checkdigit1B implements Validator
      * Type1B checksum calculation is made on the entire clearing number, and
      * seven digits of the actual account number.
      *
-     * @param  AccountNumberInterface $number
+     * @param  AccountNumber $number
      * @return null
      * @throws InvalidCheckDigitException If check digit is not valid
      */
-    public function validate(AccountNumberInterface $number)
+    public function validate(AccountNumber $number)
     {
         $toValidate = $number->getClearingNumber() . $number->getSerialNumber() . $number->getCheckDigit();
         if (!$this->checksum->isValid($toValidate)) {

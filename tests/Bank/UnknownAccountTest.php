@@ -1,9 +1,9 @@
 <?php
 
-namespace byrokrat\banking\Data;
+namespace byrokrat\banking\Bank;
 
 /**
- * @coversNothing
+ * @covers \byrokrat\banking\Bank\Unknown
  */
 class UnknownAccountTest extends AccountNumberTestCase
 {

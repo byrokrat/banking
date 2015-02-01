@@ -8,9 +8,9 @@ namespace byrokrat\banking;
 class Parser
 {
     /**
-     * @var string Name of bank
+     * @var string Name of class to create
      */
-    private $bankName;
+    private $classname;
 
     /**
      * @var string Account number structure
@@ -30,14 +30,14 @@ class Parser
     /**
      * Load parser data
      *
-     * @param string                $bankName
+     * @param string                $classname
      * @param string                $structure
      * @param array                 $clearingRanges
      * @param Validator\Validator[] $validators
      */
-    public function __construct($bankName, $structure, array $clearingRanges, array $validators)
+    public function __construct($classname, $structure, array $clearingRanges, array $validators)
     {
-        $this->bankName = $bankName;
+        $this->classname = $classname;
         $this->structure = $structure;
         $this->clearingRanges = $clearingRanges;
         $this->validators = $validators;
@@ -47,7 +47,7 @@ class Parser
      * Parse account number
      *
      * @param  string $number
-     * @return AccountNumberInterface
+     * @return AccountNumber
      * @throws Exception\LogicException                 If regexp does not grep the correct number of values
      * @throws Exception\InvalidStructureException      If structure is invalid
      * @throws Exception\InvalidClearingNumberException If clearing number is invalid
@@ -79,12 +79,12 @@ class Parser
             throw new Exception\InvalidClearingNumberException("Invalid clearing number in $number");
         }
 
-        $accountNumber = new AccountNumber($this->bankName, $clearing, $clearingCheckDigit, $serial, $checkDigit);
+        $account = new $this->classname($clearing, $clearingCheckDigit, $serial, $checkDigit);
 
         foreach ($this->validators as $validator) {
-            $validator->validate($accountNumber);
+            $validator->validate($account);
         }
 
-        return $accountNumber;
+        return $account;
     }
 }

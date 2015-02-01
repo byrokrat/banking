@@ -2,6 +2,9 @@
 
 namespace byrokrat\banking;
 
+/**
+ * @covers \byrokrat\banking\Parser
+ */
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
     public function testInvalidStructure()
@@ -38,9 +41,10 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     {
         $validator = $this->getMock('byrokrat\banking\Validator\Validator');
         $validator->expects($this->once())->method('validate');
+        $classname = 'byrokrat\banking\Bank\Unknown';
         $this->assertInstanceOf(
-            'byrokrat\banking\AccountNumber',
-            (new Parser('', '/^(\d{4})()()()$/', [[1000, 2000]], [$validator]))->parse('1000')
+            $classname,
+            (new Parser($classname, '/^(\d{4})()()()$/', [[1000, 2000]], [$validator]))->parse('1000')
         );
     }
 }

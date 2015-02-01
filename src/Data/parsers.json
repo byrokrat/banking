@@ -1,7 +1,7 @@
 {
     "NordeaType1A": {
         "struct": "$struct_type1",
-        "bank": "Nordea",
+        "bank": "$bank_nordea",
         "clearing": [
             [1100, 1199],
             [1400, 2099],
@@ -16,7 +16,7 @@
     },
     "NordeaType1B": {
         "struct": "$struct_type1",
-        "bank": "Nordea",
+        "bank": "$bank_nordea",
         "clearing": [
             [4000, 4999]
         ],
@@ -26,7 +26,7 @@
     },
     "SEB": {
         "struct": "$struct_type1",
-        "bank": "SEB",
+        "bank": "$bank_seb",
         "clearing": [
             [5000, 5999],
             [9120, 9124],
@@ -38,7 +38,7 @@
     },
     "SwedbankType1": {
         "struct": "$struct_type1",
-        "bank": "Swedbank",
+        "bank": "$bank_swedbank",
         "clearing": [
             [7000, 7999]
         ],
@@ -48,7 +48,7 @@
     },
     "SwedbankType2": {
         "struct": "$struct_swedbank_type2",
-        "bank": "Swedbank",
+        "bank": "$bank_swedbank",
         "clearing": [
             [8000, 8999]
         ],
@@ -59,7 +59,7 @@
     },
     "Unknown": {
         "struct": "$struct_unknown",
-        "bank": "Unknown",
+        "bank": "$bank_unknown",
         "clearing": [
             [0000, 9999]
         ],
