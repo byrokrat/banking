@@ -13,14 +13,13 @@ class AccountFactory
     private $parsers;
 
     /**
-     * Create parser collection
+     * Inject parser collection
+     *
+     * @param Parser[] $parsers
      */
-    public function __construct()
+    public function __construct(array $parsers = array())
     {
-        $this->parsers = (new ParserFactory)->createParsers(
-            json_decode(file_get_contents(__DIR__ . '/data/parsers.json'), true),
-            new Resolver(json_decode(file_get_contents(__DIR__ . '/data/keys.json'), true))
-        );
+        $this->parsers = $parsers ?: (new ParserFactory)->createParsers();
     }
 
     /**

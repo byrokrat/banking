@@ -15,10 +15,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         if (!isset(self::$parsers)) {
-            self::$parsers = (new ParserFactory)->createParsers(
-                json_decode(file_get_contents(__DIR__ . '/../../src/data/parsers.json'), true),
-                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/data/keys.json'), true))
-            );
+            self::$parsers = (new ParserFactory)->createParsers();
         }
     }
 

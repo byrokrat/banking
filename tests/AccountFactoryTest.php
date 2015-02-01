@@ -15,13 +15,14 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateNumbers()
     {
+        $factory = new AccountFactory;
         $this->assertSame(
             'Nordea',
-            (new AccountFactory)->createAccount('3000,1111116')->getBankName()
+            $factory->createAccount('3000,1111116')->getBankName()
         );
         $this->assertSame(
             'Unknown',
-            (new AccountFactory)->createAccount('1000,1111116')->getBankName()
+            $factory->createAccount('1000,1111116')->getBankName()
         );
     }
 

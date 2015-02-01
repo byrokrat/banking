@@ -9,36 +9,40 @@ class ParserFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateParsers()
     {
-        $resolver = $this->getMockBuilder('byrokrat\banking\Resolver')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $resolver->expects($this->exactly(8))
-            ->method('resolve')
-            ->will($this->returnValue(get_class()));
-
         $data = [
             [
                 'struct' => 'structure',
                 'bank' => 'bank',
                 'clearing' => [1000, 1999],
                 'validators' => [
-                    'validator_1',
-                    'validator_2'
+                    get_class()
                 ]
             ],
             [
                 'struct' => 'structure',
                 'bank' => 'bank2',
                 'clearing' => [1000, 1999],
-                'validators' => [
-                    'validator_1',
-                    'validator_2'
-                ]
+                'validators' => []
             ]
         ];
 
-        $parsers = (new ParserFactory)->createParsers($data, $resolver);
+        $parserData = $this->getMockBuilder('byrokrat\banking\JsonParser')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $parserData->expects($this->once())
+            ->method('getData')
+            ->will($this->returnValue($data));
+
+        $keyData = $this->getMockBuilder('byrokrat\banking\JsonParser')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $keyData->expects($this->once())
+            ->method('getData')
+            ->will($this->returnValue([]));
+
+        $parsers = (new ParserFactory)->createParsers($parserData, $keyData);
         $this->assertCount(2, $parsers);
         $this->assertInstanceOf('byrokrat\banking\Parser', $parsers[0]);
     }
