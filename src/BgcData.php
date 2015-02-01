@@ -16,13 +16,13 @@ class BgcData
             [6000, 6999, self::STRUCT_HANDELSBANKEN, self::VALIDATOR_HANDELSBANKEN, self::BANK_HANDELSBANKEN, 2],
             [9500, 9549, self::STRUCT_PLUSGIRO, self::VALIDATOR_TYPE2, self::BANK_NORDEA_PLUSGIROT, 3],
             [9960, 9969, self::STRUCT_PLUSGIRO, self::VALIDATOR_TYPE2, self::BANK_NORDEA_PLUSGIROT, 3],
-            [3300, 3300, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_NORDEA, 1], // personkonto
-            [3782, 3782, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_NORDEA, 1], // personkonto
+            # [3300, 3300, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_NORDEA, 1], // personkonto
+            # [3782, 3782, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_NORDEA, 1], // personkonto
             [9890, 9899, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_RIKSGALDEN, 1],
             [9570, 9579, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_SPARBANKEN_SYD, 1],
             [9300, 9329, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_SPARBANKEN_ORESUND, 1],
             [9330, 9349, self::STRUCT_TYPE2, self::VALIDATOR_TYPE2, self::BANK_SPARBANKEN_ORESUND, 1],
-            #[8000, 8999, self::STRUCT_SWEDBANK_TYPE2, self::VALIDATOR_TYPE2, self::BANK_SWEDBANK, 3],
+            # [8000, 8999, self::STRUCT_SWEDBANK_TYPE2, self::VALIDATOR_TYPE2, self::BANK_SWEDBANK, 3],
         ];
     }
 

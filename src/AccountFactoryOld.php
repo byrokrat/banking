@@ -8,7 +8,6 @@ class AccountFactoryOld
      * @var string[]
      */
     private $classes = array(
-        "\\byrokrat\\banking\\NordeaPersonal",
         "\\byrokrat\\banking\\PlusGiro",
         "\\byrokrat\\banking\\Bankgiro"
     );

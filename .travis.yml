@@ -10,10 +10,10 @@ install:
     - composer install --dev --prefer-source
 
 script:
-  - if [[ "$TRAVIS_PHP_VERSION" == '5.6' ]]; then phpunit --coverage-clover=coverage.clover ; fi
-  - if [[ "$TRAVIS_PHP_VERSION" != '5.6' ]]; then phpunit ; fi
   - vendor/bin/jsonlint src/data/keys.json
   - vendor/bin/jsonlint src/data/parsers.json
+  - if [[ "$TRAVIS_PHP_VERSION" == '5.6' ]]; then phpunit --coverage-clover=coverage.clover ; fi
+  - if [[ "$TRAVIS_PHP_VERSION" != '5.6' ]]; then phpunit ; fi
 
 after_script:
   - if [[ "$TRAVIS_PHP_VERSION" == '5.6' ]]; then wget https://scrutinizer-ci.com/ocular.phar ; fi

@@ -24,6 +24,17 @@
             "$checkdigit_type1B"
         ]
     },
+    "NordeaPersonal": {
+        "struct": "$struct_nordea_personal",
+        "bank": "$bank_nordea_personal",
+        "clearing": [
+            [3300, 3300],
+            [3782, 3782]
+        ],
+        "validators": [
+            "$personal_id"
+        ]
+    },
     "SEB": {
         "struct": "$struct_type1",
         "bank": "$bank_seb",

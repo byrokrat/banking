@@ -4,14 +4,6 @@ namespace byrokrat\banking;
 
 class AccountFactoryOldTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreate()
-    {
-        $this->assertInstanceOf(
-            "byrokrat\\banking\\NordeaPersonal",
-            (new AccountFactoryOld)->create('3300,1111111116')
-        );
-    }
-
     public function testCreateBankgiro()
     {
         $this->assertInstanceOf(
