@@ -10,27 +10,27 @@ class ParserFactory
     /**
      * Create parser collection
      *
-     * @param  array    $parserData
-     * @param  Resolver $validatorResolver
-     * @param  Resolver $structResolver
+     * @param  array         $data
+     * @param  Data\Resolver $validatorRes
+     * @param  Data\Resolver $structRes
      * @return Parser[]
      */
-    public function createParsers(array $parserData, Resolver $validatorResolver, Resolver $structResolver)
+    public function createParsers(array $data, Data\Resolver $validatorRes, Data\Resolver $structRes)
     {
         $parsers = [];
 
-        foreach ($parserData as $parserId => $data) {
+        foreach ($data as $parserId => $parserData) {
             $validators = [];
 
-            foreach ($data['validators'] as $classname) {
-                $classname = $validatorResolver->resolve($classname);
+            foreach ($parserData['validators'] as $classname) {
+                $classname = $validatorRes->resolve($classname);
                 $validators[] = new $classname;
             }
 
             $parsers[$parserId] = new Parser(
-                $data['bank'],
-                $structResolver->resolve($data['struct']),
-                $data['clearing'],
+                $parserData['bank'],
+                $structRes->resolve($parserData['struct']),
+                $parserData['clearing'],
                 $validators
             );
         }

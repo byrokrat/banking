@@ -1,11 +1,11 @@
 <?php
 
-namespace byrokrat\banking;
+namespace byrokrat\banking\Data;
 
 /**
  * @coversNothing
  */
-class NordeaType1BTest extends ParseTestCase
+class NordeaType1BTest extends AccountNumberTestCase
 {
     public function getParserName()
     {

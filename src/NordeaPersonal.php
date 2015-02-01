@@ -9,7 +9,7 @@ use byrokrat\id\Exception\InvalidCheckDigitException as IdInvalidCheckDigitExcep
 /**
  * Account number where serial number is a swedish personal id
  */
-class NordeaPersonal implements AccountNumberInterface, Data\BankNames
+class NordeaPersonal implements AccountNumberInterface
 {
     use Component\Constructor;
 
@@ -23,7 +23,7 @@ class NordeaPersonal implements AccountNumberInterface, Data\BankNames
      */
     public function getBankName()
     {
-        return self::BANK_NORDEA;
+        return 'Nordea';
     }
 
     /**

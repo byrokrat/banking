@@ -1,6 +1,6 @@
 {
     "NordeaType1A": {
-        "struct": "$structure_type1",
+        "struct": "$struct_type1",
         "bank": "Nordea",
         "clearing": [
             [1100, 1199],
@@ -15,7 +15,7 @@
         ]
     },
     "NordeaType1B": {
-        "struct": "$structure_type1",
+        "struct": "$struct_type1",
         "bank": "Nordea",
         "clearing": [
             [4000, 4999]
@@ -25,7 +25,7 @@
         ]
     },
     "SEB": {
-        "struct": "$structure_type1",
+        "struct": "$struct_type1",
         "bank": "SEB",
         "clearing": [
             [5000, 5999],
@@ -37,7 +37,7 @@
         ]
     },
     "SwedbankType1": {
-        "struct": "$structure_type1",
+        "struct": "$struct_type1",
         "bank": "Swedbank",
         "clearing": [
             [7000, 7999]
@@ -47,7 +47,7 @@
         ]
     },
     "SwedbankType2": {
-        "struct": "/^(\\d{4})(),?0{0,10}(\\d{1,9})-?(\\d)$/",
+        "struct": "$struct_swedbank_type2",
         "bank": "Swedbank",
         "clearing": [
             [8000, 8999]
@@ -56,5 +56,14 @@
             "$checkdigit_type2"
         ],
         "comment": "In rare occasions some of Swedbank's accounts cannot be validated by a checksum calculation"
+    },
+    "Unknown": {
+        "struct": "$struct_unknown",
+        "bank": "Unknown",
+        "clearing": [
+            [0000, 9999]
+        ],
+        "validators": [],
+        "comment": "Special case account where all is valid"
     }
 }

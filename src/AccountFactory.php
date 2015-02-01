@@ -3,50 +3,53 @@
 namespace byrokrat\banking;
 
 /**
- * Simple AccountNumber factory
+ * Account number factory
  */
 class AccountFactory
 {
     /**
-     * @var string[] List of possible account classes
+     * @var Parser[] Loaded parsers
      */
-    private $classes = array(
-        'NordeaPersonal',
-        'PlusGiro',
-        'Bankgiro',
-        'UnknownAccount'
-    );
+    private $parsers;
 
     /**
-     * Set list of possibla account classes
-     *
-     * @param string[] $classes
+     * Create parser collection
      */
-    public function __construct(array $classes = null)
+    public function __construct()
     {
-        if ($classes) {
-            $this->classes = $classes;
-        }
+        $this->parsers = (new ParserFactory)->createParsers(
+            json_decode(file_get_contents(__DIR__ . '/Data/parsers.json'), true),
+            new Data\Resolver(json_decode(file_get_contents(__DIR__ . '/Data/validators.json'), true)),
+            new Data\Resolver(json_decode(file_get_contents(__DIR__ . '/Data/structures.json'), true))
+        );
     }
 
     /**
-     * Create bank account object from account number
+     * Disable the catch all unknown account type
+     *
+     * @return null
+     */
+    public function disableUnknownAccount()
+    {
+        unset($this->parsers['Unknown']);
+    }
+
+    /**
+     * Create bank account object using number
      *
      * @param  string $number
-     * @return AccountNumber
+     * @return AccountNumberInterface
      * @throws Exception\UnableToCreateAccountException If unable to create
      */
-    public function create($number)
+    public function createAccount($number)
     {
-        foreach ($this->classes as $classname) {
+        foreach ($this->parsers as $parser) {
             try {
-                $classname = "\\byrokrat\\banking\\$classname";
-                return new $classname($number);
+                return $parser->parse($number);
             } catch (Exception\InvalidAccountNumberException $e) {
                 continue;
             }
         }
-
-        throw new Exception\UnableToCreateAccountException("Unable to create account using number <{$number}>");
+        throw new Exception\UnableToCreateAccountException("Unable to create account {$number}");
     }
 }

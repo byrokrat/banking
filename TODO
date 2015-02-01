@@ -1,30 +1,31 @@
 todo
 ====
 
-när jag har fått ordning på det här så att det kan användas ska
+pre-release fixes..
     paketet läggas till packagist
     ledgr/banking markeras som abandoned och föreslå byrokrat/banking
-    README uppdateras med mer info
-        och blaffa om att koden inte är klar tas bort...
+    README uppdateras...
 
 ---------------------------------------
-
-Hur göra med UnknownAccount??
-    jag behöver stödja något liknande här
-    tror att det ganska enkelt kan gå in i samma format som de andra..
 
 NordeaPersonal
     kräver en egen validator som kontrollerar personnummer-delen
     Ska kräva clearing för alla personnummer.. (läs på: används båda för personnummer-konto??)
     OBS: nu finns ett flaky test, ibland blir det fel med datum...
+        https://travis-ci.org/byrokrat/banking/jobs/49048054
 
 Swedbank
     oklart från BG910.pdf vilka swedbank konton som har en clearing-number checkdigit
     måste gå direkt till swedbank för att lösa detta..
     kräver ändringar i structure mm...
+    jag lyckas inte heller fånga när struct är fel över 16 siffror...
 
 Krävs det andra typer av lösningar för att implementera giro klasserna??
     Ska jag i så fall istället använda BankAccount (istället för AccountNumber) för de "vanliga" typerna?
+    i så fall kan AccountNumberInterface heta AccountNumber igen..
 
-Ska NumberFactory verkligen heta NumberFactory?
-    eller är det ett tillfälligt namn??
+Mata in all data från BgcData...
+
+Sedan finns det några fler issues på github att fixa...
+
+Kolla också igenom vad scrutinizr kan hjälpa oss med..

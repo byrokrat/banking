@@ -1,11 +1,11 @@
 <?php
 
-namespace byrokrat\banking;
+namespace byrokrat\banking\Data;
 
 /**
  * @coversNothing
  */
-class SEBTest extends ParseTestCase
+class SEBTest extends AccountNumberTestCase
 {
     public function getParserName()
     {

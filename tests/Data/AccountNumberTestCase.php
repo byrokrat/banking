@@ -1,8 +1,10 @@
 <?php
 
-namespace byrokrat\banking;
+namespace byrokrat\banking\Data;
 
-abstract class ParseTestCase extends \PHPUnit_Framework_TestCase
+use byrokrat\banking\ParserFactory;
+
+abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Parser[] Loaded parsers
@@ -16,9 +18,9 @@ abstract class ParseTestCase extends \PHPUnit_Framework_TestCase
     {
         if (!isset(self::$parsers)) {
             self::$parsers = (new ParserFactory)->createParsers(
-                json_decode(file_get_contents(__DIR__ . '/../../src/data/parsers.json'), true),
-                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/data/validators.json'), true)),
-                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/data/structures.json'), true))
+                json_decode(file_get_contents(__DIR__ . '/../../src/Data/parsers.json'), true),
+                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/Data/validators.json'), true)),
+                new Resolver(json_decode(file_get_contents(__DIR__ . '/../../src/Data/structures.json'), true))
             );
         }
     }

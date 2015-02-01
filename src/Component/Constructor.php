@@ -52,7 +52,7 @@ trait Constructor
      * clearing number, serial number and check digit.
      *
      * @param  array $matches
-     * @return void
+     * @return null
      */
     protected function setup(array $matches)
     {

@@ -9,17 +9,17 @@ class ParserFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateParsers()
     {
-        $validatorResolver = $this->getMockBuilder('byrokrat\banking\Resolver')
+        $validatorRes = $this->getMockBuilder('byrokrat\banking\Data\Resolver')
             ->disableOriginalConstructor()
             ->getMock();
-        $validatorResolver->expects($this->exactly(4))
+        $validatorRes->expects($this->exactly(4))
             ->method('resolve')
             ->will($this->returnValue(get_class()));
 
-        $structResolver = $this->getMockBuilder('byrokrat\banking\Resolver')
+        $structRes = $this->getMockBuilder('byrokrat\banking\Data\Resolver')
             ->disableOriginalConstructor()
             ->getMock();
-        $structResolver->expects($this->exactly(2))
+        $structRes->expects($this->exactly(2))
             ->method('resolve')
             ->will($this->returnValue('bar'));
 
@@ -44,7 +44,7 @@ class ParserFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $parsers = (new ParserFactory)->createParsers($data, $validatorResolver, $structResolver);
+        $parsers = (new ParserFactory)->createParsers($data, $validatorRes, $structRes);
         $this->assertCount(2, $parsers);
         $this->assertInstanceOf('byrokrat\banking\Parser', $parsers[0]);
     }

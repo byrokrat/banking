@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * Account number for PlusGirot (formerly PostGirot) clearing system
  */
-class PlusGiro implements AccountNumberInterface, Data\BankNames
+class PlusGiro implements AccountNumberInterface
 {
     use Component\Giro;
 
@@ -14,7 +14,7 @@ class PlusGiro implements AccountNumberInterface, Data\BankNames
      */
     public function getBankName()
     {
-        return self::BANK_PLUSGIRO;
+        return 'PlusGiro';
     }
 
     /**
@@ -43,7 +43,7 @@ class PlusGiro implements AccountNumberInterface, Data\BankNames
      * Load data returned by parsing regular expression (from Component\Constructor)
      *
      * @param  array $matches
-     * @return void
+     * @return null
      */
     protected function setup(array $matches)
     {

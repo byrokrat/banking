@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * Account number for Bankgirot clearing system
  */
-class Bankgiro implements AccountNumberInterface, Data\BankNames
+class Bankgiro implements AccountNumberInterface
 {
     use Component\Giro;
 
@@ -14,7 +14,7 @@ class Bankgiro implements AccountNumberInterface, Data\BankNames
      */
     public function getBankName()
     {
-        return self::BANK_BANKGIRO;
+        return 'Bankgiro';
     }
 
     /**
@@ -44,7 +44,7 @@ class Bankgiro implements AccountNumberInterface, Data\BankNames
      * Load data returned by parsing regular expression (from Component\Constructor)
      *
      * @param  array $matches
-     * @return void
+     * @return null
      */
     protected function setup(array $matches)
     {
