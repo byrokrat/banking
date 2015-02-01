@@ -21,7 +21,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertSame(
             'Unknown',
-            (new AccountFactory)->createAccount('0000,1111116')->getBankName()
+            (new AccountFactory)->createAccount('1000,1111116')->getBankName()
         );
     }
 
@@ -30,6 +30,6 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory = new AccountFactory;
         $factory->disableUnknownAccount();
-        $factory->createAccount('0000,1111116');
+        $factory->createAccount('1000,1111116');
     }
 }

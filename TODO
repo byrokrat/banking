@@ -8,6 +8,10 @@ pre-release fixes..
 
 ---------------------------------------
 
+Använd json_last_error() == JSON_ERROR_NONE
+    för att kontrollera att allt verkligen fungerar som det ska där json parsas
+    jag vill inte behöva leta såhär avancerat igen!
+
 NordeaPersonal
     kräver en egen validator som kontrollerar personnummer-delen
     Ska kräva clearing för alla personnummer.. (läs på: används båda för personnummer-konto??)
