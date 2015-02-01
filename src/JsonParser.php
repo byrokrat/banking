@@ -8,7 +8,7 @@ namespace byrokrat\banking;
 class JsonParser
 {
     /**
-     * @var string The parsed data
+     * @var array The parsed data
      */
     private $data;
 

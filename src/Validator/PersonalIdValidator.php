@@ -23,7 +23,7 @@ class PersonalIdValidator implements Validator
     public function validate(AccountNumber $number)
     {
         try {
-            $this->personalId = new PersonalId($number->getSerialNumber() . $number->getCheckDigit());
+            new PersonalId($number->getSerialNumber() . $number->getCheckDigit());
         } catch (\byrokrat\id\Exception\InvalidCheckDigitException $e) {
             throw new InvalidCheckDigitException("Invalid check digit {$number->getCheckDigit()} in $number", 0, $e);
         } catch (\byrokrat\id\Exception\RuntimeException $e) {
