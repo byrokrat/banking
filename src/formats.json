@@ -1,0 +1,155 @@
+{
+    "vars": {
+        "$struct_type1":           "/^(\\d{4})(),?0{0,5}(\\d{6})-?(\\d)$/",
+        "$struct_type2":           "/^(\\d{4})(),?0{0,2}(\\d{9})-?(\\d)$/",
+        "$struct_nordea_personal": "/^(\\d{4})(),?0{0,2}(\\d{6}-?\\d{3})-?(\\d)$/",
+        "$struct_handelsbanken":   "/^(\\d{4})(),?0{0,3}(\\d{8})-?(\\d)$/",
+        "$struct_swedbank_type2":  "/^(\\d{4})(),?0{0,10}(\\d{1,9})-?(\\d)$/",
+        "$struct_unknown":         "/^(\\d{4})(),?(\\d{6,11})-?(\\d)$/",
+        "$checkdigit_type1A":      "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+        "$checkdigit_type1B":      "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+        "$checkdigit_type2":       "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
+        "$clearing_standard":      "\\byrokrat\\banking\\Validator\\ClearingValidator",
+        "$personal_id":            "\\byrokrat\\banking\\Validator\\PersonalIdValidator",
+        "$bank_nordea":            "\\byrokrat\\banking\\Bank\\Nordea",
+        "$bank_nordea_personal":   "\\byrokrat\\banking\\Bank\\NordeaPersonal",
+        "$bank_seb":               "\\byrokrat\\banking\\Bank\\SEB",
+        "$bank_swedbank":          "\\byrokrat\\banking\\Bank\\Swedbank"
+    },
+    "formats": [
+        {
+            "id" : "NordeaType1A",
+            "structure": "$struct_type1",
+            "class": "$bank_nordea",
+            "validators": [
+                {
+                    "class": "$clearing_standard",
+                    "arg": [
+                        [1100, 1199],
+                        [1400, 2099],
+                        [3000, 3299],
+                        [3301, 3399],
+                        [3410, 3781],
+                        [3783, 3999]
+                    ]
+                },
+                {
+                    "class": "$checkdigit_type1A",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "NordeaType1B",
+            "structure": "$struct_type1",
+            "class": "$bank_nordea",
+            "validators": [
+                {
+                    "class": "$clearing_standard",
+                    "arg": [[4000, 4999]]
+                },
+                {
+                    "class": "$checkdigit_type1B",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "NordeaPersonal",
+            "structure": "$struct_nordea_personal",
+            "class": "$bank_nordea_personal",
+            "validators": [
+                {
+                    "class": "$clearing_standard",
+                    "arg": [
+                        [3300, 3300],
+                        [3782, 3782]
+                    ]
+                },
+                {
+                    "class": "$personal_id",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "SEB",
+            "structure": "$struct_type1",
+            "class": "$bank_seb",
+            "validators": [
+                {
+                    "class": "$clearing_standard",
+                    "arg": [
+                        [5000, 5999],
+                        [9120, 9124],
+                        [9130, 9149]
+                    ]
+                },
+                {
+                    "class": "$checkdigit_type1A",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "SwedbankType1",
+            "structure": "$struct_type1",
+            "class": "$bank_swedbank",
+            "validators": [
+                {
+                    "class": "$clearing_standard",
+                    "arg": [[7000, 7999]]
+                },
+                {
+                    "class": "$checkdigit_type1A",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "SwedbankType2",
+            "structure": "$struct_swedbank_type2",
+            "class": "$bank_swedbank",
+            "validators": [
+                {
+                    "class": "$clearing_standard",
+                    "arg": [[8000, 8999]]
+                },
+                {
+                    "class": "$checkdigit_type2",
+                    "arg": null
+                }
+            ],
+            "_comment": "In rare occasions some of Swedbank's accounts cannot be validated by a checksum calculation"
+        },
+        {
+            "id" : "PlusGiro",
+            "structure": "/^()()(\\d{1,7})-(\\d)$/",
+            "class": "\\byrokrat\\banking\\Bank\\PlusGiro",
+            "validators": [
+                {
+                    "class": "$checkdigit_type2",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Bankgiro",
+            "structure": "/^()()(\\d{3,4}-\\d{3})(\\d)$/",
+            "class": "\\byrokrat\\banking\\Bank\\Bankgiro",
+            "validators": [
+                {
+                    "class": "$checkdigit_type2",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Unknown",
+            "structure": "$struct_unknown",
+            "class": "\\byrokrat\\banking\\Bank\\Unknown",
+            "validators": [],
+            "_comment": "Special case account where all is valid"
+        }
+    ]
+}

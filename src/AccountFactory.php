@@ -23,13 +23,14 @@ class AccountFactory
     }
 
     /**
-     * Disable the catch all unknown account type
+     * Disable format
      *
+     * @param  string $format Format identifier
      * @return null
      */
-    public function disableUnknownAccount()
+    public function disableFormat($format)
     {
-        unset($this->parsers['Unknown']);
+        unset($this->parsers[strtolower($format)]);
     }
 
     /**

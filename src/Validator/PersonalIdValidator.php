@@ -2,10 +2,11 @@
 
 namespace byrokrat\banking\Validator;
 
+use byrokrat\banking\Validator;
 use byrokrat\banking\AccountNumber;
-use byrokrat\id\PersonalId;
 use byrokrat\banking\Exception\InvalidCheckDigitException;
 use byrokrat\banking\Exception\InvalidAccountNumberException;
+use byrokrat\id\PersonalId;
 
 /**
  * Validate personal ids

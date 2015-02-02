@@ -2,84 +2,65 @@
 
 namespace byrokrat\banking;
 
+use byrokrat\banking\Exception\LogicException;
+use byrokrat\banking\Exception\InvalidStructureException;
+
 /**
  * Create AccountNumber based on parsing settings
  */
 class Parser
 {
     /**
+     * @var string Parsing regular expression
+     */
+    private $structure;
+
+    /**
      * @var string Name of class to create
      */
     private $classname;
 
     /**
-     * @var string Account number structure
-     */
-    private $structure;
-
-    /**
-     * @var array List of clearing number max and min values
-     */
-    private $clearingRanges;
-
-    /**
-     * @var Validator\Validator[] Registered validators
+     * @var Validator[] Loaded validators
      */
     private $validators;
 
     /**
      * Load parser data
      *
-     * @param string                $classname
-     * @param string                $structure
-     * @param array                 $clearingRanges
-     * @param Validator\Validator[] $validators
+     * @param string      $structure  Parsing regular expression
+     * @param string      $classname  Name of class to create
+     * @param Validator[] $validators Validators to apply
      */
-    public function __construct($classname, $structure, array $clearingRanges, array $validators)
+    public function __construct($structure, $classname, array $validators)
     {
-        $this->classname = $classname;
         $this->structure = $structure;
-        $this->clearingRanges = $clearingRanges;
+        $this->classname = $classname;
         $this->validators = $validators;
     }
 
     /**
-     * Parse account number
+     * Parse raw account number
      *
      * @param  string $number
      * @return AccountNumber
-     * @throws Exception\LogicException                 If regexp does not grep the correct number of values
-     * @throws Exception\InvalidStructureException      If structure is invalid
-     * @throws Exception\InvalidClearingNumberException If clearing number is invalid
+     * @throws LogicException            If regexp does not grep the correct number of values
+     * @throws InvalidStructureException If structure is invalid
      */
     public function parse($number)
     {
         $number = str_replace(' ', '', $number);
 
         if (!preg_match($this->structure, $number, $matches)) {
-            throw new Exception\InvalidStructureException("Invalid account number structre $number");
+            throw new InvalidStructureException("Invalid account number structre $number");
         }
 
         if (count($matches) != 5) {
-            throw new Exception\LogicException('Parsing regexp must grep 4 values from number');
+            throw new LogicException('Parsing regexp must grep 4 values from number');
         }
 
-        list(, $clearing, $clearingCheckDigit, $serial, $checkDigit) = $matches;
-
-        $validClearing = false;
-
-        foreach ($this->clearingRanges as $clearingRange) {
-            if ((int)$clearing >= $clearingRange[0] && (int)$clearing <= $clearingRange[1]) {
-                $validClearing = true;
-                break;
-            }
-        }
-
-        if (!$validClearing) {
-            throw new Exception\InvalidClearingNumberException("Invalid clearing number in $number");
-        }
-
-        $account = new $this->classname($clearing, $clearingCheckDigit, $serial, $checkDigit);
+        /** @var AccountNumber $account */
+        $account = new $this->classname($matches[1], $matches[2], $matches[3], $matches[4]);
 
         foreach ($this->validators as $validator) {
             $validator->validate($account);

@@ -10,40 +10,39 @@ class ParserFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateParsers()
     {
         $data = [
-            [
-                'struct' => 'structure',
-                'bank' => 'bank',
-                'clearing' => [1000, 1999],
-                'validators' => [
-                    get_class()
+            "vars" => ['$validator' => get_class()],
+            "formats" => [
+                [
+                    'id' => 'fromatA',
+                    'structure' => '/regexp/',
+                    'class' => 'ClassA',
+                    'validators' => [
+                        [
+                            'class' => '$validator',
+                            'arg' => null
+                        ]
+                    ]
+                ],
+                [
+                    'id' => 'fromatB',
+                    'structure' => '/regexp/',
+                    'class' => 'ClassB',
+                    'validators' => []
                 ]
-            ],
-            [
-                'struct' => 'structure',
-                'bank' => 'bank2',
-                'clearing' => [1000, 1999],
-                'validators' => []
             ]
         ];
 
-        $parserData = $this->getMockBuilder('byrokrat\banking\JsonParser')
+        $formats = $this->getMockBuilder('byrokrat\banking\JsonDecoder')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $parserData->expects($this->once())
+        $formats->expects($this->atLeastOnce())
             ->method('getData')
             ->will($this->returnValue($data));
 
-        $keyData = $this->getMockBuilder('byrokrat\banking\JsonParser')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $parsers = (new ParserFactory)->createParsers($formats);
 
-        $keyData->expects($this->once())
-            ->method('getData')
-            ->will($this->returnValue([]));
-
-        $parsers = (new ParserFactory)->createParsers($parserData, $keyData);
         $this->assertCount(2, $parsers);
-        $this->assertInstanceOf('byrokrat\banking\Parser', $parsers[0]);
+        $this->assertInstanceOf('byrokrat\banking\Parser', $parsers['fromata']);
     }
 }

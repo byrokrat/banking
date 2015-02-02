@@ -2,14 +2,15 @@
 
 namespace byrokrat\banking\Validator;
 
-use byrokrat\checkdigit\Modulo11;
+use byrokrat\banking\Validator;
 use byrokrat\banking\AccountNumber;
 use byrokrat\banking\Exception\InvalidCheckDigitException;
+use byrokrat\checkdigit\Modulo11;
 
 /**
  * Validate check digits for type 1B accounts
  */
-class Checkdigit1B implements Validator
+class CheckdigitType1BValidator implements Validator
 {
     /**
      * @var Modulo11 Checksum calculator

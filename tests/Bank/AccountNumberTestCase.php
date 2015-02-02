@@ -26,7 +26,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 
     public function getParser()
     {
-        return self::$parsers[$this->getParserName()];
+        return self::$parsers[strtolower($this->getParserName())];
     }
 
     public function buildAccount($number)

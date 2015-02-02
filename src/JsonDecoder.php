@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * Wrapper around json_decode
  */
-class JsonParser
+class JsonDecoder
 {
     /**
      * @var array The parsed data
@@ -19,8 +19,8 @@ class JsonParser
      */
     public function __construct($json)
     {
-        $this->data = json_decode($json, true);
-        if ($this->data === null) {
+        $this->data = (array)json_decode($json, true);
+        if (json_last_error()) {
             throw new Exception\LogicException("Unable to parse json, errorcode: " . json_last_error());
         }
     }

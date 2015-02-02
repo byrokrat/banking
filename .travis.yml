@@ -10,8 +10,6 @@ install:
     - composer install --dev --prefer-source
 
 script:
-  - vendor/bin/jsonlint src/data/keys.json
-  - vendor/bin/jsonlint src/data/parsers.json
   - if [[ "$TRAVIS_PHP_VERSION" == '5.6' ]]; then phpunit --coverage-clover=coverage.clover ; fi
   - if [[ "$TRAVIS_PHP_VERSION" != '5.6' ]]; then phpunit ; fi
 

@@ -26,11 +26,11 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testDisableUnknownAccount()
+    public function testDisableFormat()
     {
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory = new AccountFactory;
-        $factory->disableUnknownAccount();
+        $factory->disableFormat('Unknown');
         $factory->createAccount('1000,1111116');
     }
 }

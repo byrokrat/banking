@@ -2,19 +2,19 @@
 
 namespace byrokrat\banking;
 
-class JsonParserTest extends \PHPUnit_Framework_TestCase
+class JsonDecoderTest extends \PHPUnit_Framework_TestCase
 {
     public function testExceptionOnInvalidJson()
     {
         $this->setExpectedException('byrokrat\banking\Exception\LogicException');
-        new JsonParser('this-is-not-valid-json');
+        new JsonDecoder('this-is-not-valid-json');
     }
 
     public function testParseJson()
     {
         $this->assertSame(
             ['key' => ['nested' => 'value']],
-            (new JsonParser('{"key": {"nested":"value"}}'))->getData()
+            (new JsonDecoder('{"key": {"nested":"value"}}'))->getData()
         );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Validator;
 
-class Checkdigit1BTest extends ValidatorTestCase
+class CheckdigitType1BValidatorTest extends ValidatorTestCase
 {
     public function testValidCheckDigit()
     {
@@ -12,7 +12,7 @@ class Checkdigit1BTest extends ValidatorTestCase
             ->with('12341234567')
             ->will($this->returnValue(true));
 
-        $this->assertNull((new Checkdigit1B($checksum))->validate(
+        $this->assertNull((new CheckdigitType1BValidator($checksum))->validate(
             $this->getAccountNumberMock()
         ));
     }
@@ -25,7 +25,7 @@ class Checkdigit1BTest extends ValidatorTestCase
             ->will($this->returnValue(false));
 
         $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
-        (new Checkdigit1B($checksum))->validate(
+        (new CheckdigitType1BValidator($checksum))->validate(
             $this->getAccountNumberMock()
         );
     }
