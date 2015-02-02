@@ -3,7 +3,7 @@
 namespace byrokrat\banking;
 
 /**
- * Account base implementation
+ * Account number base implementation
  */
 abstract class AbstractAccount implements AccountNumber
 {

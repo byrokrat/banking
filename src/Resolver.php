@@ -3,7 +3,7 @@
 namespace byrokrat\banking;
 
 /**
- * Resolve data identifiers
+ * Resolve format data variables
  */
 class Resolver
 {

@@ -3,7 +3,7 @@
 namespace byrokrat\banking;
 
 /**
- * Create parser collection
+ * Create parsers using the data in formats.json
  */
 class ParserFactory
 {

@@ -6,7 +6,7 @@ use byrokrat\banking\Exception\LogicException;
 use byrokrat\banking\Exception\InvalidStructureException;
 
 /**
- * Create AccountNumber based on parsing settings
+ * Parse account number based on format settings
  */
 class Parser
 {

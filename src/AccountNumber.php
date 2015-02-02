@@ -3,7 +3,7 @@
 namespace byrokrat\banking;
 
 /**
- * The basic account interface
+ * Account number interface
  */
 interface AccountNumber
 {
@@ -29,30 +29,30 @@ interface AccountNumber
     public function __toString();
 
     /**
-     * Get clearing number, 4 digits
+     * Get clearing number
      *
-     * @return string
+     * @return string 4 digits
      */
     public function getClearingNumber();
 
     /**
      * Get the check digit of the clearing number
      *
-     * @return string Empty if not applicable
+     * @return string 1 or 0 digits
      */
     public function getClearingCheckDigit();
 
     /**
      * Get account serial number
      *
-     * @return string
+     * @return string 1 to 11 digits
      */
     public function getSerialNumber();
 
     /**
      * Get account check digit
      *
-     * @return string
+     * @return string 1 digit
      */
     public function getCheckDigit();
 
@@ -61,7 +61,7 @@ interface AccountNumber
      *
      * Clearing number (4 digits) + x number of ceros + serial number
      *
-     * @return string
+     * @return string 16 digits
      */
     public function get16();
 

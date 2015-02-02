@@ -4,6 +4,9 @@ namespace byrokrat\banking\Bank;
 
 use byrokrat\banking\AbstractAccount;
 
+/**
+ * Nordea account
+ */
 class Nordea extends AbstractAccount implements Names
 {
     public function getBankName()
