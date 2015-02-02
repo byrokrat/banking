@@ -3,19 +3,17 @@
 namespace byrokrat\banking\Bank;
 
 use byrokrat\banking\ParserFactory;
-use byrokrat\banking\Resolver;
+use byrokrat\banking\AccountFactory;
 
 abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Parser[] Loaded parsers
-     */
-    private static $parsers;
+    private static $parsers, $accountFactory;
 
     public static function setUpBeforeClass()
     {
         if (!isset(self::$parsers)) {
             self::$parsers = (new ParserFactory)->createParsers();
+            self::$accountFactory = new AccountFactory(self::$parsers);
         }
     }
 
@@ -23,6 +21,25 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
      * Get name of parser to test against
      */
     abstract public function getParserName();
+
+    /**
+     * Get name of class this case covers
+     */
+    abstract public function getClassName();
+
+    /**
+     * NOTE: The maximum number of digits in number should be 16
+     */
+    abstract public function invalidStructureProvider();
+
+    abstract public function invalidClearingProvider();
+
+    abstract public function invalidCheckDigitProvider();
+
+    /**
+     * NOTE: Delimiters should be optional
+     */
+    abstract public function validProvider();
 
     public function getParser()
     {
@@ -44,11 +61,6 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * NOTE: The maximum number of digits in number should be 16
-     */
-    abstract public function invalidStructureProvider();
-
-    /**
      * @dataProvider invalidClearingProvider
      */
     public function testInvalidClearing($number)
@@ -56,8 +68,6 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('byrokrat\banking\Exception\InvalidClearingNumberException');
         $this->buildAccount($number);
     }
-
-    abstract public function invalidClearingProvider();
 
     /**
      * @dataProvider invalidCheckDigitProvider
@@ -67,8 +77,6 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
         $this->buildAccount($number);
     }
-
-    abstract public function invalidCheckDigitProvider();
 
     /**
      * @covers byrokrat\banking\AbstractAccount
@@ -80,7 +88,8 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'byrokrat\banking\AccountNumber',
-            $account
+            $account,
+            'Account must be an instance of AccountNumber'
         );
 
         $genericFormat = $account->getNumber();
@@ -91,11 +100,6 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
             'Parser must be able to parse the generic account format'
         );
     }
-
-    /**
-     * NOTE: Delimiter between clearing and clearing check digit should be optional
-     */
-    abstract public function validProvider();
 
     /**
      * @covers byrokrat\banking\AbstractAccount
@@ -118,16 +122,29 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGetBankName()
+    /**
+     * @dataProvider validProvider
+     */
+    public function testCreationThroughAccountFactory($number)
     {
-        $this->assertSame(
-            $this->getBankName(),
-            $this->buildAccount($this->validProvider()[0][0])->getBankName()
+        $this->assertInstanceOf(
+            $this->getClassName(),
+            self::$accountFactory->createAccount($number),
+            'Account must be of the correct class when created through AccountFactory'
         );
     }
 
-    /**
-     * Get expected bank name
-     */
-    abstract public function getBankName();
+    public function testBankName()
+    {
+        $account = $this->getMockBuilder($this->getClassName())
+            ->disableOriginalConstructor()
+            ->setMethods(null)
+            ->getMock();
+
+        $this->assertSame(
+            $account->getBankName(),
+            $this->buildAccount($this->validProvider()[0][0])->getBankName(),
+            'The correct bank name should be returned'
+        );
+    }
 }

@@ -12,9 +12,9 @@ class SwedbankType1Test extends AccountNumberTestCase
         return 'SwedbankType1';
     }
 
-    public function getBankName()
+    public function getClassName()
     {
-        return 'Swedbank';
+        return '\byrokrat\banking\Bank\Swedbank';
     }
 
     public function invalidStructureProvider()
@@ -44,9 +44,6 @@ class SwedbankType1Test extends AccountNumberTestCase
         );
     }
 
-    /**
-     * NOTE: Delimiter between clearing and clearing check digit should be optional
-     */
     public function validProvider()
     {
         return array(

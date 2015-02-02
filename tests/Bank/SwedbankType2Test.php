@@ -12,14 +12,11 @@ class SwedbankType2Test extends AccountNumberTestCase
         return 'SwedbankType2';
     }
 
-    public function getBankName()
+    public function getClassName()
     {
-        return 'Swedbank';
+        return '\byrokrat\banking\Bank\Swedbank';
     }
 
-    /**
-     * NOTE: The maximum number of digits in number should be 16
-     */
     public function invalidStructureProvider()
     {
         return array(
@@ -52,9 +49,6 @@ class SwedbankType2Test extends AccountNumberTestCase
         );
     }
 
-    /**
-     * NOTE: Delimiter between clearing and clearing check digit should be optional
-     */
     public function validProvider()
     {
         return array(

@@ -12,9 +12,9 @@ class SEBTest extends AccountNumberTestCase
         return 'SEB';
     }
 
-    public function getBankName()
+    public function getClassName()
     {
-        return 'SEB';
+        return '\byrokrat\banking\Bank\SEB';
     }
 
     public function invalidStructureProvider()

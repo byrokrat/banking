@@ -12,9 +12,9 @@ class NordeaType1ATest extends AccountNumberTestCase
         return 'NordeaType1A';
     }
 
-    public function getBankName()
+    public function getClassName()
     {
-        return 'Nordea';
+        return '\byrokrat\banking\Bank\Nordea';
     }
 
     public function invalidStructureProvider()

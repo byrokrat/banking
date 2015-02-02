@@ -12,9 +12,9 @@ class PlusGiroTest #extends AccountNumberTestCase
         return 'PlusGiro';
     }
 
-    public function getBankName()
+    public function getClassName()
     {
-        return 'PlusGiro';
+        return '\byrokrat\banking\Bank\Plusgiro';
     }
 
     public function invalidStructureProvider()
@@ -111,14 +111,6 @@ class PlusGiroTest #extends AccountNumberTestCase
         $this->assertSame(
             '0000000000090480',
             (new PlusGiro('9048-0'))->get16()
-        );
-    }
-
-    public function testGetBankName()
-    {
-        $this->assertSame(
-            'PlusGiro',
-            (new PlusGiro('9048-0'))->getBankName()
         );
     }
     */

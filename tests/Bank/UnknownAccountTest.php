@@ -12,9 +12,9 @@ class UnknownAccountTest extends AccountNumberTestCase
         return 'Unknown';
     }
 
-    public function getBankName()
+    public function getClassName()
     {
-        return 'Unknown';
+        return '\byrokrat\banking\Bank\Unknown';
     }
 
     public function invalidStructureProvider()

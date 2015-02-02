@@ -14,9 +14,9 @@ class NordeaPersonalTest extends AccountNumberTestCase
         return 'NordeaPersonal';
     }
 
-    public function getBankName()
+    public function getClassName()
     {
-        return 'Nordea';
+        return '\byrokrat\banking\Bank\NordeaPersonal';
     }
 
     public function invalidStructureProvider()
