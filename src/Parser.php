@@ -49,10 +49,8 @@ class Parser
      */
     public function parse($number)
     {
-        $number = str_replace(' ', '', $number);
-
-        if (!preg_match($this->structure, $number, $matches)) {
-            throw new InvalidStructureException("Invalid account number structre $number");
+        if (!preg_match($this->structure, str_replace(' ', '', $number), $matches)) {
+            throw new InvalidStructureException("Invalid account number structure $number");
         }
 
         if (count($matches) != 5) {
@@ -60,7 +58,7 @@ class Parser
         }
 
         /** @var AccountNumber $account */
-        $account = new $this->classname($matches[1], $matches[2], $matches[3], $matches[4]);
+        $account = new $this->classname($number, $matches[1], $matches[2], $matches[3], $matches[4]);
 
         foreach ($this->validators as $validator) {
             $validator->validate($account);

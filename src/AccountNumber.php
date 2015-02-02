@@ -8,11 +8,11 @@ namespace byrokrat\banking;
 interface AccountNumber
 {
     /**
-     * Get account as string
+     * Get the raw number
      *
      * @return string
      */
-    public function __toString();
+    public function getRawNumber();
 
     /**
      * Get account as string
@@ -20,6 +20,13 @@ interface AccountNumber
      * @return string
      */
     public function getNumber();
+
+    /**
+     * Get account as string
+     *
+     * @return string
+     */
+    public function __toString();
 
     /**
      * Get clearing number, 4 digits

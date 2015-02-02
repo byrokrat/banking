@@ -51,4 +51,9 @@ class Bankgiro implements AccountNumber
         list($serialPre, $serialPost, $this->checkDigit) = $matches;
         $this->serial = $serialPre.$serialPost;
     }
+
+    public function getRawNumber()
+    {
+        return '';
+    }
 }

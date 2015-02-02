@@ -7,7 +7,8 @@ use byrokrat\banking\AccountFactory;
 
 abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 {
-    private static $parsers, $accountFactory;
+    private static $parsers;
+    private static $accountFactory;
 
     public static function setUpBeforeClass()
     {
@@ -119,6 +120,19 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
             $format16,
             $this->buildAccount($format16)->get16(),
             'Parser must be able to parse to and from the 16 format'
+        );
+    }
+
+    /**
+     * @covers byrokrat\banking\AbstractAccount
+     * @dataProvider validProvider
+     */
+    public function testGetRawNumber($number)
+    {
+        $this->assertSame(
+            $number,
+            $this->buildAccount($number)->getRawNumber(),
+            'The correct raw number should be returned'
         );
     }
 

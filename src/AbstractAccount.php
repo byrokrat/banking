@@ -8,6 +8,11 @@ namespace byrokrat\banking;
 abstract class AbstractAccount implements AccountNumber
 {
     /**
+     * @var string The raw parsed number
+     */
+    private $raw;
+
+    /**
      * @var string Account clearing number
      */
     private $clearing;
@@ -30,13 +35,15 @@ abstract class AbstractAccount implements AccountNumber
     /**
      * Load account number data
      *
+     * @param string $raw
      * @param string $clearing
      * @param string $clearingCheckDigit
      * @param string $serial
      * @param string $checkDigit
      */
-    public function __construct($clearing, $clearingCheckDigit, $serial, $checkDigit)
+    public function __construct($raw, $clearing, $clearingCheckDigit, $serial, $checkDigit)
     {
+        $this->raw = $raw;
         $this->clearing = $clearing;
         $this->clearingCheckDigit = $clearingCheckDigit;
         $this->serial = $serial;
@@ -44,13 +51,13 @@ abstract class AbstractAccount implements AccountNumber
     }
 
     /**
-     * Get account as string
+     * Get the raw number
      *
      * @return string
      */
-    public function __toString()
+    public function getRawNumber()
     {
-        return $this->getNumber();
+        return $this->raw;
     }
 
     /**
@@ -67,6 +74,16 @@ abstract class AbstractAccount implements AccountNumber
             $this->getSerialNumber(),
             $this->getCheckDigit()
         );
+    }
+
+    /**
+     * Get account as string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getNumber();
     }
 
     /**
