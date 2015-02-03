@@ -2,8 +2,6 @@
 
 namespace byrokrat\banking\Bank;
 
-use byrokrat\id\PersonalId;
-
 /**
  * @covers \byrokrat\banking\Bank\NordeaPersonal
  */
@@ -71,8 +69,8 @@ class NordeaPersonalTest extends AccountNumberTestCase
 
     public function testGetPersonalId()
     {
-        $this->assertEquals(
-            new PersonalId('111111-1116'),
+        $this->assertInstanceOf(
+            'byrokrat\id\PersonalId',
             $this->buildAccount('3300,1111111116')->getPersonalId()
         );
     }
