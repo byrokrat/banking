@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Validator;
 
-class LengthValidatorTest extends \PHPUnit_Framework_TestCase
+class MaxLengthValidatorTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidLength()
     {
@@ -12,7 +12,7 @@ class LengthValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getRawNumber')
             ->will($this->returnValue(' 1-2, 34'));
 
-        $this->assertNull((new LengthValidator(4))->validate($number));
+        $this->assertNull((new MaxLengthValidator(4))->validate($number));
     }
 
     public function testExceptionOnInvalidLength()
@@ -21,9 +21,9 @@ class LengthValidatorTest extends \PHPUnit_Framework_TestCase
 
         $number->expects($this->any())
             ->method('getRawNumber')
-            ->will($this->returnValue('1234,45'));
+            ->will($this->returnValue('1234,5'));
 
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidAccountNumberException');
-        (new LengthValidator(4))->validate($number);
+        $this->setExpectedException('byrokrat\banking\Exception\InvalidStructureException');
+        (new MaxLengthValidator(4))->validate($number);
     }
 }

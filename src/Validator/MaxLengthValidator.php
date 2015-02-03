@@ -4,12 +4,12 @@ namespace byrokrat\banking\Validator;
 
 use byrokrat\banking\Validator;
 use byrokrat\banking\AccountNumber;
-use byrokrat\banking\Exception\InvalidAccountNumberException;
+use byrokrat\banking\Exception\InvalidStructureException;
 
 /**
  * Validate length of the raw number
  */
-class LengthValidator implements Validator
+class MaxLengthValidator implements Validator
 {
     /**
      * @var integer Expected length
@@ -33,12 +33,12 @@ class LengthValidator implements Validator
      *
      * @param  AccountNumber $number
      * @return null
-     * @throws InvalidAccountNumberException If length is invalid
+     * @throws InvalidStructureException If length is invalid
      */
     public function validate(AccountNumber $number)
     {
-        if (strlen(str_replace([' ', ',', '-'], '', $number->getRawNumber())) != $this->length) {
-            throw new InvalidAccountNumberException(
+        if (strlen(str_replace([' ', ',', '-'], '', $number->getRawNumber())) > $this->length) {
+            throw new InvalidStructureException(
                 "Invalid raw length for $number, expected: " . $this->length
             );
         }

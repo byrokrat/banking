@@ -19,8 +19,8 @@ class PlusGiro extends AbstractAccount implements Names
         return $this->getSerialNumber() . '-' . $this->getCheckDigit();
     }
 
-    public function get16()
+    public function getClearingNumber()
     {
-        return str_pad($this->getSerialNumber(), 15, '0', STR_PAD_LEFT) . $this->getCheckDigit();
+        return '0000';
     }
 }

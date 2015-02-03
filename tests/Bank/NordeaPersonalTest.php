@@ -41,7 +41,6 @@ class NordeaPersonalTest extends AccountNumberTestCase
             ['3300,8411283940'],
         ];
     }
-
     
     public function testInvalidDate()
     {
@@ -50,7 +49,6 @@ class NordeaPersonalTest extends AccountNumberTestCase
         $this->buildAccount('3300,8413283949');
     }
 
-    // TODO stolpa upp..
     public function validProvider()
     {
         return [

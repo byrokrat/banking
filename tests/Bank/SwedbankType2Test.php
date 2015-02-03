@@ -22,6 +22,7 @@ class SwedbankType2Test extends AccountNumberTestCase
         return array(
             array('8000,1'),
             array('8000,11111111111'),
+            ['8000,0000000000018']
         );
     }
 
