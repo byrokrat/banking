@@ -31,17 +31,17 @@ Api
 ---
 [`AccountNumber`](/src/AccountNumber.php) defines the following api:
 
-Method signature            | returns                     | description
-:-------------------------- | :-------------------------- | :------------------------------------------
-**getRawNumber()**          | **string**                  | Get the raw number
-**getNumber()**             | **string**                  | Get formatted number
-**__toString()**            | **string**                  | Shorthand to getNumber
-**getClearingNumber()**     | **string** (4 digits)       | Get clearing number
-**getClearingCheckDigit()** | **string** (1 or 0 digits)  | Check digit of the clearing number
-**getSerialNumber()**       | **string** (1 to 11 digits) | Get account serial number
-**getCheckDigit()**         | **string** (1 digit)        | Get account check digit
-**get16()**                 | **string** (16 digits)      | Generic 16 digit format
-**getBankName()**           | **string**                  | Name of Bank this number belongs to
+Signature               | Returns                 | Description
+:---------------------- | :---------------------- | :------------------------------------------
+getRawNumber()          | string                  | Get the raw number
+getNumber()             | string                  | Get formatted number
+__toString()            | string                  | Shorthand to getNumber
+getClearingNumber()     | string (4 digits)       | Get clearing number
+getClearingCheckDigit() | string (1 or 0 digits)  | Check digit of the clearing number
+getSerialNumber()       | string (1 to 11 digits) | Get account serial number
+getCheckDigit()         | string (1 digit)        | Get account check digit
+get16()                 | string (16 digits)      | Generic 16 digit format
+getBankName()           | string                  | Name of Bank this number belongs to
 
 Credits
 -------
