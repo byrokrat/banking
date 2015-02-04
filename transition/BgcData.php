@@ -4,8 +4,6 @@ namespace remove;
 
 /**
  * Swedish account types as described by BGC 2014-07-01
- *
- * @todo Flytta över alla värden till parsers.json
  */
 class BgcData
 {

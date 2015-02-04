@@ -1,17 +1,15 @@
 <?php
 
-namespace byrokrat\banking\Bank;
-
-use byrokrat\banking\AbstractAccount;
+namespace byrokrat\banking\Account;
 
 /**
  * Account number for PlusGirot clearing system
  */
-class PlusGiro extends AbstractAccount implements Names
+class PlusGiro extends BaseAccount
 {
     public function getBankName()
     {
-        return self::BANK_PLUSGIRO;
+        return BankNames::BANK_PLUSGIRO;
     }
 
     public function getNumber()

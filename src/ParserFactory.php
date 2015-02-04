@@ -15,7 +15,7 @@ class ParserFactory
      */
     public function createParsers(JsonDecoder $formats = null)
     {
-        $formats = $formats ?: new JsonDecoder(file_get_contents(__DIR__ . '/formats.json'));
+        $formats = $formats ?: new JsonDecoder(file_get_contents(__DIR__ . '/Account/formats.json'));
         $resolver = new Resolver($formats->getData()['vars']);
 
         /** @var Parser[] $parsers */

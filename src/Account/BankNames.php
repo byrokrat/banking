@@ -1,11 +1,11 @@
 <?php
 
-namespace byrokrat\banking\Bank;
+namespace byrokrat\banking\Account;
 
 /**
  * Bank identifiers
  */
-interface Names
+interface BankNames
 {
     const BANK_AMFA = "Amfa Bank AB";
     const BANK_AVANZA = "Avanza Bank AB";

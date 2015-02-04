@@ -1,9 +1,9 @@
 <?php
 
-namespace byrokrat\banking\Bank;
+namespace byrokrat\banking\Account;
 
 /**
- * @covers \byrokrat\banking\Bank\Swedbank
+ * @covers \byrokrat\banking\Account\Swedbank
  */
 class SwedbankType2Test extends AccountNumberTestCase
 {
@@ -14,7 +14,7 @@ class SwedbankType2Test extends AccountNumberTestCase
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Bank\Swedbank';
+        return '\byrokrat\banking\Account\Swedbank';
     }
 
     public function invalidStructureProvider()

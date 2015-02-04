@@ -1,6 +1,6 @@
 <?php
 
-namespace byrokrat\banking\Bank;
+namespace byrokrat\banking\Account;
 
 use byrokrat\id\PersonalId;
 

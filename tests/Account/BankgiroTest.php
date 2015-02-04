@@ -1,9 +1,9 @@
 <?php
 
-namespace byrokrat\banking\Bank;
+namespace byrokrat\banking\Account;
 
 /**
- * @covers \byrokrat\banking\Bank\Bankgiro
+ * @covers \byrokrat\banking\Account\Bankgiro
  */
 class BankgiroTest extends AccountNumberTestCase
 {
@@ -14,7 +14,7 @@ class BankgiroTest extends AccountNumberTestCase
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Bank\Bankgiro';
+        return '\byrokrat\banking\Account\Bankgiro';
     }
 
     public function invalidStructureProvider()

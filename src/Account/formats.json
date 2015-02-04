@@ -8,8 +8,8 @@
         "$checkdigit_type2":     "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
         "$clearing":             "\\byrokrat\\banking\\Validator\\ClearingValidator",
         "$max_length":           "\\byrokrat\\banking\\Validator\\MaxLengthValidator",
-        "$nordea":               "\\byrokrat\\banking\\Bank\\Nordea",
-        "$swedbank":             "\\byrokrat\\banking\\Bank\\Swedbank"
+        "$nordea":               "\\byrokrat\\banking\\Account\\Nordea",
+        "$swedbank":             "\\byrokrat\\banking\\Account\\Swedbank"
     },
     "formats": [
         {
@@ -52,7 +52,7 @@
         {
             "id" : "NordeaPersonal",
             "structure": "/^(\\d{4})(),?0{0,2}(\\d{6}-?\\d{3})-?(\\d)$/",
-            "class": "\\byrokrat\\banking\\Bank\\NordeaPersonal",
+            "class": "\\byrokrat\\banking\\Account\\NordeaPersonal",
             "validators": [
                 {
                     "class": "$clearing",
@@ -70,7 +70,7 @@
         {
             "id" : "SEB",
             "structure": "$struct_type1",
-            "class": "\\byrokrat\\banking\\Bank\\SEB",
+            "class": "\\byrokrat\\banking\\Account\\SEB",
             "validators": [
                 {
                     "class": "$clearing",
@@ -124,7 +124,7 @@
         {
             "id" : "PlusGiro",
             "structure": "/^(0{0,4})()0{0,10}(\\d{1,7})-?(\\d)$/",
-            "class": "\\byrokrat\\banking\\Bank\\PlusGiro",
+            "class": "\\byrokrat\\banking\\Account\\PlusGiro",
             "validators": [
                 {
                     "class": "$checkdigit_type2",
@@ -139,7 +139,7 @@
         {
             "id" : "Bankgiro",
             "structure": "/^(0{0,4})()0{0,5}(\\d{3,4}-?\\d{3})(\\d)$/",
-            "class": "\\byrokrat\\banking\\Bank\\Bankgiro",
+            "class": "\\byrokrat\\banking\\Account\\Bankgiro",
             "validators": [
                 {
                     "class": "$checkdigit_type2",
@@ -154,7 +154,7 @@
         {
             "id" : "Unknown",
             "structure": "/^([1-9]\\d{3})(),?(\\d{6,11})-?(\\d)$/",
-            "class": "\\byrokrat\\banking\\Bank\\Unknown",
+            "class": "\\byrokrat\\banking\\Account\\Unknown",
             "validators": [],
             "_comment": "Special case account where all is valid"
         }

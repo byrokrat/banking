@@ -1,13 +1,11 @@
 <?php
 
-namespace byrokrat\banking\Bank;
-
-use byrokrat\banking\AbstractAccount;
+namespace byrokrat\banking\Account;
 
 /**
  * Unknown account
  */
-class Unknown extends AbstractAccount
+class Unknown extends BaseAccount
 {
     public function getBankName()
     {

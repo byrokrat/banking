@@ -1,11 +1,13 @@
 <?php
 
-namespace byrokrat\banking;
+namespace byrokrat\banking\Account;
+
+use byrokrat\banking\AccountNumber;
 
 /**
  * Account number base implementation
  */
-abstract class AbstractAccount implements AccountNumber
+abstract class BaseAccount implements AccountNumber
 {
     /**
      * @var string The raw parsed number

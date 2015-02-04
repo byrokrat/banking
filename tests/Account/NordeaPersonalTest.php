@@ -1,9 +1,9 @@
 <?php
 
-namespace byrokrat\banking\Bank;
+namespace byrokrat\banking\Account;
 
 /**
- * @covers \byrokrat\banking\Bank\NordeaPersonal
+ * @covers \byrokrat\banking\Account\NordeaPersonal
  */
 class NordeaPersonalTest extends AccountNumberTestCase
 {
@@ -14,7 +14,7 @@ class NordeaPersonalTest extends AccountNumberTestCase
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Bank\NordeaPersonal';
+        return '\byrokrat\banking\Account\NordeaPersonal';
     }
 
     public function invalidStructureProvider()

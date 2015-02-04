@@ -1,6 +1,6 @@
 <?php
 
-namespace byrokrat\banking\Bank;
+namespace byrokrat\banking\Account;
 
 use byrokrat\banking\ParserFactory;
 use byrokrat\banking\AccountFactory;
@@ -80,9 +80,9 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers byrokrat\banking\AbstractAccount::__construct
-     * @covers byrokrat\banking\AbstractAccount::__toString
-     * @covers byrokrat\banking\AbstractAccount::getNumber
+     * @covers byrokrat\banking\Account\BaseAccount::__construct
+     * @covers byrokrat\banking\Account\BaseAccount::__toString
+     * @covers byrokrat\banking\Account\BaseAccount::getNumber
      * @dataProvider validProvider
      */
     public function testValidNumber($number)
@@ -105,7 +105,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers byrokrat\banking\AbstractAccount::get16
+     * @covers byrokrat\banking\Account\BaseAccount::get16
      * @dataProvider validProvider
      */
     public function testParse16($number)
@@ -131,7 +131,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers byrokrat\banking\AbstractAccount::getRawNumber
+     * @covers byrokrat\banking\Account\BaseAccount::getRawNumber
      * @dataProvider validProvider
      */
     public function testGetRawNumber($number)
@@ -144,10 +144,10 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers byrokrat\banking\AbstractAccount::getClearingNumber
-     * @covers byrokrat\banking\AbstractAccount::getClearingCheckDigit
-     * @covers byrokrat\banking\AbstractAccount::getSerialNumber
-     * @covers byrokrat\banking\AbstractAccount::getCheckDigit
+     * @covers byrokrat\banking\Account\BaseAccount::getClearingNumber
+     * @covers byrokrat\banking\Account\BaseAccount::getClearingCheckDigit
+     * @covers byrokrat\banking\Account\BaseAccount::getSerialNumber
+     * @covers byrokrat\banking\Account\BaseAccount::getCheckDigit
      * @dataProvider validProvider
      */
     public function testNumericParts($number)
@@ -189,7 +189,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers byrokrat\banking\AbstractAccount::getBankName
+     * @covers byrokrat\banking\Account\BaseAccount::getBankName
      */
     public function testBankName()
     {

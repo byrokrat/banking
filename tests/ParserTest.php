@@ -24,7 +24,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $customValidator = $this->getMock('byrokrat\banking\Validator');
         $customValidator->expects($this->once())->method('validate');
 
-        $classname = 'byrokrat\banking\Bank\Unknown';
+        $classname = 'byrokrat\banking\Account\Unknown';
         $this->assertInstanceOf(
             $classname,
             (new Parser('/^()()()()$/', $classname, [$customValidator]))->parse('')
