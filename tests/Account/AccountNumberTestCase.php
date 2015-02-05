@@ -4,6 +4,7 @@ namespace byrokrat\banking\Account;
 
 use byrokrat\banking\ParserFactory;
 use byrokrat\banking\AccountFactory;
+use byrokrat\banking\AccountNumber;
 
 abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -27,11 +28,6 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
      * Get name of class this case covers
      */
     abstract public function getClassName();
-
-    /**
-     * Get list of valid numbers to test
-     */
-    abstract public function validProvider();
 
     public function invalidStructureProvider()
     {
@@ -81,21 +77,56 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function validProvider()
+    {
+        return [[null, null, null, null, null]];
+    }
+
     /**
-     * @covers byrokrat\banking\Account\BaseAccount::__construct
-     * @covers byrokrat\banking\Account\BaseAccount::getClearingNumber
-     * @covers byrokrat\banking\Account\BaseAccount::getClearingCheckDigit
-     * @covers byrokrat\banking\Account\BaseAccount::getSerialNumber
-     * @covers byrokrat\banking\Account\BaseAccount::getCheckDigit
+     * @covers byrokrat\banking\Account\BaseAccount
      * @dataProvider validProvider
      */
-    public function testNumericalParts($number, $clearing, $clearingCheck, $serial, $check)
+    public function testValidNumber($number, $clearing, $clearingCheck, $serial, $check)
     {
-        $account = $this->buildAccount($number);
+        if ($number !== null) {
+            $account = $this->buildAccount($number);
+            $this->assertRawNumber($number, $account);
+            $this->assertNumericalParts($account, $clearing, $clearingCheck, $serial, $check);
+            $this->assertFormattedNumber($account);
+            $this->assert16format($account);
+            $this->assertBankName($account);
+        }
+    }
+
+    /**
+     * @dataProvider validProvider
+     */
+    public function testCreationThroughAccountFactory($number)
+    {
+        if ($number !== null) {
+            $this->assertInstanceOf(
+                $this->getClassName(),
+                self::$accountFactory->createAccount($number),
+                'Account must be of the correct class when created through AccountFactory'
+            );
+        }
+    }
+
+    protected function assertRawNumber($raw, AccountNumber $account)
+    {
+        $this->assertSame(
+            $raw,
+            $account->getRawNumber(),
+            'The correct raw number should be returned'
+        );
+    }
+
+    protected function assertNumericalParts(AccountNumber $account, $clearing, $clearingCheck, $serial, $check)
+    {
         $this->assertRegExp(
             '/^\d{4}$/',
             $account->getClearingNumber(),
-            "Clearing must be 4  digits, parsing: $number"
+            "Clearing must be 4  digits in {$account->getRawNumber()}"
         );
         $this->assertSame(
             $clearing,
@@ -105,7 +136,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         $this->assertRegExp(
             '/^\d?$/',
             $account->getClearingCheckDigit(),
-            "Clearing check digit must be 1 or 0 digits, parsing: $number"
+            "Clearing check digit must be 1 or 0 digits in {$account->getRawNumber()}"
         );
         $this->assertSame(
             $clearingCheck,
@@ -115,7 +146,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         $this->assertRegExp(
             '/^\d{1,11}$/',
             $account->getSerialNumber(),
-            "Serial number must consist of 1-11 digits, parsing: $number"
+            "Serial number must consist of 1-11 digits in {$account->getRawNumber()}"
         );
         $this->assertSame(
             $serial,
@@ -125,7 +156,7 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         $this->assertRegExp(
             '/^\d$/',
             $account->getCheckDigit(),
-            "Check digit must be 1 digit, parsing: $number"
+            "Check digit must be 1 digit in {$account->getRawNumber()}"
         );
         $this->assertSame(
             $check,
@@ -134,16 +165,9 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @covers byrokrat\banking\Account\BaseAccount::__toString
-     * @covers byrokrat\banking\Account\BaseAccount::getNumber
-     * @dataProvider validProvider
-     */
-    public function testFormattedNumber($number)
+    protected function assertFormattedNumber(AccountNumber $account)
     {
-        $account = $this->buildAccount($number);
         $formatted = $account->getNumber();
-
         $this->assertSame(
             $formatted,
             (string)$this->buildAccount($formatted),
@@ -151,25 +175,17 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @covers byrokrat\banking\Account\BaseAccount::get16
-     * @dataProvider validProvider
-     */
-    public function testParse16($number)
+    protected function assert16format(AccountNumber $account)
     {
-        $account = $this->buildAccount($number);
         $format16 = $account->get16();
-
         $this->assertTrue(
             strlen($format16) == 16,
             "The length of the 16 format must be exactly 16 digits, found: $format16"
         );
-
         $this->assertTrue(
             ctype_digit($format16),
             "The 16 format must consist of only digits, found: $format16"
         );
-
         $this->assertSame(
             $format16,
             $this->buildAccount($format16)->get16(),
@@ -177,44 +193,11 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @covers byrokrat\banking\Account\BaseAccount::getRawNumber
-     * @dataProvider validProvider
-     */
-    public function testRawNumber($number)
+    protected function assertBankName(AccountNumber $account)
     {
         $this->assertSame(
-            $number,
-            $this->buildAccount($number)->getRawNumber(),
-            'The correct raw number should be returned'
-        );
-    }
-
-    /**
-     * @dataProvider validProvider
-     */
-    public function testCreationThroughAccountFactory($number)
-    {
-        $this->assertInstanceOf(
-            $this->getClassName(),
-            self::$accountFactory->createAccount($number),
-            'Account must be of the correct class when created through AccountFactory'
-        );
-    }
-
-    /**
-     * @covers byrokrat\banking\Account\BaseAccount::getBankName
-     */
-    public function testBankName()
-    {
-        $account = $this->getMockBuilder($this->getClassName())
-            ->disableOriginalConstructor()
-            ->setMethods(null)
-            ->getMock();
-
-        $this->assertSame(
+            $this->getExpectedBankName(),
             $account->getBankName(),
-            $this->buildAccount($this->validProvider()[0][0])->getBankName(),
             'The correct bank name should be returned'
         );
     }
@@ -222,5 +205,14 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     protected function buildAccount($number)
     {
         return self::$parsers[strtolower($this->getFormatId())]->parse($number);
+    }
+
+    private function getExpectedBankName()
+    {
+        return $this->getMockBuilder($this->getClassName())
+            ->disableOriginalConstructor()
+            ->setMethods(null)
+            ->getMock()
+            ->getBankName();
     }
 }
