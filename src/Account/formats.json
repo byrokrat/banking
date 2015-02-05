@@ -2,23 +2,16 @@
     "vars": {
         "$struct_type1":         "/^(\\d{4})(),?0{0,5}(\\d{6})-?(\\d)$/",
         "$struct_type2":         "/^(\\d{4})(),?0{0,2}(\\d{9})-?(\\d)$/",
-        "$struct_handelsbanken": "/^(\\d{4})(),?0{0,3}(\\d{8})-?(\\d)$/",
-        "$checkdigit_type1A":    "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
-        "$checkdigit_type1B":    "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
-        "$checkdigit_type2":     "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
-        "$clearing":             "\\byrokrat\\banking\\Validator\\ClearingValidator",
-        "$max_length":           "\\byrokrat\\banking\\Validator\\MaxLengthValidator",
-        "$nordea":               "\\byrokrat\\banking\\Account\\Nordea",
-        "$swedbank":             "\\byrokrat\\banking\\Account\\Swedbank"
+        "$struct_handelsbanken": "/^(\\d{4})(),?0{0,3}(\\d{8})-?(\\d)$/"
     },
     "formats": [
         {
             "id" : "NordeaType1A",
             "structure": "$struct_type1",
-            "class": "$nordea",
+            "class": "\\byrokrat\\banking\\Account\\Nordea",
             "validators": [
                 {
-                    "class": "$clearing",
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
                     "arg": [
                         [1100, 1199],
                         [1400, 2099],
@@ -29,7 +22,7 @@
                     ]
                 },
                 {
-                    "class": "$checkdigit_type1A",
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
                     "arg": null
                 }
             ]
@@ -37,14 +30,14 @@
         {
             "id" : "NordeaType1B",
             "structure": "$struct_type1",
-            "class": "$nordea",
+            "class": "\\byrokrat\\banking\\Account\\Nordea",
             "validators": [
                 {
-                    "class": "$clearing",
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
                     "arg": [[4000, 4999]]
                 },
                 {
-                    "class": "$checkdigit_type1B",
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
                     "arg": null
                 }
             ]
@@ -55,7 +48,7 @@
             "class": "\\byrokrat\\banking\\Account\\NordeaPersonal",
             "validators": [
                 {
-                    "class": "$clearing",
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
                     "arg": [
                         [3300, 3300],
                         [3782, 3782]
@@ -73,7 +66,7 @@
             "class": "\\byrokrat\\banking\\Account\\SEB",
             "validators": [
                 {
-                    "class": "$clearing",
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
                     "arg": [
                         [5000, 5999],
                         [9120, 9124],
@@ -81,7 +74,7 @@
                     ]
                 },
                 {
-                    "class": "$checkdigit_type1A",
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
                     "arg": null
                 }
             ]
@@ -89,34 +82,38 @@
         {
             "id" : "SwedbankType1",
             "structure": "$struct_type1",
-            "class": "$swedbank",
+            "class": "\\byrokrat\\banking\\Account\\Swedbank",
             "validators": [
                 {
-                    "class": "$clearing",
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
                     "arg": [[7000, 7999]]
                 },
                 {
-                    "class": "$checkdigit_type1A",
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
                     "arg": null
                 }
             ]
         },
         {
             "id" : "SwedbankType2",
-            "structure": "/^(\\d{4})(),?0{0,10}(\\d{1,9})-?(\\d)$/",
-            "class": "$swedbank",
+            "structure": "/^(\\d{4})(?:(?:-?(\\d),)|,)?0{0,10}(\\d{1,9})-?(\\d)$/",
+            "class": "\\byrokrat\\banking\\Account\\Swedbank",
             "validators": [
                 {
-                    "class": "$clearing",
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
                     "arg": [[8000, 8999]]
                 },
                 {
-                    "class": "$checkdigit_type2",
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
                     "arg": null
                 },
                 {
-                    "class": "$max_length",
+                    "class": "\\byrokrat\\banking\\Validator\\MaxLengthValidator",
                     "arg": 16
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingCheckdigitValidator",
+                    "arg": null
                 }
             ],
             "_comment": "In rare occasions some of Swedbank's accounts cannot be validated by a checksum calculation"
@@ -127,11 +124,11 @@
             "class": "\\byrokrat\\banking\\Account\\PlusGiro",
             "validators": [
                 {
-                    "class": "$checkdigit_type2",
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
                     "arg": null
                 },
                 {
-                    "class": "$max_length",
+                    "class": "\\byrokrat\\banking\\Validator\\MaxLengthValidator",
                     "arg": 16
                 }
             ]
@@ -142,11 +139,11 @@
             "class": "\\byrokrat\\banking\\Account\\Bankgiro",
             "validators": [
                 {
-                    "class": "$checkdigit_type2",
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
                     "arg": null
                 },
                 {
-                    "class": "$max_length",
+                    "class": "\\byrokrat\\banking\\Validator\\MaxLengthValidator",
                     "arg": 16
                 }
             ]

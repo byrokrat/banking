@@ -27,6 +27,31 @@ $account instanceof \byrokrat\banking\Account\NordeaPersonal; // true
 $account instanceof \byrokrat\banking\AccountNumber;          // true
 ```
 
+### Format of the account number
+
+1. Spaces are ignored.
+1. An optional `,` delimiter between clearing and serial numbers may be used.
+1. An optional `-` delimiter may be used before check digits.
+
+The following formats are all valid
+
+    14053542562
+    1405,3542562
+    1405,354256-2
+    1405,354 256-2
+
+#### Clearing number check digits for Swedbank accounts
+
+Swedbank account numbers with clearing numbers starting with `8` may specify a
+fifth clearing number check digit. The clearing number check digit is optional,
+but if used a `,` must be used to mark where the clearing number ends and the
+serial number begins.
+
+The following formats are valid
+
+    81050,744202466
+    8105-0,744202466
+
 Api
 ---
 [`AccountNumber`](/src/AccountNumber.php) defines the following api:

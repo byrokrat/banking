@@ -72,7 +72,7 @@ abstract class BaseAccount implements AccountNumber
         return sprintf(
             '%s%s,%s-%s',
             $this->getClearingNumber(),
-            $this->getClearingCheckDigit() ? '-' . $this->getClearingCheckDigit() : '',
+            $this->getClearingCheckDigit() !== '' ? '-' . $this->getClearingCheckDigit() : '',
             $this->getSerialNumber(),
             $this->getCheckDigit()
         );

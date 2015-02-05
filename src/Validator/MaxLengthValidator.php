@@ -12,18 +12,18 @@ use byrokrat\banking\Exception\InvalidStructureException;
 class MaxLengthValidator implements Validator
 {
     /**
-     * @var integer Expected length
+     * @var integer Max length
      */
-    private $length;
+    private $maxLength;
 
     /**
-     * Set expected length
+     * Set max length
      *
-     * @param integer $length
+     * @param integer $maxLength
      */
-    public function __construct($length)
+    public function __construct($maxLength)
     {
-        $this->length = $length;
+        $this->maxLength = $maxLength;
     }
 
     /**
@@ -37,9 +37,11 @@ class MaxLengthValidator implements Validator
      */
     public function validate(AccountNumber $number)
     {
-        if (strlen(str_replace([' ', ',', '-'], '', $number->getRawNumber())) > $this->length) {
+        $len = strlen(str_replace([' ', ',', '-'], '', $number->getRawNumber()));
+        $len -= strlen($number->getClearingCheckDigit());
+        if ($len > $this->maxLength) {
             throw new InvalidStructureException(
-                "Invalid raw length for $number, expected: " . $this->length
+                "Invalid raw length for {$number->getRawNumber()}, expected: " . $this->maxLength
             );
         }
     }
