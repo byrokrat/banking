@@ -19,9 +19,9 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Get name of parser to test against
+     * Get id of format to test
      */
-    abstract public function getParserName();
+    abstract public function getFormatId();
 
     /**
      * Get name of class this case covers
@@ -29,27 +29,13 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     abstract public function getClassName();
 
     /**
-     * NOTE: The maximum number of digits in number should be 16
-     */
-    abstract public function invalidStructureProvider();
-
-    abstract public function invalidClearingProvider();
-
-    abstract public function invalidCheckDigitProvider();
-
-    /**
-     * NOTE: Delimiters should be optional
+     * Get list of valid numbers to test
      */
     abstract public function validProvider();
 
-    public function getParser()
+    public function invalidStructureProvider()
     {
-        return self::$parsers[strtolower($this->getParserName())];
-    }
-
-    public function buildAccount($number)
-    {
-        return $this->getParser()->parse($number);
+        return [[null]];
     }
 
     /**
@@ -57,8 +43,15 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidStructure($number)
     {
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidStructureException');
-        $this->buildAccount($number);
+        if ($number !== null) {
+            $this->setExpectedException('byrokrat\banking\Exception\InvalidStructureException');
+            $this->buildAccount($number);
+        }
+    }
+
+    public function invalidClearingProvider()
+    {
+        return [[null]];
     }
 
     /**
@@ -66,8 +59,15 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidClearing($number)
     {
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidClearingNumberException');
-        $this->buildAccount($number);
+        if ($number !== null) {
+            $this->setExpectedException('byrokrat\banking\Exception\InvalidClearingNumberException');
+            $this->buildAccount($number);
+        }
+    }
+
+    public function invalidCheckDigitProvider()
+    {
+        return [[null]];
     }
 
     /**
@@ -75,32 +75,79 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidCheckDigit($number)
     {
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
-        $this->buildAccount($number);
+        if ($number !== null) {
+            $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
+            $this->buildAccount($number);
+        }
     }
 
     /**
      * @covers byrokrat\banking\Account\BaseAccount::__construct
+     * @covers byrokrat\banking\Account\BaseAccount::getClearingNumber
+     * @covers byrokrat\banking\Account\BaseAccount::getClearingCheckDigit
+     * @covers byrokrat\banking\Account\BaseAccount::getSerialNumber
+     * @covers byrokrat\banking\Account\BaseAccount::getCheckDigit
+     * @dataProvider validProvider
+     */
+    public function testNumericalParts($number, $clearing, $clearingCheck, $serial, $check)
+    {
+        $account = $this->buildAccount($number);
+        $this->assertRegExp(
+            '/^\d{4}$/',
+            $account->getClearingNumber(),
+            "Clearing must be 4  digits, parsing: $number"
+        );
+        $this->assertSame(
+            $clearing,
+            $account->getClearingNumber(),
+            'The correct clearing number must be parsed'
+        );
+        $this->assertRegExp(
+            '/^\d?$/',
+            $account->getClearingCheckDigit(),
+            "Clearing check digit must be 1 or 0 digits, parsing: $number"
+        );
+        $this->assertSame(
+            $clearingCheck,
+            $account->getClearingCheckDigit(),
+            'The correct clearing check digit must be parsed'
+        );
+        $this->assertRegExp(
+            '/^\d{1,11}$/',
+            $account->getSerialNumber(),
+            "Serial number must consist of 1-11 digits, parsing: $number"
+        );
+        $this->assertSame(
+            $serial,
+            $account->getSerialNumber(),
+            'The correct serial number must be parsed'
+        );
+        $this->assertRegExp(
+            '/^\d$/',
+            $account->getCheckDigit(),
+            "Check digit must be 1 digit, parsing: $number"
+        );
+        $this->assertSame(
+            $check,
+            $account->getCheckDigit(),
+            'The correct check digit must be parsed'
+        );
+    }
+
+    /**
      * @covers byrokrat\banking\Account\BaseAccount::__toString
      * @covers byrokrat\banking\Account\BaseAccount::getNumber
      * @dataProvider validProvider
      */
-    public function testValidNumber($number)
+    public function testFormattedNumber($number)
     {
         $account = $this->buildAccount($number);
-
-        $this->assertInstanceOf(
-            'byrokrat\banking\AccountNumber',
-            $account,
-            'Account must be an instance of AccountNumber'
-        );
-
-        $genericFormat = $account->getNumber();
+        $formatted = $account->getNumber();
 
         $this->assertSame(
-            $genericFormat,
-            (string)$this->buildAccount($genericFormat),
-            'Parser must be able to parse the generic account format'
+            $formatted,
+            (string)$this->buildAccount($formatted),
+            'Parser must be able to parse the formatted account number'
         );
     }
 
@@ -134,45 +181,12 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
      * @covers byrokrat\banking\Account\BaseAccount::getRawNumber
      * @dataProvider validProvider
      */
-    public function testGetRawNumber($number)
+    public function testRawNumber($number)
     {
         $this->assertSame(
             $number,
             $this->buildAccount($number)->getRawNumber(),
             'The correct raw number should be returned'
-        );
-    }
-
-    /**
-     * @covers byrokrat\banking\Account\BaseAccount::getClearingNumber
-     * @covers byrokrat\banking\Account\BaseAccount::getClearingCheckDigit
-     * @covers byrokrat\banking\Account\BaseAccount::getSerialNumber
-     * @covers byrokrat\banking\Account\BaseAccount::getCheckDigit
-     * @dataProvider validProvider
-     */
-    public function testNumericParts($number)
-    {
-        $account = $this->buildAccount($number);
-
-        $this->assertRegExp(
-            '/^\d{4}$/',
-            $account->getClearingNumber(),
-            "Clearing must be 4  digits, parsing: $number"
-        );
-        $this->assertRegExp(
-            '/^\d?$/',
-            $account->getClearingCheckDigit(),
-            "Clearing check digit must be 1 or 0 digits, parsing: $number"
-        );
-        $this->assertRegExp(
-            '/^\d{1,11}$/',
-            $account->getSerialNumber(),
-            "Serial number must consist of 1-11 digits, parsing: $number"
-        );
-        $this->assertRegExp(
-            '/^\d$/',
-            $account->getCheckDigit(),
-            "Check digit must be 1 digit, parsing: $number"
         );
     }
 
@@ -203,5 +217,10 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
             $this->buildAccount($this->validProvider()[0][0])->getBankName(),
             'The correct bank name should be returned'
         );
+    }
+
+    protected function buildAccount($number)
+    {
+        return self::$parsers[strtolower($this->getFormatId())]->parse($number);
     }
 }

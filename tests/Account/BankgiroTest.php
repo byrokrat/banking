@@ -7,7 +7,7 @@ namespace byrokrat\banking\Account;
  */
 class BankgiroTest extends AccountNumberTestCase
 {
-    public function getParserName()
+    public function getFormatId()
     {
         return 'Bankgiro';
     }
@@ -36,18 +36,6 @@ class BankgiroTest extends AccountNumberTestCase
         ];
     }
 
-    public function invalidClearingProvider()
-    {
-        return [[null]];
-    }
-
-    /**
-     * @dataProvider invalidClearingProvider
-     */
-    public function testInvalidClearing($number)
-    {
-    }
-
     public function invalidCheckDigitProvider()
     {
         return [
@@ -58,21 +46,21 @@ class BankgiroTest extends AccountNumberTestCase
             ['5645-2720'],
             ['5588-8070'],
             ['5694-8220'],
-            ['5805-6200']
+            ['5805-6200'],
         ];
     }
 
     public function validProvider()
     {
         return [
-            ['5050-1055'],
-            ['5897-5616'],
-            ['784-8419'],
-            ['5331-1338'],
-            ['5645-2725'],
-            ['5588-8077'],
-            ['5694-8227'],
-            ['5805-6201'],
+            ['5050-1055', '0000', '', '5050105', '5'],
+            ['5897-5616', '0000', '', '5897561', '6'],
+            ['784-8419',  '0000', '', '784841', '9'],
+            ['5331-1338', '0000', '', '5331133', '8'],
+            ['5645-2725', '0000', '', '5645272', '5'],
+            ['5588-8077', '0000', '', '5588807', '7'],
+            ['5694-8227', '0000', '', '5694822', '7'],
+            ['5805-6201', '0000', '', '5805620', '1'],
         ];
     }
 }

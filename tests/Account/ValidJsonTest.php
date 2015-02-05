@@ -4,7 +4,7 @@ namespace byrokrat\banking\Account;
 
 use Seld\JsonLint\JsonParser;
 
-class FormatsTest extends \PHPUnit_Framework_TestCase
+class ValidJsonTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidJson()
     {

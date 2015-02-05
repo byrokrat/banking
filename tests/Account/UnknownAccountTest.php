@@ -7,7 +7,7 @@ namespace byrokrat\banking\Account;
  */
 class UnknownAccountTest extends AccountNumberTestCase
 {
-    public function getParserName()
+    public function getFormatId()
     {
         return 'Unknown';
     }
@@ -25,41 +25,17 @@ class UnknownAccountTest extends AccountNumberTestCase
             ['1234,123456'],
             ['1234,1234567890123'],
             ['1234123456'],
-            ['00001234567']
+            ['00001234567'],
         ];
     }
 
     public function validProvider()
     {
         return [
-            ['1234,1234567'],
-            ['1234,123456789-0'],
-            ['12341234567'],
-            ['1234000001234567']
+            ['1234,1234567',     '1234', '', '123456', '7'],
+            ['1234,123456789-0', '1234', '', '123456789', '0'],
+            ['12341234567',      '1234', '', '123456', '7'],
+            ['1234000001234567', '1234', '', '00000123456', '7'],
         ];
-    }
-
-    public function invalidClearingProvider()
-    {
-        return [[null]];
-    }
-
-    /**
-     * @dataProvider invalidClearingProvider
-     */
-    public function testInvalidClearing($number)
-    {
-    }
-
-    public function invalidCheckDigitProvider()
-    {
-        return [[null]];
-    }
-
-    /**
-     * @dataProvider invalidCheckDigitProvider
-     */
-    public function testInvalidCheckDigit($number)
-    {
     }
 }

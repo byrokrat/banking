@@ -7,7 +7,7 @@ namespace byrokrat\banking\Account;
  */
 class PlusGiroTest extends AccountNumberTestCase
 {
-    public function getParserName()
+    public function getFormatId()
     {
         return 'PlusGiro';
     }
@@ -28,20 +28,8 @@ class PlusGiroTest extends AccountNumberTestCase
             ['12345678-1'],
             ['1234567-12'],
             ['1234,9048-0'],
-            ['00000000000000018']
+            ['00000000000000018'],
         ];
-    }
-
-    public function invalidClearingProvider()
-    {
-        return [[null]];
-    }
-
-    /**
-     * @dataProvider invalidClearingProvider
-     */
-    public function testInvalidClearing($number)
-    {
     }
 
     public function invalidCheckDigitProvider()
@@ -52,20 +40,20 @@ class PlusGiroTest extends AccountNumberTestCase
             ['956404-0'],
             ['465658-0'],
             ['205835-0'],
-            ['9048-1']
+            ['9048-1'],
         ];
     }
 
     public function validProvider()
     {
         return [
-            ['210918-9'],
-            ['4395094-8'],
-            ['956404-8'],
-            ['465658-3'],
-            ['205835-2'],
-            ['9048-0'],
-            ['90480']
+            ['210918-9',  '0000', '', '210918', '9'],
+            ['4395094-8', '0000', '', '4395094', '8'],
+            ['956404-8',  '0000', '', '956404', '8'],
+            ['465658-3',  '0000', '', '465658', '3'],
+            ['205835-2',  '0000', '', '205835', '2'],
+            ['9048-0',    '0000', '', '9048', '0'],
+            ['90480',     '0000', '', '9048', '0'],
         ];
     }
 }

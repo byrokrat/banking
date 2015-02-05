@@ -7,7 +7,7 @@ namespace byrokrat\banking\Account;
  */
 class NordeaPersonalTest extends AccountNumberTestCase
 {
-    public function getParserName()
+    public function getFormatId()
     {
         return 'NordeaPersonal';
     }
@@ -22,7 +22,7 @@ class NordeaPersonalTest extends AccountNumberTestCase
         return [
             ['3300,111111111'],
             ['3300,11111111111'],
-            ['3300,0001111111111']
+            ['3300,0001111111111'],
         ];
     }
 
@@ -39,32 +39,25 @@ class NordeaPersonalTest extends AccountNumberTestCase
             ['3300,8411283940'],
         ];
     }
-    
-    public function testInvalidDate()
-    {
-        // Month number 13 does not exist
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidAccountNumberException');
-        $this->buildAccount('3300,8413283949');
-    }
 
     public function validProvider()
     {
         return [
-            ['3300,1111111116'],
-            ['3300,001111111116'],
-            ['3300,1111111116'],
-            ['3300,01111111116'],
-            ['3300,001111111116'],
-            ['3300001111111116'],
-            ['3300,8411283941'],
-            ['3300,001111111116'],
-            ['3300,1111111116'],
-            ['3300,001111111116'],
-            ['3300,001111111116'],
-            ['330000111111111-6'],
-            ['3300,111111-1116'],
-            ['3300841128-394-1'],
+            ['3300,1111111116',   '3300', '', '111111111', '6'],
+            ['3300,001111111116', '3300', '', '111111111', '6'],
+            ['3300,01111111116',  '3300', '', '111111111', '6'],
+            ['3300001111111116',  '3300', '', '111111111', '6'],
+            ['330000111111111-6', '3300', '', '111111111', '6'],
+            ['3300,111111-1116',  '3300', '', '111111111', '6'],
+            ['3300,8411283941',   '3300', '', '841128394', '1'],
+            ['3300841128-394-1',  '3300', '', '841128394', '1'],
         ];
+    }
+
+    public function testInvalidDate()
+    {
+        $this->setExpectedException('byrokrat\banking\Exception\InvalidAccountNumberException');
+        $this->buildAccount('3300,8413283949');
     }
 
     public function testGetPersonalId()
