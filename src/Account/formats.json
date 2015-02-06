@@ -119,6 +119,411 @@
             "_comment": "In rare occasions some of Swedbank's accounts cannot be validated by a checksum calculation"
         },
         {
+            "id" : "IkanoBank",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\IkanoBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9170, 9179]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Marginalen",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Marginalen",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9230, 9239]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "SBAB",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\SBAB",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9250, 9259]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "ICA",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\ICA",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9270, 9279]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "ResursBank",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\ResursBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9280, 9289]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "ForexBank",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\ForexBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9400, 9449]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "GeMoneyBank",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\GeMoneyBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9460, 9469]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "LansforsakringarType1A",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Lansforsakringar",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[3400, 3409], [9060, 9069]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "LansforsakringarType1B",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Lansforsakringar",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9020, 9029]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "DanskeBankType1",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\DanskeBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[1200, 1399], [2400, 2499]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1AValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "DanskeBankType2",
+            "structure": "$struct_type2",
+            "class": "\\byrokrat\\banking\\Account\\DanskeBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9180, 9189]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Alandsbanken",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Alandsbanken",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[2300, 2399]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Citibank",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Citibank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9040, 9049]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "RoyalBankOfScotland",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\RoyalBankOfScotland",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9090, 9099]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Nordnet",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Nordnet",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9100, 9109]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Skandiabanken",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Skandiabanken",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9150, 9169]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "DNB",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\DNB",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9190, 9199], [9260, 9269]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Landshypotek",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Landshypotek",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9390, 9399]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "BnpParibas",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\BnpParibas",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9470, 9479]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "AvanzaBank",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\AvanzaBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9550, 9569]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "ErikPenserBank",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\ErikPenserBank",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9590, 9599]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Nordax",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Nordax",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9640, 9649]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "AMFA",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\AMFA",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9660, 9669]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "RiksgaldenType1",
+            "structure": "$struct_type1",
+            "class": "\\byrokrat\\banking\\Account\\Riksgalden",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9880, 9889]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType1BValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "RiksgaldenType2",
+            "structure": "$struct_type2",
+            "class": "\\byrokrat\\banking\\Account\\Riksgalden",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9890, 9899]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "SparbankenSyd",
+            "structure": "$struct_type2",
+            "class": "\\byrokrat\\banking\\Account\\SparbankenSyd",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9570, 9579]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "SparbankenOresund",
+            "structure": "$struct_type2",
+            "class": "\\byrokrat\\banking\\Account\\SparbankenOresund",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9300, 9329], [9330, 9349]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
+                    "arg": null
+                }
+            ]
+        },
+        {
             "id" : "PlusGiro",
             "structure": "/^(0{0,4})()0{0,10}(\\d{1,7})-?(\\d)$/",
             "class": "\\byrokrat\\banking\\Account\\PlusGiro",

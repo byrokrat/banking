@@ -45,8 +45,12 @@ class AccountFactory
         foreach ($this->parsers as $parser) {
             try {
                 return $parser->parse($number);
-            } catch (Exception\InvalidAccountNumberException $e) {
+            } catch (Exception\InvalidClearingNumberException $e) {
                 continue;
+            } catch (Exception\InvalidStructureException $e) {
+                continue;
+            } catch (Exception\InvalidCheckDigitException $e) {
+                break;
             }
         }
         throw new Exception\UnableToCreateAccountException("Unable to create account {$number}");
