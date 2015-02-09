@@ -13,6 +13,12 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         (new AccountFactory)->createAccount('this-is-not-a-valid-number');
     }
 
+    public function testExceptionWhenInvalidCheckDigit()
+    {
+        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
+        (new AccountFactory)->createAccount('3000,1111112');
+    }
+
     public function testCreateNumbers()
     {
         $factory = new AccountFactory;

@@ -7,7 +7,7 @@ Banking
 [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/byrokrat/banking.svg?style=flat-square)](https://scrutinizer-ci.com/g/byrokrat/banking/?branch=master)
 [![Dependency Status](https://img.shields.io/gemnasium/byrokrat/banking.svg?style=flat-square)](https://gemnasium.com/byrokrat/banking)
 
-Data types for accounts in the swedish banking system
+Data types for accounts in the swedish banking system, Handelsbanken, ICA-banken, Nordea, SEB, Skandiabanken, Swedbank, PlusGirot, Bankgirot among others
 
 Installation
 ------------

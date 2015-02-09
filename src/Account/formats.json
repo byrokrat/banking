@@ -1,8 +1,7 @@
 {
     "vars": {
         "$struct_type1":         "/^(\\d{4})(),?0{0,5}(\\d{6})-?(\\d)$/",
-        "$struct_type2":         "/^(\\d{4})(),?0{0,2}(\\d{9})-?(\\d)$/",
-        "$struct_handelsbanken": "/^(\\d{4})(),?0{0,3}(\\d{8})-?(\\d)$/"
+        "$struct_type2":         "/^(\\d{4})(),?0{0,2}(\\d{9})-?(\\d)$/"
     },
     "formats": [
         {
@@ -520,6 +519,40 @@
                 {
                     "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
                     "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "Handelsbanken",
+            "structure": "/^(\\d{4})(),?0{0,3}(\\d{8})-?(\\d)$/",
+            "class": "\\byrokrat\\banking\\Account\\Handelsbanken",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[6000, 6999]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitHandelsbankenValidator",
+                    "arg": null
+                }
+            ]
+        },
+        {
+            "id" : "PlusGiroClearing",
+            "structure": "/^(\\d{4})(),?0{0,10}(\\d{1,9})-?(\\d)$/",
+            "class": "\\byrokrat\\banking\\Account\\PlusGiro",
+            "validators": [
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\ClearingValidator",
+                    "arg": [[9500, 9549], [9960, 9969]]
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\CheckdigitType2Validator",
+                    "arg": null
+                },
+                {
+                    "class": "\\byrokrat\\banking\\Validator\\MaxLengthValidator",
+                    "arg": 16
                 }
             ]
         },

@@ -14,11 +14,11 @@ class PlusGiro extends BaseAccount
 
     public function getNumber()
     {
-        return $this->getSerialNumber() . '-' . $this->getCheckDigit();
+        return ltrim(parent::getNumber(), '0,');
     }
 
     public function getClearingNumber()
     {
-        return '0000';
+        return parent::getClearingNumber() ?: '0000';
     }
 }

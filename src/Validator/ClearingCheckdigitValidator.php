@@ -4,28 +4,13 @@ namespace byrokrat\banking\Validator;
 
 use byrokrat\banking\Validator;
 use byrokrat\banking\AccountNumber;
-use byrokrat\banking\Exception\InvalidCheckDigitException;
-use byrokrat\checkdigit\Modulo10;
 
 /**
  * Validate clearing number check digits
  */
 class ClearingCheckdigitValidator implements Validator
 {
-    /**
-     * @var Modulo10 Checksum calculator
-     */
-    private $checksum;
-
-    /**
-     * Inject checksum calculator
-     *
-     * @param Modulo10 $checksum
-     */
-    public function __construct(Modulo10 $checksum = null)
-    {
-        $this->checksum = $checksum ?: new Modulo10;
-    }
+    use Modulo10Trait;
 
     /**
      * Validate clearing number check digit
@@ -34,14 +19,11 @@ class ClearingCheckdigitValidator implements Validator
      *
      * @param  AccountNumber $number
      * @return null
-     * @throws InvalidCheckDigitException If check digit is not valid
      */
     public function validate(AccountNumber $number)
     {
         if ($checkDigit = $number->getClearingCheckDigit()) {
-            if (!$this->checksum->isValid($number->getClearingNumber() . $checkDigit)) {
-                throw new InvalidCheckDigitException("Invalid clearing number check digit $checkDigit in $number");
-            }
+            $this->validateModulo10($number->getClearingNumber() . $checkDigit);
         }
     }
 }
