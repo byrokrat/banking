@@ -8,18 +8,18 @@ namespace byrokrat\banking;
 class AccountFactory
 {
     /**
-     * @var Parser[] Loaded parsers
+     * @var Format[] Loaded formats
      */
-    private $parsers;
+    private $formats;
 
     /**
-     * Inject parser collection
+     * Set parser formats
      *
-     * @param Parser[] $parsers
+     * @param Format[] $formats
      */
-    public function __construct(array $parsers = array())
+    public function __construct(array $formats = array())
     {
-        $this->parsers = $parsers ?: (new ParserFactory)->createParsers();
+        $this->formats = $formats ?: (new Formats)->createFormats();
     }
 
     /**
@@ -33,10 +33,9 @@ class AccountFactory
      */
     public function whitelistFormats(array $formats)
     {
-        $formats = array_map('strtolower', $formats);
-        foreach ($this->parsers as $parserId => $parser) {
-            if (!in_array($parserId, $formats)) {
-                unset($this->parsers[$parserId]);
+        foreach ($this->formats as $formatId => $format) {
+            if (!in_array($formatId, $formats)) {
+                unset($this->formats[$formatId]);
             }
         }
     }
@@ -53,7 +52,7 @@ class AccountFactory
     public function blacklistFormats(array $formats)
     {
         foreach ($formats as $format) {
-            unset($this->parsers[strtolower($format)]);
+            unset($this->formats[$format]);
         }
     }
 
@@ -66,9 +65,9 @@ class AccountFactory
      */
     public function createAccount($number)
     {
-        foreach ($this->parsers as $parser) {
+        foreach ($this->formats as $format) {
             try {
-                return $parser->parse($number);
+                return $format->parse($number);
             } catch (Exception\InvalidClearingNumberException $e) {
                 continue;
             } catch (Exception\InvalidStructureException $e) {
