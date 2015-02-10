@@ -33,7 +33,6 @@ class AccountFactory
      */
     public function whitelistFormats(array $formats)
     {
-        $formats = array_map('strtolower', $formats);
         foreach ($this->formats as $formatId => $format) {
             if (!in_array($formatId, $formats)) {
                 unset($this->formats[$formatId]);
@@ -53,7 +52,7 @@ class AccountFactory
     public function blacklistFormats(array $formats)
     {
         foreach ($formats as $format) {
-            unset($this->formats[strtolower($format)]);
+            unset($this->formats[$format]);
         }
     }
 

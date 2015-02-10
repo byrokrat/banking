@@ -18,15 +18,21 @@ composer require byrokrat/banking
 Usage
 -----
 ```php
-$factory = new \byrokrat\banking\AccountFactory;
+use byrokrat\banking\AccountFactory;
+use byrokrat\banking\BankNames;
+
+$factory = new AccountFactory;
 $account = $factory->createAccount('3300,1111111116');
 
-echo $account->getBankName();       // Nordea
-echo $account->getClearingNumber(); // 3300
-echo $account->getSerialNumber();   // 111111111
-echo $account->getCheckDigit();     // 6
-echo $account->getNumber();         // 3300,111111111-6
+echo $account->getBankName();                      // Nordea
+$account->getBankName() == BankNames::BANK_NORDEA; // true
+echo $account->getClearingNumber();                // 3300
+echo $account->getSerialNumber();                  // 111111111
+echo $account->getCheckDigit();                    // 6
+echo $account->getNumber();                        // 3300,111111111-6
 ```
+
+See the list of [bank and format identifiers](/src/BankNames.php).
 
 Api
 ---
@@ -85,15 +91,21 @@ is a valid PlusGiro number.
 This issue is resolved by whitelisting the expected format prior to parsing.
 
 ```php
-$factory = new \byrokrat\banking\AccountFactory;
-$factory->whitelistFormats(['PlusGiro']);
+use byrokrat\banking\AccountFactory;
+use byrokrat\banking\BankNames;
+
+$factory = new AccountFactory;
+$factory->whitelistFormats([BankNames::FORMAT_PLUSGIRO]);
 $account = $factory->createAccount('58056201');
 echo $account->getBankName();    // PlusGiro
 ```
 
 ```php
-$factory = new \byrokrat\banking\AccountFactory;
-$factory->whitelistFormats(['Bankgiro']);
+use byrokrat\banking\AccountFactory;
+use byrokrat\banking\BankNames;
+
+$factory = new AccountFactory;
+$factory->whitelistFormats([BankNames::FORMAT_BANKGIRO]);
 $account = $factory->createAccount('58056201');
 echo $account->getBankName();    // Bankgiro
 ```

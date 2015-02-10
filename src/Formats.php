@@ -34,7 +34,7 @@ class Formats implements BankNames
     public function createFormats()
     {
         return [
-            'nordea_1a' => new Format(
+            self::FORMAT_NORDEA_1A => new Format(
                 self::BANK_NORDEA,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -52,7 +52,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'nordea_1b' => new Format(
+            self::FORMAT_NORDEA_1B => new Format(
                 self::BANK_NORDEA,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -61,10 +61,10 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'nordea_personal' => new Format(
+            self::FORMAT_NORDEA_PERSONAL => new Format(
                 self::BANK_NORDEA,
                 '/^(\d{4})(),?0{0,2}(\d{6}-?\d{3})-?(\d)$/',
-                'byrokrat\banking\Account\NordeaPersonal',
+                'byrokrat\banking\NordeaPersonal',
                 [
                     new ClearingValidator(
                         [
@@ -75,8 +75,8 @@ class Formats implements BankNames
                     new PersonalIdValidator
                 ]
             ),
-            'seb' => new Format(
-                self::BANK_NORDEA,
+            self::FORMAT_SEB => new Format(
+                self::BANK_SEB,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
                 [
@@ -90,7 +90,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'swedbank_1' => new Format(
+            self::FORMAT_SWEDBANK_1 => new Format(
                 self::BANK_SWEDBANK,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -99,7 +99,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'swedbank_2' => new Format(
+            self::FORMAT_SWEDBANK_2 => new Format(
                 self::BANK_SWEDBANK,
                 '/^(\d{4})(?:(?:-?(\d),)|,)?0{0,10}(\d{1,9})-?(\d)$/',
                 'byrokrat\banking\BaseAccount',
@@ -110,7 +110,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\ClearingCheckdigitValidator,
                 ]
             ),
-            'ikano' => new Format(
+            self::FORMAT_IKANO => new Format(
                 self::BANK_IKANO,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -119,7 +119,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'marginalen' => new Format(
+            self::FORMAT_MARGINALEN => new Format(
                 self::BANK_MARGINALEN,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -128,7 +128,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'sbab' => new Format(
+            self::FORMAT_SBAB => new Format(
                 self::BANK_SBAB,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -137,7 +137,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'ica' => new Format(
+            self::FORMAT_ICA => new Format(
                 self::BANK_ICA,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -146,7 +146,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'resurs' => new Format(
+            self::FORMAT_RESURS => new Format(
                 self::BANK_RESURS,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -155,7 +155,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'forex' => new Format(
+            self::FORMAT_FOREX => new Format(
                 self::BANK_FOREX,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -164,7 +164,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'ge_money_bank' => new Format(
+            self::FORMAT_GE_MONEY => new Format(
                 self::BANK_GE_MONEY,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -173,7 +173,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'lansforsakringar_1a' => new Format(
+            self::FORMAT_LANSFORSAKRINGAR_1A => new Format(
                 self::BANK_LANSFORSAKRINGAR,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -182,7 +182,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'lansforsakringar_1b' => new Format(
+            self::FORMAT_LANSFORSAKRINGAR_1B => new Format(
                 self::BANK_LANSFORSAKRINGAR,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -191,7 +191,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'danske_bank_1' => new Format(
+            self::FORMAT_DANSKE_1 => new Format(
                 self::BANK_DANSKE,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -200,7 +200,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1AValidator
                 ]
             ),
-            'danske_bank_2' => new Format(
+            self::FORMAT_DANSKE_2 => new Format(
                 self::BANK_DANSKE,
                 self::STRUCT_TYPE2,
                 'byrokrat\banking\BaseAccount',
@@ -209,7 +209,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType2Validator
                 ]
             ),
-            'alandsbanken' => new Format(
+            self::FORMAT_ALANDSBANKEN => new Format(
                 self::BANK_ALANDSBANKEN,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -218,7 +218,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'citibank' => new Format(
+            self::FORMAT_CITIBANK => new Format(
                 self::BANK_CITIBANK,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -227,7 +227,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'royal_bank_of_scotland' => new Format(
+            self::FORMAT_ROYAL_OF_SCOTLAND => new Format(
                 self::BANK_ROYAL_OF_SCOTLAND,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -236,7 +236,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'nordnet' => new Format(
+            self::FORMAT_NORDNET => new Format(
                 self::BANK_NORDNET,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -245,7 +245,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'skandiabanken' => new Format(
+            self::FORMAT_SKANDIABANKEN => new Format(
                 self::BANK_SKANDIABANKEN,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -254,7 +254,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'dnb' => new Format(
+            self::FORMAT_DNB => new Format(
                 self::BANK_DNB,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -263,7 +263,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'landshypotek' => new Format(
+            self::FORMAT_LANDSHYPOTEK => new Format(
                 self::BANK_LANDSHYPOTEK,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -272,7 +272,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'bnp_paribas' => new Format(
+            self::FORMAT_BNP_PARIBAS => new Format(
                 self::BANK_BNP_PARIBAS,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -281,7 +281,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'avanza' => new Format(
+            self::FORMAT_AVANZA => new Format(
                 self::BANK_AVANZA,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -290,7 +290,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'erik_penser' => new Format(
+            self::FORMAT_ERIK_PENSER => new Format(
                 self::BANK_ERIK_PENSER,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -299,7 +299,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'nordax' => new Format(
+            self::FORMAT_NORDAX => new Format(
                 self::BANK_NORDAX,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -308,7 +308,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'amfa' => new Format(
+            self::FORMAT_AMFA => new Format(
                 self::BANK_AMFA,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -317,7 +317,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'riksgalden_1' => new Format(
+            self::FORMAT_RIKSGALDEN_1 => new Format(
                 self::BANK_RIKSGALDEN,
                 self::STRUCT_TYPE1,
                 'byrokrat\banking\BaseAccount',
@@ -326,7 +326,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType1BValidator
                 ]
             ),
-            'riksgalden_2' => new Format(
+            self::FORMAT_RIKSGALDEN_2 => new Format(
                 self::BANK_RIKSGALDEN,
                 self::STRUCT_TYPE2,
                 'byrokrat\banking\BaseAccount',
@@ -335,7 +335,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType2Validator
                 ]
             ),
-            'sparbanken_syd' => new Format(
+            self::FORMAT_SPARBANKEN_SYD => new Format(
                 self::BANK_SPARBANKEN_SYD,
                 self::STRUCT_TYPE2,
                 'byrokrat\banking\BaseAccount',
@@ -344,7 +344,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType2Validator
                 ]
             ),
-            'sparbanken_oresund' => new Format(
+            self::FORMAT_SPARBANKEN_ORESUND => new Format(
                 self::BANK_SPARBANKEN_ORESUND,
                 self::STRUCT_TYPE2,
                 'byrokrat\banking\BaseAccount',
@@ -353,7 +353,7 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitType2Validator
                 ]
             ),
-            'handelsbanken' => new Format(
+            self::FORMAT_HANDELSBANKEN => new Format(
                 self::BANK_HANDELSBANKEN,
                 '/^(\d{4})(),?0{0,3}(\d{8})-?(\d)$/',
                 'byrokrat\banking\BaseAccount',
@@ -362,36 +362,36 @@ class Formats implements BankNames
                     new \byrokrat\banking\Validator\CheckdigitHandelsbankenValidator
                 ]
             ),
-            'plusgiro_clearing' => new Format(
+            self::FORMAT_PLUSGIRO_CLEARING => new Format(
                 self::BANK_PLUSGIRO,
                 '/^(\d{4})(),?0{0,10}(\d{1,9})-?(\d)$/',
-                'byrokrat\banking\Account\PlusGiro',
+                'byrokrat\banking\PlusGiro',
                 [
                     new ClearingValidator([[9500, 9549], [9960, 9969]]),
                     new \byrokrat\banking\Validator\CheckdigitType2Validator,
                     new MaxLengthValidator(16)
                 ]
             ),
-            'plusgiro' => new Format(
+            self::FORMAT_PLUSGIRO => new Format(
                 self::BANK_PLUSGIRO,
                 '/^(0{0,4})()0{0,10}(\d{1,7})-?(\d)$/',
-                'byrokrat\banking\Account\PlusGiro',
+                'byrokrat\banking\PlusGiro',
                 [
                     new \byrokrat\banking\Validator\CheckdigitType2Validator,
                     new MaxLengthValidator(16)
                 ]
             ),
-            'bankgiro' => new Format(
+            self::FORMAT_BANKGIRO => new Format(
                 self::BANK_BANKGIRO,
                 '/^(0{0,4})()0{0,5}(\d{3,4}-?\d{3})(\d)$/',
-                'byrokrat\banking\Account\Bankgiro',
+                'byrokrat\banking\Bankgiro',
                 [
                     new \byrokrat\banking\Validator\CheckdigitType2Validator,
                     new MaxLengthValidator(16)
                 ]
             ),
-            'unknown' => new Format(
-                self::UNKNOWN,
+            self::FORMAT_UNKNOWN => new Format(
+                self::BANK_UNKNOWN,
                 '/^([1-9]\d{3})(),?(\d{6,11})-?(\d)$/',
                 'byrokrat\banking\BaseAccount',
                 []

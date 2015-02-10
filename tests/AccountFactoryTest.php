@@ -23,11 +23,11 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new AccountFactory;
         $this->assertSame(
-            'Nordea',
+            BankNames::BANK_NORDEA,
             $factory->createAccount('3000,1111116')->getBankName()
         );
         $this->assertSame(
-            'Unknown',
+            BankNames::BANK_UNKNOWN,
             $factory->createAccount('1000,1111116')->getBankName()
         );
     }
@@ -36,7 +36,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory = new AccountFactory;
-        $factory->blacklistFormats(['Unknown']);
+        $factory->blacklistFormats([BankNames::FORMAT_UNKNOWN]);
         $factory->createAccount('1000,1111116');
     }
 
@@ -45,15 +45,15 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $factory = new AccountFactory;
 
         $this->assertSame(
-            'PlusGiro',
+            BankNames::BANK_PLUSGIRO,
             $factory->createAccount('58056201')->getBankName(),
             'When plusgiro is ENABLED 58056201 is considerad a valid plusgiro account'
         );
 
-        $factory->whitelistFormats(['Bankgiro']);
+        $factory->whitelistFormats([BankNames::FORMAT_BANKGIRO]);
 
         $this->assertSame(
-            'Bankgiro',
+            BankNames::BANK_BANKGIRO,
             $factory->createAccount('58056201')->getBankName(),
             'When plusgiro is DISABLED 58056201 is considerad a valid bankgiro account'
         );
