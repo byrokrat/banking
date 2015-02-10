@@ -7,7 +7,7 @@ use byrokrat\banking\AccountNumber;
 use byrokrat\banking\Exception\InvalidClearingNumberException;
 
 /**
- * Validate clearing number
+ * Validate clearing numbers
  */
 class ClearingValidator implements Validator
 {

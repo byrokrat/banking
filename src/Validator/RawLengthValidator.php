@@ -9,7 +9,7 @@ use byrokrat\banking\Exception\InvalidStructureException;
 /**
  * Validate length of the raw number
  */
-class MaxLengthValidator implements Validator
+class RawLengthValidator implements Validator
 {
     /**
      * @var integer Max length

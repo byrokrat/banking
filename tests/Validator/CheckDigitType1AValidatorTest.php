@@ -2,17 +2,17 @@
 
 namespace byrokrat\banking\Validator;
 
-class CheckdigitHandelsbankenValidatorTest extends ValidatorTestCase
+class CheckDigitType1AValidatorTest extends ValidatorTestCase
 {
     public function testValidCheckDigit()
     {
         $checksum = $this->getMock('byrokrat\checkdigit\Modulo11');
         $checksum->expects($this->once())
             ->method('isValid')
-            ->with('1234567')
+            ->with('2341234567')
             ->will($this->returnValue(true));
 
-        $this->assertNull((new CheckdigitHandelsbankenValidator($checksum))->validate(
+        $this->assertNull((new CheckDigitType1AValidator($checksum))->validate(
             $this->getAccountNumberMock()
         ));
     }
@@ -25,7 +25,7 @@ class CheckdigitHandelsbankenValidatorTest extends ValidatorTestCase
             ->will($this->returnValue(false));
 
         $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
-        (new CheckdigitHandelsbankenValidator($checksum))->validate(
+        (new CheckDigitType1AValidator($checksum))->validate(
             $this->getAccountNumberMock()
         );
     }

@@ -2,17 +2,17 @@
 
 namespace byrokrat\banking\Validator;
 
-class ClearingCheckdigitValidatorTest extends ValidatorTestCase
+class CheckDigitType2ValidatorTest extends ValidatorTestCase
 {
     public function testValidCheckDigit()
     {
         $checksum = $this->getMock('byrokrat\checkdigit\Modulo10');
         $checksum->expects($this->once())
             ->method('isValid')
-            ->with('12345')
+            ->with('1234567')
             ->will($this->returnValue(true));
 
-        $this->assertNull((new ClearingCheckdigitValidator($checksum))->validate(
+        $this->assertNull((new CheckDigitType2Validator($checksum))->validate(
             $this->getAccountNumberMock()
         ));
     }
@@ -25,17 +25,8 @@ class ClearingCheckdigitValidatorTest extends ValidatorTestCase
             ->will($this->returnValue(false));
 
         $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
-        (new ClearingCheckdigitValidator($checksum))->validate(
+        (new CheckDigitType2Validator($checksum))->validate(
             $this->getAccountNumberMock()
-        );
-    }
-
-    public function testIgnoreUnspecifiedCheckDigit()
-    {
-        $this->assertNull(
-            (new ClearingCheckdigitValidator($this->getMock('byrokrat\checkdigit\Modulo10')))->validate(
-                $this->getMock('byrokrat\banking\AccountNumber')
-            )
         );
     }
 }
