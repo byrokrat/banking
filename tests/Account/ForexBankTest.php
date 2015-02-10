@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\ForexBank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class ForexBankTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'ForexBank';
+        return 'forex';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\ForexBank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

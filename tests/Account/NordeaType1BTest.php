@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
- * @covers \byrokrat\banking\Account\Nordea
+ * @covers \byrokrat\banking\BaseAccount
  */
 class NordeaType1BTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'NordeaType1B';
+        return 'nordea_1b';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Nordea';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function invalidStructureProvider()

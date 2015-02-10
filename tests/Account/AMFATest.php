@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\AMFA
+  * @covers \byrokrat\banking\BaseAccount
 */
 class AMFATest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'AMFA';
+        return 'amfa';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\AMFA';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

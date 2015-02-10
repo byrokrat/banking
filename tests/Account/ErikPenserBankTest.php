@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\ErikPenserBank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class ErikPenserBankTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'ErikPenserBank';
+        return 'erik_penser';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\ErikPenserBank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

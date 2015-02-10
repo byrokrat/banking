@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\SparbankenSyd
+  * @covers \byrokrat\banking\BaseAccount
 */
 class SparbankenSydTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'SparbankenSyd';
+        return 'sparbanken_syd';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\SparbankenSyd';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

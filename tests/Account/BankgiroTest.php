@@ -9,7 +9,7 @@ class BankgiroTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Bankgiro';
+        return 'bankgiro';
     }
 
     public function getClassName()

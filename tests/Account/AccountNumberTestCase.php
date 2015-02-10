@@ -2,20 +2,20 @@
 
 namespace byrokrat\banking\Account;
 
-use byrokrat\banking\ParserFactory;
+use byrokrat\banking\Formats;
 use byrokrat\banking\AccountFactory;
 use byrokrat\banking\AccountNumber;
 
 abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 {
-    private static $parsers;
+    private static $formats;
     private static $accountFactory;
 
     public static function setUpBeforeClass()
     {
-        if (!isset(self::$parsers)) {
-            self::$parsers = (new ParserFactory)->createParsers();
-            self::$accountFactory = new AccountFactory(self::$parsers);
+        if (!isset(self::$formats)) {
+            self::$formats = (new Formats)->createFormats();
+            self::$accountFactory = new AccountFactory(self::$formats);
         }
     }
 
@@ -83,7 +83,6 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers byrokrat\banking\Account\BaseAccount
      * @dataProvider validProvider
      */
     public function testValidNumber($number, $clearing, $clearingCheck, $serial, $check)
@@ -195,24 +194,15 @@ abstract class AccountNumberTestCase extends \PHPUnit_Framework_TestCase
 
     protected function assertBankName(AccountNumber $account)
     {
-        $this->assertSame(
-            $this->getExpectedBankName(),
+        $this->assertRegExp(
+            '/^[a-zåäöÅÄÖ ]+$/i',
             $account->getBankName(),
-            'The correct bank name should be returned'
+            "A bank name must be returned"
         );
     }
 
     protected function buildAccount($number)
     {
-        return self::$parsers[strtolower($this->getFormatId())]->parse($number);
-    }
-
-    private function getExpectedBankName()
-    {
-        return $this->getMockBuilder($this->getClassName())
-            ->disableOriginalConstructor()
-            ->setMethods(null)
-            ->getMock()
-            ->getBankName();
+        return self::$formats[$this->getFormatId()]->parse($number);
     }
 }

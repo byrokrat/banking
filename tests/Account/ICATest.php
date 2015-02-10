@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\ICA
+  * @covers \byrokrat\banking\BaseAccount
 */
 class ICATest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'ICA';
+        return 'ica';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\ICA';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

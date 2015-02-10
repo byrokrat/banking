@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Marginalen
+  * @covers \byrokrat\banking\BaseAccount
 */
 class MarginalenTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Marginalen';
+        return 'marginalen';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Marginalen';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

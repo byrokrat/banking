@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Nordax
+  * @covers \byrokrat\banking\BaseAccount
 */
 class NordaxTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Nordax';
+        return 'nordax';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Nordax';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

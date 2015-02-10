@@ -9,7 +9,7 @@ class NordeaPersonalTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'NordeaPersonal';
+        return 'nordea_personal';
     }
 
     public function getClassName()

@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\ResursBank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class ResursBankTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'ResursBank';
+        return 'resurs';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\ResursBank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

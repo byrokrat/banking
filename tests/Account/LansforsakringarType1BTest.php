@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Lansforsakringar
+  * @covers \byrokrat\banking\BaseAccount
 */
 class LansforsakringarType1BTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'LansforsakringarType1B';
+        return 'lansforsakringar_1b';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Lansforsakringar';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

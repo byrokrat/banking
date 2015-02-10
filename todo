@@ -1,0 +1,32 @@
+todo
+====
+
+Fixa till dessa siste grejjer,
+    så kan vi släppa version 1.0.0 sedan...
+
+-----------------------------------------------------------------------------
+
+Fixa detta med validator subpackage + mer
+	Länk till listan med formats någonstans i dokumentationen
+
+	gå igenom all deokumentation och alla var names
+		så att inte parser eller $parser används någonstans...
+
+	Använd BankNames konstanter i alla test som bryr sig om detta...
+
+	byt namn på test klasser så att de inte har prefix Bank om det inte används...
+
+	Till readme hur en avgör vilken bank det är...
+		== BankNames::BANK_NORDEA;
+
+
+Validator subpackage
+    kan antagligen organiseras bättre..
+    se scrutinizr issues...
+
+	MaxLengthValidator ska alltid kolla efter 16
+		kan döpas om
+		och förenklas..
+
+getNumber() skulle också kunna gruppera siffror lite snyggt
+    1244-4,234 234 234-4

@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Nordnet
+  * @covers \byrokrat\banking\BaseAccount
 */
 class NordnetTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Nordnet';
+        return 'nordnet';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Nordnet';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Citibank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class CitibankTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Citibank';
+        return 'citibank';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Citibank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

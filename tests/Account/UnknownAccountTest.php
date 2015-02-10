@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
- * @covers \byrokrat\banking\Account\Unknown
+ * @covers \byrokrat\banking\BaseAccount
  */
 class UnknownAccountTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Unknown';
+        return 'unknown';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Unknown';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function invalidStructureProvider()

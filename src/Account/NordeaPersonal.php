@@ -2,12 +2,13 @@
 
 namespace byrokrat\banking\Account;
 
+use byrokrat\banking\BaseAccount;
 use byrokrat\id\PersonalId;
 
 /**
  * Account number where the serial number is a swedish personal id
  */
-class NordeaPersonal extends Nordea
+class NordeaPersonal extends BaseAccount
 {
     /**
      * Get personal id associated with this account number

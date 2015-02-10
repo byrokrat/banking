@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\DanskeBank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class DanskeBankType1Test extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'DanskeBankType1';
+        return 'danske_bank_1';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\DanskeBank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

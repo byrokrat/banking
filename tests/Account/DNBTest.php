@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\DNB
+  * @covers \byrokrat\banking\BaseAccount
 */
 class DNBTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'DNB';
+        return 'dnb';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\DNB';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

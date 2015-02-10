@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Landshypotek
+  * @covers \byrokrat\banking\BaseAccount
 */
 class LandshypotekTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Landshypotek';
+        return 'landshypotek';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Landshypotek';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

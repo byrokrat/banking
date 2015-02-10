@@ -8,6 +8,13 @@ namespace byrokrat\banking;
 interface AccountNumber
 {
     /**
+     * Get name of the Bank this number belongs to
+     *
+     * @return string
+     */
+    public function getBankName();
+
+    /**
      * Get the raw number
      *
      * @return string
@@ -64,11 +71,4 @@ interface AccountNumber
      * @return string 16 digits
      */
     public function get16();
-
-    /**
-     * Get name of Bank this number belongs to
-     *
-     * @return string
-     */
-    public function getBankName();
 }

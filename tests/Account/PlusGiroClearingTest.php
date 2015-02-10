@@ -9,7 +9,7 @@ class PlusGiroClearingTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'PlusGiroClearing';
+        return 'plusgiro_clearing';
     }
 
     public function getClassName()

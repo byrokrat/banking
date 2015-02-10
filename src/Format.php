@@ -6,10 +6,15 @@ use byrokrat\banking\Exception\LogicException;
 use byrokrat\banking\Exception\InvalidStructureException;
 
 /**
- * Parse account number based on format settings
+ * Account number parsing format
  */
-class Parser
+class Format
 {
+    /**
+     * @var string Name of bank parsed account belongs to
+     */
+    private $bankName;
+
     /**
      * @var string Parsing regular expression
      */
@@ -28,12 +33,14 @@ class Parser
     /**
      * Load parser data
      *
+     * @param string      $bankName   Name of bank parsed account belongs to
      * @param string      $structure  Parsing regular expression
      * @param string      $classname  Name of class to create
      * @param Validator[] $validators Validators to apply
      */
-    public function __construct($structure, $classname, array $validators)
+    public function __construct($bankName, $structure, $classname, array $validators)
     {
+        $this->bankName = $bankName;
         $this->structure = $structure;
         $this->classname = $classname;
         $this->validators = $validators;
@@ -58,7 +65,7 @@ class Parser
         }
 
         /** @var AccountNumber $account */
-        $account = new $this->classname($number, $matches[1], $matches[2], $matches[3], $matches[4]);
+        $account = new $this->classname($this->bankName, $number, $matches[1], $matches[2], $matches[3], $matches[4]);
 
         foreach ($this->validators as $validator) {
             $validator->validate($account);

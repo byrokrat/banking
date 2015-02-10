@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Riksgalden
+  * @covers \byrokrat\banking\BaseAccount
 */
 class RiksgaldenType2Test extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'RiksgaldenType2';
+        return 'riksgalden_2';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Riksgalden';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

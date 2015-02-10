@@ -1,14 +1,17 @@
 <?php
 
-namespace byrokrat\banking\Account;
-
-use byrokrat\banking\AccountNumber;
+namespace byrokrat\banking;
 
 /**
- * Account number base implementation
+ * Standard account number implementation
  */
-abstract class BaseAccount implements AccountNumber
+class BaseAccount implements AccountNumber
 {
+    /**
+     * @var string The name of the Bank this number belongs to
+     */
+    private $bankName;
+
     /**
      * @var string The raw parsed number
      */
@@ -37,19 +40,31 @@ abstract class BaseAccount implements AccountNumber
     /**
      * Load account number data
      *
+     * @param string $bankName
      * @param string $raw
      * @param string $clearing
      * @param string $clearingCheckDigit
      * @param string $serial
      * @param string $checkDigit
      */
-    public function __construct($raw, $clearing, $clearingCheckDigit, $serial, $checkDigit)
+    public function __construct($bankName, $raw, $clearing, $clearingCheckDigit, $serial, $checkDigit)
     {
+        $this->bankName = $bankName;
         $this->raw = $raw;
         $this->clearing = $clearing;
         $this->clearingCheckDigit = $clearingCheckDigit;
         $this->serial = $serial;
         $this->checkDigit = $checkDigit;
+    }
+
+    /**
+     * Get name of the Bank this number belongs to
+     *
+     * @return string
+     */
+    public function getBankName()
+    {
+        return $this->bankName;
     }
 
     /**

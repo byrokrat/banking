@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\IkanoBank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class IkanoBankTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'IkanoBank';
+        return 'ikano';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\IkanoBank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

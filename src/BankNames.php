@@ -1,6 +1,6 @@
 <?php
 
-namespace byrokrat\banking\Account;
+namespace byrokrat\banking;
 
 /**
  * Bank identifiers
@@ -38,4 +38,5 @@ interface BankNames
     const BANK_ALANDSBANKEN = "Ålandsbanken Sverige AB";
     const BANK_PLUSGIRO = "PlusGiro";
     const BANK_BANKGIRO = "Bankgiro";
+    const UNKNOWN = "Unknown";
 }

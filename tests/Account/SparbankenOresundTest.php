@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\SparbankenOresund
+  * @covers \byrokrat\banking\BaseAccount
 */
 class SparbankenOresundTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'SparbankenOresund';
+        return 'sparbanken_oresund';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\SparbankenOresund';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

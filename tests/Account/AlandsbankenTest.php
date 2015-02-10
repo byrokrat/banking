@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Alandsbanken
+  * @covers \byrokrat\banking\BaseAccount
 */
 class AlandsbankenTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Alandsbanken';
+        return 'alandsbanken';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Alandsbanken';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

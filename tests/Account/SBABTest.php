@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\SBAB
+  * @covers \byrokrat\banking\BaseAccount
 */
 class SBABTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'SBAB';
+        return 'sbab';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\SBAB';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

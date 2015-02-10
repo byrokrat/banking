@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\RoyalBankOfScotland
+  * @covers \byrokrat\banking\BaseAccount
 */
 class RoyalBankOfScotlandTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'RoyalBankOfScotland';
+        return 'royal_bank_of_scotland';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\RoyalBankOfScotland';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

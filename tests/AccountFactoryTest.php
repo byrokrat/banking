@@ -48,7 +48,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
             'PlusGiro',
             $factory->createAccount('58056201')->getBankName(),
             'When plusgiro is ENABLED 58056201 is considerad a valid plusgiro account'
-        );        
+        );
 
         $factory->whitelistFormats(['Bankgiro']);
 
@@ -56,6 +56,6 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
             'Bankgiro',
             $factory->createAccount('58056201')->getBankName(),
             'When plusgiro is DISABLED 58056201 is considerad a valid bankgiro account'
-        );        
+        );
     }
 }

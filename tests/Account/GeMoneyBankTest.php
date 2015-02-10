@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\GeMoneyBank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class GeMoneyBankTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'GeMoneyBank';
+        return 'ge_money_bank';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\GeMoneyBank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

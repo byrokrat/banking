@@ -3,20 +3,20 @@
 namespace byrokrat\banking;
 
 /**
- * @covers \byrokrat\banking\Parser
+ * @covers \byrokrat\banking\Format
  */
-class ParserTest extends \PHPUnit_Framework_TestCase
+class FormatTest extends \PHPUnit_Framework_TestCase
 {
     public function testInvalidStructure()
     {
         $this->setExpectedException('byrokrat\banking\Exception\InvalidStructureException');
-        (new Parser('/foo/', '', []))->parse('bar');
+        (new Format('bank', '/foo/', '', []))->parse('bar');
     }
 
     public function testInvalidRegexp()
     {
         $this->setExpectedException('byrokrat\banking\Exception\LogicException');
-        (new Parser('/foo/', '', []))->parse('foo');
+        (new Format('bank', '/foo/', '', []))->parse('foo');
     }
 
     public function testCreateAccountNumber()
@@ -24,10 +24,10 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $customValidator = $this->getMock('byrokrat\banking\Validator');
         $customValidator->expects($this->once())->method('validate');
 
-        $classname = 'byrokrat\banking\Account\Unknown';
+        $classname = 'byrokrat\banking\BaseAccount';
         $this->assertInstanceOf(
             $classname,
-            (new Parser('/^()()()()$/', $classname, [$customValidator]))->parse('')
+            (new Format('bank', '/^()()()()$/', $classname, [$customValidator]))->parse('')
         );
     }
 }

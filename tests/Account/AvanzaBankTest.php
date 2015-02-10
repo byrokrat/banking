@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\AvanzaBank
+  * @covers \byrokrat\banking\BaseAccount
 */
 class AvanzaBankTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'AvanzaBank';
+        return 'avanza';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\AvanzaBank';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

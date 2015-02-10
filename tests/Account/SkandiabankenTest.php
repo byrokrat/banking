@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Skandiabanken
+  * @covers \byrokrat\banking\BaseAccount
 */
 class SkandiabankenTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Skandiabanken';
+        return 'skandiabanken';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Skandiabanken';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()

@@ -3,18 +3,18 @@
 namespace byrokrat\banking\Account;
 
 /**
-  * @covers \byrokrat\banking\Account\Handelsbanken
+  * @covers \byrokrat\banking\BaseAccount
 */
 class HandelsbankenTest extends AccountNumberTestCase
 {
     public function getFormatId()
     {
-        return 'Handelsbanken';
+        return 'handelsbanken';
     }
 
     public function getClassName()
     {
-        return '\byrokrat\banking\Account\Handelsbanken';
+        return '\byrokrat\banking\BaseAccount';
     }
 
     public function validProvider()
