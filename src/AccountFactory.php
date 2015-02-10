@@ -23,14 +23,38 @@ class AccountFactory
     }
 
     /**
-     * Disable format
+     * Enable formats
      *
-     * @param  string $format Format identifier
+     * Please note that formats not listed will be dropped and
+     * can not be recovered.
+     *
+     * @param  string[] $formats List of formats to whitelist
      * @return null
      */
-    public function disableFormat($format)
+    public function whitelistFormats(array $formats)
     {
-        unset($this->parsers[strtolower($format)]);
+        $formats = array_map('strtolower', $formats);
+        foreach ($this->parsers as $parserId => $parser) {
+            if (!in_array($parserId, $formats)) {
+                unset($this->parsers[$parserId]);
+            }
+        }
+    }
+
+    /**
+     * Disable formats
+     *
+     * Please note that listed formats will be dropped and
+     * can not be recovered.
+     *
+     * @param  string[] $formats List of formats to blacklist
+     * @return null
+     */
+    public function blacklistFormats(array $formats)
+    {
+        foreach ($formats as $format) {
+            unset($this->parsers[strtolower($format)]);
+        }
     }
 
     /**

@@ -32,11 +32,30 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testDisableFormat()
+    public function testBlacklist()
     {
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory = new AccountFactory;
-        $factory->disableFormat('Unknown');
+        $factory->blacklistFormats(['Unknown']);
         $factory->createAccount('1000,1111116');
+    }
+
+    public function testWhitelist()
+    {
+        $factory = new AccountFactory;
+
+        $this->assertSame(
+            'PlusGiro',
+            $factory->createAccount('58056201')->getBankName(),
+            'When plusgiro is ENABLED 58056201 is considerad a valid plusgiro account'
+        );        
+
+        $factory->whitelistFormats(['Bankgiro']);
+
+        $this->assertSame(
+            'Bankgiro',
+            $factory->createAccount('58056201')->getBankName(),
+            'When plusgiro is DISABLED 58056201 is considerad a valid bankgiro account'
+        );        
     }
 }

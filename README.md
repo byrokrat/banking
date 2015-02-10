@@ -21,40 +21,17 @@ Usage
 $factory = new \byrokrat\banking\AccountFactory;
 $account = $factory->createAccount('3300,1111111116');
 
-echo $account->getBankName();   // Nordea
-
-$account instanceof \byrokrat\banking\Account\NordeaPersonal; // true
-$account instanceof \byrokrat\banking\AccountNumber;          // true
+echo $account->getBankName();       // Nordea
+echo $account->getClearingNumber(); // 3300
+echo $account->getSerialNumber();   // 111111111
+echo $account->getCheckDigit();     // 6
+echo $account->getNumber();         // 3300,111111111-6
 ```
-
-### Format of the account number
-
-1. Spaces are ignored.
-1. An optional `,` delimiter between clearing and serial numbers may be used.
-1. An optional `-` delimiter may be used before check digits.
-
-The following formats are all valid
-
-    14053542562
-    1405,3542562
-    1405,354256-2
-    1405,354 256-2
-
-#### Clearing number check digits for Swedbank accounts
-
-Swedbank account numbers with clearing numbers starting with `8` may specify a
-fifth clearing number check digit. The clearing number check digit is optional,
-but if used a `,` must be used to mark where the clearing number ends and the
-serial number begins.
-
-The following formats are valid
-
-    81050,744202466
-    8105-0,744202466
 
 Api
 ---
-[`AccountNumber`](/src/AccountNumber.php) defines the following api:
+Account numbers implement the [`AccountNumber`](/src/AccountNumber.php)
+interface. AccountNumber defines the following api:
 
 Signature               | Returns                 | Description
 :---------------------- | :---------------------- | :------------------------------------------
@@ -67,6 +44,59 @@ getSerialNumber()       | string (1 to 11 digits) | Get account serial number
 getCheckDigit()         | string (1 digit)        | Get account check digit
 get16()                 | string (16 digits)      | Generic 16 digit format
 getBankName()           | string                  | Name of Bank this number belongs to
+
+Format of the raw account number
+--------------------------------
+When processing a raw account number the following rules apply:
+
+1. Spaces are ignored.
+1. An optional `,` delimiter between clearing and serial numbers may be used.
+1. An optional `-` delimiter may be used before check digits.
+
+The following formats are all valid (and considered equal)
+
+    14053542562
+    1405,3542562
+    1405,354256-2
+    1405,354 256-2
+
+### Clearing number check digits for Swedbank accounts
+
+Swedbank account numbers with clearing numbers starting with `8` may specify a
+fifth clearing number check digit. The clearing number check digit is optional,
+but if present a `,` must be used to mark where the clearing number ends and the
+serial number begins.
+
+The following formats are valid (and equal)
+
+    81050,744202466
+    8105-0,744202466
+
+Parsing Bankgiro and PlusGiro accounts
+--------------------------------------
+> **NOTE:** When parsing Bankgiro or PlusGiro account numbers without delimiters
+> always whitelist the expected format before parsing.
+
+The `-` delimiter is optional when parsing Bankgiro and PlusGiro account numbers.
+When omitted it may not be possible determine if the raw number is indeed a Bankgiro
+or PlusGiro account number: `5805-6201` is a valid Bankgiro number and `5805620-1`
+is a valid PlusGiro number.
+
+This issue is resolved by whitelisting the expected format prior to parsing.
+
+```php
+$factory = new \byrokrat\banking\AccountFactory;
+$factory->whitelistFormats(['PlusGiro']);
+$account = $factory->createAccount('58056201');
+echo $account->getBankName();    // PlusGiro
+```
+
+```php
+$factory = new \byrokrat\banking\AccountFactory;
+$factory->whitelistFormats(['Bankgiro']);
+$account = $factory->createAccount('58056201');
+echo $account->getBankName();    // Bankgiro
+```
 
 Credits
 -------
