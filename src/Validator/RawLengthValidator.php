@@ -21,7 +21,7 @@ class RawLengthValidator implements Validator
      *
      * @param integer $maxLength
      */
-    public function __construct($maxLength)
+    public function __construct($maxLength = 16)
     {
         $this->maxLength = $maxLength;
     }

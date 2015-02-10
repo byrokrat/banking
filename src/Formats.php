@@ -111,7 +111,7 @@ class Formats implements BankNames
                 [
                     new ClearingValidator([[8000, 8999]]),
                     new CheckDigitType2Validator,
-                    new RawLengthValidator(16),
+                    new RawLengthValidator,
                     new ClearingCheckDigitValidator,
                 ]
             ),
@@ -374,7 +374,7 @@ class Formats implements BankNames
                 [
                     new ClearingValidator([[9500, 9549], [9960, 9969]]),
                     new CheckDigitType2Validator,
-                    new RawLengthValidator(16)
+                    new RawLengthValidator
                 ]
             ),
             self::FORMAT_PLUSGIRO => new Format(
@@ -383,7 +383,7 @@ class Formats implements BankNames
                 'byrokrat\banking\PlusGiro',
                 [
                     new CheckDigitType2Validator,
-                    new RawLengthValidator(16)
+                    new RawLengthValidator
                 ]
             ),
             self::FORMAT_BANKGIRO => new Format(
@@ -392,7 +392,7 @@ class Formats implements BankNames
                 'byrokrat\banking\Bankgiro',
                 [
                     new CheckDigitType2Validator,
-                    new RawLengthValidator(16)
+                    new RawLengthValidator
                 ]
             ),
             self::FORMAT_UNKNOWN => new Format(
