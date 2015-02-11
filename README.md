@@ -29,7 +29,7 @@ $account->getBankName() == BankNames::BANK_NORDEA; // true
 echo $account->getClearingNumber();                // 3300
 echo $account->getSerialNumber();                  // 111111111
 echo $account->getCheckDigit();                    // 6
-echo $account->getNumber();                        // 3300,111111111-6
+echo $account->getNumber();                        // 3300,111 111 111-6
 ```
 
 See the list of [bank and format identifiers](/src/BankNames.php).
@@ -97,7 +97,7 @@ use byrokrat\banking\BankNames;
 $factory = new AccountFactory;
 $factory->whitelistFormats([BankNames::FORMAT_PLUSGIRO]);
 $account = $factory->createAccount('58056201');
-echo $account->getBankName();    // PlusGiro
+$account->getBankName() == BankNames::BANK_PLUSGIRO;      // true
 ```
 
 ```php
@@ -107,7 +107,7 @@ use byrokrat\banking\BankNames;
 $factory = new AccountFactory;
 $factory->whitelistFormats([BankNames::FORMAT_BANKGIRO]);
 $account = $factory->createAccount('58056201');
-echo $account->getBankName();    // Bankgiro
+$account->getBankName() == BankNames::BANK_BANKGIRO;      // true
 ```
 
 Credits

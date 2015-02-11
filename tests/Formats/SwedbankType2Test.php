@@ -81,7 +81,7 @@ class SwedbankType2Test extends AccountNumberTestCase
     public function testFormatClearingCheckDigut()
     {
         $this->assertSame(
-            '8105-0,74420246-6',
+            '8105-0,744 202 46-6',
             $this->buildAccount('81050,744202466')->getNumber()
         );
     }
