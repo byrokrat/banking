@@ -30,6 +30,7 @@ echo $account->getClearingNumber();                // 3300
 echo $account->getSerialNumber();                  // 111111111
 echo $account->getCheckDigit();                    // 6
 echo $account->getNumber();                        // 3300,111 111 111-6
+echo $account->get16();                            // 3300001111111116
 ```
 
 See the list of [bank and format identifiers](/src/BankNames.php).
