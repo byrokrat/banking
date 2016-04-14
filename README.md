@@ -12,7 +12,7 @@ Data types for accounts in the swedish banking system, Handelsbanken, ICA-banken
 Installation
 ------------
 ```shell
-composer require byrokrat/banking
+composer require byrokrat/banking:^1.0
 ```
 
 Usage
