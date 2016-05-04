@@ -4,8 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- Nothing yet..
+
+## [1.0.1] - 2016-05-04
+
 ### Fixed
 - Updated account formats to match latest bgc release (2015-11-13)
 
-## [1.0.0] - 2016-05-03
+## [1.0.0] - 2015-02-11
 - Initial release
