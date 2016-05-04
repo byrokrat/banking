@@ -11,7 +11,7 @@ class ReadmeIntegration extends \PHPUnit_Framework_TestCase
 {
     public function testReadmeIntegrationTests()
     {
-        if (!class_exists(AssertReadme::CLASS)) {
+        if (!class_exists('hanneskod\readmetester\PHPUnit\AssertReadme')) {
             return $this->markTestSkipped('Readme-tester is not available.');
         }
 
