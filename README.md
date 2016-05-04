@@ -17,20 +17,33 @@ composer require byrokrat/banking:^1.0
 
 Usage
 -----
+<!-- @expectOutput Nordea1330011111111163300,111 111 111-63300001111111116 -->
 ```php
-use byrokrat\banking\AccountFactory;
-use byrokrat\banking\BankNames;
+namespace byrokrat\banking;
 
 $factory = new AccountFactory;
 $account = $factory->createAccount('3300,1111111116');
 
-echo $account->getBankName();                      // Nordea
-$account->getBankName() == BankNames::BANK_NORDEA; // true
-echo $account->getClearingNumber();                // 3300
-echo $account->getSerialNumber();                  // 111111111
-echo $account->getCheckDigit();                    // 6
-echo $account->getNumber();                        // 3300,111 111 111-6
-echo $account->get16();                            // 3300001111111116
+// outputs Nordea
+echo $account->getBankName();
+
+// outputs 1 (true)
+echo $account->getBankName() == BankNames::BANK_NORDEA;
+
+// outputs 3300
+echo $account->getClearingNumber();
+
+// outputs 111111111
+echo $account->getSerialNumber();
+
+// outputs 6
+echo $account->getCheckDigit();
+
+// outputs 3300,111 111 111-6
+echo $account->getNumber();
+
+// outputs 3300001111111116
+echo $account->get16();
 ```
 
 See the list of [bank and format identifiers](/src/BankNames.php).
@@ -91,24 +104,28 @@ is a valid PlusGiro number.
 
 This issue is resolved by whitelisting the expected format prior to parsing.
 
+<!-- @expectOutput 1 -->
 ```php
-use byrokrat\banking\AccountFactory;
-use byrokrat\banking\BankNames;
+namespace byrokrat\banking;
 
 $factory = new AccountFactory;
 $factory->whitelistFormats([BankNames::FORMAT_PLUSGIRO]);
 $account = $factory->createAccount('58056201');
-$account->getBankName() == BankNames::BANK_PLUSGIRO;      // true
+
+// outputs 1 (true)
+echo $account->getBankName() == BankNames::BANK_PLUSGIRO;
 ```
 
+<!-- @expectOutput 1 -->
 ```php
-use byrokrat\banking\AccountFactory;
-use byrokrat\banking\BankNames;
+namespace byrokrat\banking;
 
 $factory = new AccountFactory;
 $factory->whitelistFormats([BankNames::FORMAT_BANKGIRO]);
 $account = $factory->createAccount('58056201');
-$account->getBankName() == BankNames::BANK_BANKGIRO;      // true
+
+// outputs 1 (true)
+echo $account->getBankName() == BankNames::BANK_BANKGIRO;
 ```
 
 Credits
