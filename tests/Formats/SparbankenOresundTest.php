@@ -12,9 +12,12 @@ class SparbankenOresundTest extends AccountNumberTestCase
         return BankNames::FORMAT_SPARBANKEN_ORESUND;
     }
 
+    /**
+     * Sparbanken Öresund merged with Swedbank in 2014/2015
+     */
     public function getBankIdentifier()
     {
-        return BankNames::BANK_SPARBANKEN_ORESUND;
+        return BankNames::BANK_SWEDBANK;
     }
 
     public function validProvider()
