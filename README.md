@@ -102,15 +102,14 @@ When omitted it may not be possible determine if the raw number is indeed a Bank
 or PlusGiro account number: `5805-6201` is a valid Bankgiro number and `5805620-1`
 is a valid PlusGiro number.
 
-This issue is resolved by whitelisting the expected format prior to parsing.
+This issue is resolved by using the dedicated factories `BankgiroFactory` and
+`PlusgiroFactory` instead of the regular `AccountFactory`.
 
 <!-- @expectOutput 1 -->
 ```php
 namespace byrokrat\banking;
 
-$factory = new AccountFactory;
-$factory->whitelistFormats([BankNames::FORMAT_PLUSGIRO]);
-$account = $factory->createAccount('58056201');
+$account = (new PlusgiroFactory)->createAccount('58056201');
 
 // outputs 1 (true)
 echo $account->getBankName() == BankNames::BANK_PLUSGIRO;
@@ -120,9 +119,7 @@ echo $account->getBankName() == BankNames::BANK_PLUSGIRO;
 ```php
 namespace byrokrat\banking;
 
-$factory = new AccountFactory;
-$factory->whitelistFormats([BankNames::FORMAT_BANKGIRO]);
-$account = $factory->createAccount('58056201');
+$account = (new BankgiroFactory)->createAccount('58056201');
 
 // outputs 1 (true)
 echo $account->getBankName() == BankNames::BANK_BANKGIRO;

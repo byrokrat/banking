@@ -4,7 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- Nothing yet..
+## [1.1.0] - 2016-05-07
+
+### Added
+- `PlusgiroFactory` to unambiguously create `PlusGiro` objects
+- `BankgiroFactory` to unambiguously create `Bankgiro` objects
 
 ## [1.0.1] - 2016-05-04
 
