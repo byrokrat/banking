@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- Nothing yet...
+
+## [1.1.1] - 2016-08-18
+
+### Added
+- `.gitattributes` to prevent tests and unneeded files from being included in composer installs.
+
 ## [1.1.0] - 2016-05-07
 
 ### Added
