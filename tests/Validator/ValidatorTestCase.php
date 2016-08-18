@@ -6,7 +6,7 @@ abstract class ValidatorTestCase extends \PHPUnit_Framework_TestCase
 {
     protected function getAccountNumberMock()
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
         $number->expects($this->any())
             ->method('getClearingNumber')
             ->will($this->returnValue('1234'));

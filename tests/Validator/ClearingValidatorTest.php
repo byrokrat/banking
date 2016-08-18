@@ -28,7 +28,7 @@ class ClearingValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidClearing($clearing)
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
         $number->expects($this->any())
             ->method('getClearingNumber')
             ->will($this->returnValue($clearing));
@@ -50,7 +50,7 @@ class ClearingValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionOnInvalidClearing($clearing)
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
         $number->expects($this->any())
             ->method('getClearingNumber')
             ->will($this->returnValue($clearing));

@@ -6,7 +6,7 @@ class CheckDigitType2ValidatorTest extends ValidatorTestCase
 {
     public function testValidCheckDigit()
     {
-        $checksum = $this->getMock('byrokrat\checkdigit\Modulo10');
+        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
         $checksum->expects($this->once())
             ->method('isValid')
             ->with('1234567')
@@ -19,7 +19,7 @@ class CheckDigitType2ValidatorTest extends ValidatorTestCase
 
     public function testExceptionOnInvalidCheckDigit()
     {
-        $checksum = $this->getMock('byrokrat\checkdigit\Modulo10');
+        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
         $checksum->expects($this->once())
             ->method('isValid')
             ->will($this->returnValue(false));

@@ -6,7 +6,7 @@ class RawLengthValidatorTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidLength()
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
 
         $number->expects($this->any())
             ->method('getRawNumber')
@@ -17,7 +17,7 @@ class RawLengthValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testExceptionOnInvalidLength()
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
 
         $number->expects($this->any())
             ->method('getRawNumber')

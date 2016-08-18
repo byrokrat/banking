@@ -6,7 +6,7 @@ class ClearingCheckDigitValidatorTest extends ValidatorTestCase
 {
     public function testValidCheckDigit()
     {
-        $checksum = $this->getMock('byrokrat\checkdigit\Modulo10');
+        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
         $checksum->expects($this->once())
             ->method('isValid')
             ->with('12345')
@@ -19,7 +19,7 @@ class ClearingCheckDigitValidatorTest extends ValidatorTestCase
 
     public function testExceptionOnInvalidCheckDigit()
     {
-        $checksum = $this->getMock('byrokrat\checkdigit\Modulo10');
+        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
         $checksum->expects($this->once())
             ->method('isValid')
             ->will($this->returnValue(false));
@@ -33,8 +33,8 @@ class ClearingCheckDigitValidatorTest extends ValidatorTestCase
     public function testIgnoreUnspecifiedCheckDigit()
     {
         $this->assertNull(
-            (new ClearingCheckDigitValidator($this->getMock('byrokrat\checkdigit\Modulo10')))->validate(
-                $this->getMock('byrokrat\banking\AccountNumber')
+            (new ClearingCheckDigitValidator($this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock()))->validate(
+                $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock()
             )
         );
     }

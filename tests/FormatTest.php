@@ -21,7 +21,7 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateAccountNumber()
     {
-        $customValidator = $this->getMock('byrokrat\banking\Validator');
+        $customValidator = $this->getMockBuilder('byrokrat\banking\Validator')->getMock();
         $customValidator->expects($this->once())->method('validate');
 
         $classname = 'byrokrat\banking\BaseAccount';

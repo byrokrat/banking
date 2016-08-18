@@ -6,7 +6,7 @@ class PersonalIdValidatorTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidPersonalId()
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
 
         $number->expects($this->any())
             ->method('getSerialNumber')
@@ -21,7 +21,7 @@ class PersonalIdValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testExceptionOnInvalidCheckDigit()
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
 
         $number->expects($this->any())
             ->method('getSerialNumber')
@@ -37,7 +37,7 @@ class PersonalIdValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testExceptionOnInvalidDate()
     {
-        $number = $this->getMock('byrokrat\banking\AccountNumber');
+        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
 
         $number->expects($this->any())
             ->method('getSerialNumber')
