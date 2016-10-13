@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Nothing yet...
 
+## [1.2.0] - 2016-10-13
+
+### Added
+- Support for nordea personal account numbers without clearing number (assuming clearing 3300).
+
 ## [1.1.1] - 2016-08-18
 
 ### Added

@@ -10,6 +10,14 @@ use byrokrat\id\PersonalId;
 class NordeaPersonal extends BaseAccount
 {
     /**
+     * Default to clearing 3300 if no clearing is specified
+     */
+    public function getClearingNumber()
+    {
+        return parent::getClearingNumber() ?: '3300';
+    }
+
+    /**
      * Get personal id associated with this account number
      *
      * @return PersonalId

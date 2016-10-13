@@ -353,7 +353,7 @@ class Formats implements BankNames
             ),
             self::FORMAT_NORDEA_PERSONAL => new Format(
                 self::BANK_NORDEA,
-                '/^(\d{4})(),?0{0,2}(\d{6}-?\d{3})-?(\d)$/',
+                '/^(\d{4})?(),?0{0,2}(\d{6}-?\d{3})-?(\d)$/',
                 'byrokrat\banking\NordeaPersonal',
                 [
                     new ClearingValidator(
