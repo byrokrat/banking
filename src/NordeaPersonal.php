@@ -36,4 +36,18 @@ class NordeaPersonal extends BaseAccount
     {
         return str_replace('-', '', parent::getSerialNumber());
     }
+
+    /**
+     * Format account number as personal id
+     */
+    public function getNumber()
+    {
+        return sprintf(
+            '%s,%s-%s%s',
+            $this->getClearingNumber(),
+            substr($this->getSerialNumber(), 0, -3),
+            substr($this->getSerialNumber(), -3),
+            $this->getCheckDigit()
+        );
+    }
 }

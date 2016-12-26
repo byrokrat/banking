@@ -76,4 +76,15 @@ class NordeaPersonalTest extends AccountNumberTestCase
             $this->buildAccount('3300,1111111116')->getPersonalId()
         );
     }
+
+    /**
+     * Related to issue #11
+     */
+    public function testPersonalIdFormat()
+    {
+        $this->assertSame(
+            '3300,111111-1116',
+            $this->buildAccount('3300,1111111116')->getNumber()
+        );
+    }
 }

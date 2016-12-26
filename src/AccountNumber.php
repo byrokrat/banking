@@ -22,14 +22,16 @@ interface AccountNumber
     public function getRawNumber();
 
     /**
-     * Get account as string
+     * Get account number as a formatted string
      *
      * @return string
      */
     public function getNumber();
 
     /**
-     * Get account as string
+     * Get account number as a formatted string
+     *
+     * Internally calls getNumber()
      *
      * @return string
      */

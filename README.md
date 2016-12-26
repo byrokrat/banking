@@ -17,7 +17,7 @@ composer require byrokrat/banking:^1.0
 
 Usage
 -----
-<!-- @expectOutput Nordea1330011111111163300,111 111 111-63300001111111116 -->
+<!-- @expectOutput Nordea1330011111111163300,111111-11163300001111111116 -->
 ```php
 namespace byrokrat\banking;
 
@@ -39,7 +39,7 @@ echo $account->getSerialNumber();
 // outputs 6
 echo $account->getCheckDigit();
 
-// outputs 3300,111 111 111-6
+// outputs 3300,111111-1116
 echo $account->getNumber();
 
 // outputs 3300001111111116
