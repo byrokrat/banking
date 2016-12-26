@@ -430,12 +430,6 @@ class Formats implements BankNames
                     new CheckDigitType2Validator,
                     new RawLengthValidator
                 ]
-            ),
-            self::FORMAT_UNKNOWN => new Format(
-                self::BANK_UNKNOWN,
-                '/^([1-9]\d{3})(),?(\d{6,11})-?(\d)$/',
-                'byrokrat\banking\BaseAccount',
-                []
             )
         ];
     }

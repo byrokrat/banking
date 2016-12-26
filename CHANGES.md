@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 - Format nordea personal account numbers as personal id numbers in getNumber()
+- Rewrite erroneous raw account numbers or suggest changes in AccountFactory
 
 ## [1.2.0] - 2016-10-13
 
