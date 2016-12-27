@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking;
 
-use byrokrat\banking\Exception\InvalidAccountNumberException;
+use Prophecy\Argument;
 
 /**
  * @covers \byrokrat\banking\AccountFactory
@@ -26,8 +26,18 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testExceptionWhenMultipleFormatsMatch()
     {
+        $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
+
+        $formatA = $this->prophesize('byrokrat\banking\Format');
+        $formatA->parse('FOOBAR')->willReturn($account);
+
+        $formatB = $this->prophesize('byrokrat\banking\Format');
+        $formatB->parse('FOOBAR')->willReturn($account);
+
+        $factory = new AccountFactory([$formatA->reveal(), $formatB->reveal()]);
+
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
-        (new AccountFactory)->createAccount('58056201');
+        $factory->createAccount('FOOBAR');
     }
 
     public function testBlacklist()
@@ -59,7 +69,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
 
         $format = $this->prophesize('byrokrat\banking\Format');
-        $format->parse('NOT-VALID')->willThrow(new InvalidAccountNumberException);
+        $format->parse('NOT-VALID')->willThrow('byrokrat\banking\Exception\InvalidAccountNumberException');
         $format->parse('VALID')->willReturn($account);
 
         $rewriter = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
@@ -104,17 +114,38 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $factory->createAccount('NOT-VALID');
     }
 
-    public function testUnknownFormat()
+    public function testUnknownFormatWhenNothingMatch()
     {
+        $format = $this->prophesize('byrokrat\banking\Format');
+        $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidClearingNumberException');
+
+        $factory = new AccountFactory([$format->reveal()], [], true, true);
+
         $this->assertSame(
             BankNames::BANK_UNKNOWN,
-            (new AccountFactory)->createAccount('1234,1234567')->getBankName()
+            $factory->createAccount('1234,1234567')->getBankName()
         );
+    }
+
+    public function testIgnoringUnknownWhenCheckDigitFails()
+    {
+        $format = $this->prophesize('byrokrat\banking\Format');
+        $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidCheckDigitException');
+
+        $factory = new AccountFactory([$format->reveal()], [], true, true);
+
+        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
+        $factory->createAccount('1234,1234567');
     }
 
     public function testExceptionWhenUnableToCreate()
     {
+        $format = $this->prophesize('byrokrat\banking\Format');
+        $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidClearingNumberException');
+
+        $factory = new AccountFactory([$format->reveal()], [], true, true);
+
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
-        (new AccountFactory)->createAccount('this-is-not-a-valid-number');
+        $factory->createAccount('this-is-not-a-valid-number')->getBankName();
     }
 }

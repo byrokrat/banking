@@ -7,6 +7,7 @@ use byrokrat\banking\Rewriter\ClearingSeparatorRewriter;
 use byrokrat\banking\Rewriter\SwedbankCheckDigitRewriter;
 use byrokrat\banking\Exception\UnableToCreateAccountException;
 use byrokrat\banking\Exception\InvalidAccountNumberException;
+use byrokrat\banking\Exception\InvalidCheckDigitException;
 
 /**
  * Account number factory
@@ -136,6 +137,14 @@ class AccountFactory
             );
         }
 
+        if ($parseMap['exception']) {
+            throw new UnableToCreateAccountException(
+                "Unable to parse account $number: {$parseMap['exception']->getMessage()}",
+                0,
+                $parseMap['exception']
+            );
+        }
+
         if ($this->unknownFormat) {
             try {
                 return $this->unknownFormat->parse($number);
@@ -155,7 +164,8 @@ class AccountFactory
     {
         $parseMap = [
             'success' => [],
-            'rewrite' => []
+            'rewrite' => [],
+            'exception' => []
         ];
 
         $rewrites = array_map(
@@ -168,7 +178,12 @@ class AccountFactory
         foreach ($this->formats as $format) {
             try {
                 $parseMap['success'][] = $format->parse($number);
+                continue;
             } catch (InvalidAccountNumberException $exception) {
+                if ($exception instanceof InvalidCheckDigitException) {
+                    $parseMap['exception'] = $exception;
+                }
+
                 foreach ($rewrites as $rewrite) {
                     try {
                         $parseMap['rewrite'][] = $format->parse($rewrite);

@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Nothing yet...
 
+## [1.3.1] - 2016-12-27
+
+### Fixed
+- Unknown accounts are no longer created when a format fails due to an unvalid check digit
+
 ## [1.3.0] - 2016-12-26
 
 ### Added
