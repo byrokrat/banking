@@ -42,7 +42,7 @@ class AccountFactory
      */
     public function __construct(array $formats = [], array $rewrites = [], $allowRewrites = true, $allowUnknown = true)
     {
-        $this->formats = $formats ?: (new Formats)->createFormats();
+        $this->formats = $formats ?: (new FormatFactory)->createFormats();
         $this->rewriteStrategies = $rewrites ?: [new ClearingSeparatorRewriter, new SwedbankCheckDigitRewriter];
         $this->allowRewrites = $allowRewrites;
         $this->unknownFormat = $allowUnknown ? new UnknownFormat : null;

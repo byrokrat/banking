@@ -3,13 +3,13 @@
 namespace byrokrat\banking;
 
 /**
- * @covers \byrokrat\banking\Formats
+ * @covers \byrokrat\banking\FormatFactory
  */
-class FormatsTest extends \PHPUnit_Framework_TestCase
+class FormatFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateFormats()
     {
-        $formats = (new Formats)->createFormats();
+        $formats = (new FormatFactory)->createFormats();
         $this->assertInternalType('array', $formats);
         $this->assertInstanceOf('byrokrat\banking\Format', $formats[BankNames::FORMAT_NORDEA_1B]);
     }

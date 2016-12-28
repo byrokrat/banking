@@ -9,7 +9,7 @@ class BankgiroFactory extends AccountFactory implements BankNames
 {
     public function __construct()
     {
-        $formats = (new Formats)->createFormats();
+        $formats = (new FormatFactory)->createFormats();
         parent::__construct([self::FORMAT_BANKGIRO => $formats[self::FORMAT_BANKGIRO]]);
     }
 

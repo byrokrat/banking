@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Format;
 
-use byrokrat\banking\Formats;
+use byrokrat\banking\FormatFactory;
 use byrokrat\banking\AccountFactory;
 use byrokrat\banking\AccountNumber;
 
@@ -42,7 +42,7 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
     public static function getAccountFormats()
     {
         if (!isset(self::$formats)) {
-            self::$formats = (new Formats)->createFormats();
+            self::$formats = (new FormatFactory)->createFormats();
         }
 
         return self::$formats;

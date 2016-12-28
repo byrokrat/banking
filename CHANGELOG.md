@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- Nothing yet...
+- Deprecate Formats in favour of FormatFactory
 
 ## [1.3.1] - 2016-12-27
 
