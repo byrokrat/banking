@@ -4,8 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- Deprecate Formats in favour of FormatFactory
-- Now requires php 5.5
+- Nothing...
+
+## [1.3.2] - 2016-12-28
+
+### Fixed
+- Marked `Formats` as deprecated (in favour of `FormatFactory`)
+- Bumped minimum php requirement to `5.5` (due to the use of generators in testsuite)
+- Updated account formats to match latest bgc release: `2016-10-31`
 
 ## [1.3.1] - 2016-12-27
 
@@ -15,10 +21,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.0] - 2016-12-26
 
 ### Added
-- Rewrite erroneous raw account numbers or suggest changes in AccountFactory
+- Rewrite erroneous raw account numbers or suggest changes in `AccountFactory`
 
 ### Fixed
-- Format nordea personal account numbers as personal id numbers in getNumber()
+- Format nordea personal account numbers as personal id numbers in `getNumber()`
 
 ## [1.2.0] - 2016-10-13
 
@@ -39,7 +45,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.1] - 2016-05-04
 
 ### Fixed
-- Updated account formats to match latest bgc release (2015-11-13)
+- Updated account formats to match latest bgc release: `2015-11-13`
 
 ## [1.0.0] - 2015-02-11
 - Initial release

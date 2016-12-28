@@ -6,7 +6,9 @@
 [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/byrokrat/banking.svg?style=flat-square)](https://scrutinizer-ci.com/g/byrokrat/banking/?branch=master)
 [![Dependency Status](https://img.shields.io/gemnasium/byrokrat/banking.svg?style=flat-square)](https://gemnasium.com/byrokrat/banking)
 
-Data types for accounts in the swedish banking system, Handelsbanken, ICA-banken, Nordea, SEB, Skandiabanken, Swedbank, PlusGirot, Bankgirot among others
+Data types for accounts in the swedish banking system, Handelsbanken, ICA-banken, Nordea, SEB, Skandiabanken, Swedbank, PlusGirot, Bankgirot among others.
+
+Understands account number formats as released by BGC [2016-10-31](https://www.bankgirot.se/globalassets/dokument/anvandarmanualer/bankernaskontonummeruppbyggnad_anvandarmanual_sv.pdf).
 
 Installation
 ------------
