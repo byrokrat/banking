@@ -395,7 +395,7 @@ class Formats implements BankNames
                 ]
             ),
             self::FORMAT_SPARBANKEN_ORESUND => new Format(
-                self::BANK_SWEDBANK,
+                self::BANK_SWEDBANK, // Sparbanken Öresund merged with Swedbank in 2014/2015
                 self::STRUCT_TYPE2,
                 'byrokrat\banking\BaseAccount',
                 [
