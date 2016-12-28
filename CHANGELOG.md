@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 - Deprecate Formats in favour of FormatFactory
+- Now requires php 5.5
 
 ## [1.3.1] - 2016-12-27
 
