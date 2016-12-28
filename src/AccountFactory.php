@@ -3,8 +3,7 @@
 namespace byrokrat\banking;
 
 use byrokrat\banking\Rewriter\RewriterStrategy;
-use byrokrat\banking\Rewriter\ClearingSeparatorRewriter;
-use byrokrat\banking\Rewriter\SwedbankCheckDigitRewriter;
+use byrokrat\banking\Rewriter\RewriterFactory;
 use byrokrat\banking\Exception\UnableToCreateAccountException;
 use byrokrat\banking\Exception\InvalidAccountNumberException;
 use byrokrat\banking\Exception\InvalidCheckDigitException;
@@ -43,7 +42,7 @@ class AccountFactory
     public function __construct(array $formats = [], array $rewrites = [], $allowRewrites = true, $allowUnknown = true)
     {
         $this->formats = $formats ?: (new FormatFactory)->createFormats();
-        $this->rewriteStrategies = $rewrites ?: [new ClearingSeparatorRewriter, new SwedbankCheckDigitRewriter];
+        $this->rewriteStrategies = $rewrites ?: (new RewriterFactory)->createRewrites();
         $this->allowRewrites = $allowRewrites;
         $this->unknownFormat = $allowUnknown ? new UnknownFormat : null;
     }

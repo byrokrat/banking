@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- Nothing...
+- Add rewrite that trims left side zeros from account number.
 
 ## [1.3.2] - 2016-12-28
 
