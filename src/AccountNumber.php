@@ -73,4 +73,22 @@ interface AccountNumber
      * @return string 16 digits
      */
     public function get16();
+
+    /**
+     * Check if account is considered equal to this account
+     *
+     * The bank name, clearing, serial and check digits must match for
+     * accounts to be considered equal.
+     *
+     * If a clearing check digits are present in both accounts they must
+     * match. If only one account contain a clearing check digit it is
+     * ignored, except when strict mode is enforced. In strict mode a
+     * missing clearing check digit on one of the accounts is considered
+     * a sign of non-equality.
+     *
+     * @param  AccountNumber $account
+     * @param  bool          $strict
+     * @return bool
+     */
+    public function equals(AccountNumber $account, $strict = false);
 }

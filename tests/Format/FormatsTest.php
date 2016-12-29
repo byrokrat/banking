@@ -180,9 +180,8 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
             'The correct check digit must be parsed'
         );
 
-        $this->assertAccountEquals(
-            $account,
-            $accountFactory->createAccount($account->getNumber()),
+        $this->assertTrue(
+            $account->equals($accountFactory->createAccount($account->getNumber()), true),
             'The formatted version of account must be a parseable permutation'
         );
 
@@ -192,17 +191,14 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
             "The 16 format must consist of exactly 16 digits"
         );
 
-        $this->assertAccountEquals(
-            $account,
-            $accountFactory->createAccount($account->get16()),
-            'The 16-format version of account must be a parseable permutation',
-            false
+        $this->assertTrue(
+            $account->equals($accountFactory->createAccount($account->get16()), false),
+            'The 16-format version of account must be a parseable permutation'
         );
 
         foreach ($permutations as $permutation) {
-            $this->assertAccountEquals(
-                $account,
-                $accountFactory->createAccount($permutation),
+            $this->assertTrue(
+                $account->equals($accountFactory->createAccount($permutation), true),
                 'Permutation should equal orignial number'
             );
         }
@@ -212,55 +208,5 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
             $test = $test->bindTo($this);
             $test($account);
         }
-    }
-
-    /**
-     * Assert that two account objects are equal
-     */
-    private function assertAccountEquals(AccountNumber $expected, AccountNumber $actual, $msg = '', $includeClearingCheckDigit = true)
-    {
-        $this->assertSame(
-            $expected->getBankName(),
-            $actual->getBankName(),
-            $msg
-        );
-
-        if ($includeClearingCheckDigit) {
-            $this->assertSame(
-                $expected->getNumber(),
-                $actual->getNumber(),
-                $msg
-            );
-
-            $this->assertSame(
-                $expected->getClearingCheckDigit(),
-                $actual->getClearingCheckDigit(),
-                $msg
-            );
-        }
-
-        $this->assertSame(
-            $expected->getClearingNumber(),
-            $actual->getClearingNumber(),
-            $msg
-        );
-
-        $this->assertSame(
-            $expected->getSerialNumber(),
-            $actual->getSerialNumber(),
-            $msg
-        );
-
-        $this->assertSame(
-            $expected->getCheckDigit(),
-            $actual->getCheckDigit(),
-            $msg
-        );
-
-        $this->assertSame(
-            $expected->get16(),
-            $actual->get16(),
-            $msg
-        );
     }
 }

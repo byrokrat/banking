@@ -54,23 +54,25 @@ Api
 Account numbers implement the [`AccountNumber`](/src/AccountNumber.php)
 interface. AccountNumber defines the following api:
 
-Signature               | Returns                 | Description
-:---------------------- | :---------------------- | :------------------------------------------
-getRawNumber()          | string                  | Get the raw number
-getNumber()             | string                  | Get formatted number
-__toString()            | string                  | Shorthand to getNumber
-getClearingNumber()     | string (4 digits)       | Get clearing number
-getClearingCheckDigit() | string (1 or 0 digits)  | Check digit of the clearing number
-getSerialNumber()       | string (1 to 11 digits) | Get account serial number
-getCheckDigit()         | string (1 digit)        | Get account check digit
-get16()                 | string (16 digits)      | Generic 16 digit format
-getBankName()           | string                  | Name of Bank this number belongs to
+Signature                      | Returns                 | Description
+:----------------------------- | :---------------------- | :------------------------------------------
+getRawNumber()                 | string                  | Get the raw number
+getNumber()                    | string                  | Get formatted number
+__toString()                   | string                  | Shorthand to getNumber
+getClearingNumber()            | string (4 digits)       | Get clearing number
+getClearingCheckDigit()        | string (1 or 0 digits)  | Check digit of the clearing number
+getSerialNumber()              | string (1 to 11 digits) | Get account serial number
+getCheckDigit()                | string (1 digit)        | Get account check digit
+get16()                        | string (16 digits)      | Generic 16 digit format
+getBankName()                  | string                  | Name of Bank this number belongs to
+equals(AccountNumber $account) | boolean                 | Check if $account is equals current object
 
 Format of the raw account number
 --------------------------------
 When processing a raw account number the following rules apply:
 
 1. Spaces are ignored.
+1. Left side zeros are ignored.
 1. An optional `,` delimiter between clearing and serial numbers may be used.
 1. An optional `-` delimiter may be used before check digits.
 

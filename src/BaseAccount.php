@@ -156,4 +156,23 @@ class BaseAccount implements AccountNumber
             . str_pad($this->getSerialNumber(), 11, '0', STR_PAD_LEFT)
             . $this->getCheckDigit();
     }
+
+    /**
+     * Check if account is considered equal to this account
+     *
+     * {@inheritdoc}
+     */
+    public function equals(AccountNumber $account, $strict = false)
+    {
+        return $this->getBankName() == $account->getBankName()
+            && $this->getClearingNumber() == $account->getClearingNumber()
+            && $this->getSerialNumber() == $account->getSerialNumber()
+            && $this->getCheckDigit() == $account->getCheckDigit()
+            && !(($this->getClearingCheckDigit() xor $account->getClearingCheckDigit()) && $strict)
+            && (
+                !$this->getClearingCheckDigit()
+                || !$account->getClearingCheckDigit()
+                || $this->getClearingCheckDigit() == $account->getClearingCheckDigit()
+            );
+    }
 }
