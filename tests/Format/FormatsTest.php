@@ -129,16 +129,10 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
             'Created account should contain the expected bank name'
         );
 
-        $this->assertSame(
-            $number,
-            $account->getRawNumber(),
-            'The correct raw number should be returned by getRawNumber()'
-        );
-
         $this->assertRegExp(
             '/^\d{4}$/',
             $account->getClearingNumber(),
-            "Clearing must be 4  digits in {$account->getRawNumber()}"
+            "Clearing must be 4  digits in $number"
         );
 
         $this->assertSame(
@@ -150,19 +144,19 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp(
             '/^\d?$/',
             $account->getClearingCheckDigit(),
-            "Clearing check digit must be 1 or 0 digits in {$account->getRawNumber()}"
+            "Clearing check digit must be 1 or 0 digits in $number"
         );
 
         $this->assertSame(
             $clearCheck,
             $account->getClearingCheckDigit(),
-            'The correct clearing check digit must be parsed'
+            "The correct clearing check digit must be parsed, expected: $clearCheck, found: {$account->getClearingCheckDigit()}"
         );
 
         $this->assertRegExp(
             '/^\d{1,11}$/',
             $account->getSerialNumber(),
-            "Serial number must consist of 1-11 digits in {$account->getRawNumber()}"
+            "Serial number must consist of 1-11 digits in $number"
         );
 
         $this->assertSame(
@@ -174,7 +168,7 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp(
             '/^\d$/',
             $account->getCheckDigit(),
-            "Check digit must be 1 digit in {$account->getRawNumber()}"
+            "Check digit must be 1 digit in $number"
         );
 
         $this->assertSame(

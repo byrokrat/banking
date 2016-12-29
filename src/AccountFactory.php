@@ -14,14 +14,14 @@ use byrokrat\banking\Exception\InvalidCheckDigitException;
 class AccountFactory
 {
     /**
-     * @var Format[] Loaded formats
+     * @var Format[] Possible formats used when parsing account
      */
     private $formats;
 
     /**
      * @var RewriterStrategy[] Strategies for rewriting failing account numbers
      */
-    private $rewriteStrategies;
+    private $rewrites;
 
     /**
      * @var bool Flag if rewrites should be allowed when creating account objects
@@ -34,17 +34,29 @@ class AccountFactory
     private $unknownFormat;
 
     /**
-     * @param Format[]           $formats
-     * @param RewriterStrategy[] $rewrites
+     * @var RewriterStrategy[] Preprocessors used to alter account before parsing starts
+     */
+    private $preprocessors;
+
+    /**
+     * @param Format[]           $formats       Possible formats used when parsing account
+     * @param RewriterStrategy[] $rewrites      Rewrites used if parsed the raw account number fails
      * @param boolean            $allowRewrites Flag if rewrites should be allowed when creating account objects
      * @param boolean            $allowUnknown  Flag if the unknown account format should be used
+     * @param RewriterStrategy[] $preprocessors Preprocessors used to alter account before parsing starts
      */
-    public function __construct(array $formats = [], array $rewrites = [], $allowRewrites = true, $allowUnknown = true)
-    {
+    public function __construct(
+        array $formats = [],
+        array $rewrites = null,
+        $allowRewrites = true,
+        $allowUnknown = true,
+        $preprocessors = null
+    ) {
         $this->formats = $formats ?: (new FormatFactory)->createFormats();
-        $this->rewriteStrategies = $rewrites ?: (new RewriterFactory)->createRewrites();
+        $this->rewrites = is_array($rewrites) ? $rewrites : (new RewriterFactory)->createRewrites();
         $this->allowRewrites = $allowRewrites;
         $this->unknownFormat = $allowUnknown ? new UnknownFormat : null;
+        $this->preprocessors = is_array($preprocessors) ? $preprocessors : (new RewriterFactory)->createPreprocessors();
     }
 
     /**
@@ -90,7 +102,41 @@ class AccountFactory
      */
     public function createAccount($number)
     {
-        $parseMap = $this->createParseMap($number);
+        foreach ($this->preprocessors as $preprocessor) {
+            $number = $preprocessor->rewrite($number);
+        }
+
+        $parseMap = [
+            'success' => [],
+            'rewrite' => [],
+            'exception' => []
+        ];
+
+        $rewrites = array_map(
+            function (RewriterStrategy $strategy) use ($number) {
+                return $strategy->rewrite($number);
+            },
+            $this->rewrites
+        );
+
+        foreach ($this->formats as $format) {
+            try {
+                $parseMap['success'][] = $format->parse($number);
+                continue;
+            } catch (InvalidAccountNumberException $exception) {
+                if ($exception instanceof InvalidCheckDigitException) {
+                    $parseMap['exception'] = $exception;
+                }
+
+                foreach ($rewrites as $rewrite) {
+                    try {
+                        $parseMap['rewrite'][] = $format->parse($rewrite);
+                    } catch (InvalidAccountNumberException $e) {
+                        continue;
+                    }
+                }
+            }
+        }
 
         if (count($parseMap['success']) == 1) {
             return $parseMap['success'][0];
@@ -153,46 +199,5 @@ class AccountFactory
         }
 
         throw new UnableToCreateAccountException("Unable to parse account $number.");
-    }
-
-    /**
-     * @param  string $number
-     * @return array
-     */
-    private function createParseMap($number)
-    {
-        $parseMap = [
-            'success' => [],
-            'rewrite' => [],
-            'exception' => []
-        ];
-
-        $rewrites = array_map(
-            function (RewriterStrategy $strategy) use ($number) {
-                return $strategy->rewrite($number);
-            },
-            $this->rewriteStrategies
-        );
-
-        foreach ($this->formats as $format) {
-            try {
-                $parseMap['success'][] = $format->parse($number);
-                continue;
-            } catch (InvalidAccountNumberException $exception) {
-                if ($exception instanceof InvalidCheckDigitException) {
-                    $parseMap['exception'] = $exception;
-                }
-
-                foreach ($rewrites as $rewrite) {
-                    try {
-                        $parseMap['rewrite'][] = $format->parse($rewrite);
-                    } catch (InvalidAccountNumberException $e) {
-                        continue;
-                    }
-                }
-            }
-        }
-
-        return $parseMap;
     }
 }

@@ -16,7 +16,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $format = $this->prophesize('byrokrat\banking\Format');
         $format->parse('VALID')->willReturn($account);
 
-        $factory = new AccountFactory([$format->reveal()]);
+        $factory = new AccountFactory([$format->reveal()], [], false, false, []);
 
         $this->assertSame(
             $account,
@@ -34,7 +34,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $formatB = $this->prophesize('byrokrat\banking\Format');
         $formatB->parse('FOOBAR')->willReturn($account);
 
-        $factory = new AccountFactory([$formatA->reveal(), $formatB->reveal()]);
+        $factory = new AccountFactory([$formatA->reveal(), $formatB->reveal()], [], false, false, []);
 
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('FOOBAR');
@@ -64,6 +64,25 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testRreprocess()
+    {
+        $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
+
+        $format = $this->prophesize('byrokrat\banking\Format');
+        $format->parse('NOT-VALID')->willThrow('byrokrat\banking\Exception\InvalidAccountNumberException');
+        $format->parse('VALID')->willReturn($account);
+
+        $preprocessor = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
+        $preprocessor->rewrite('NOT-VALID')->willReturn('VALID');
+
+        $factory = new AccountFactory([$format->reveal()], [], false, false, [$preprocessor->reveal()]);
+
+        $this->assertSame(
+            $account,
+            $factory->createAccount('NOT-VALID')
+        );
+    }
+
     public function testRewrite()
     {
         $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
@@ -75,7 +94,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $rewriter = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
         $rewriter->rewrite('NOT-VALID')->willReturn('VALID');
 
-        $factory = new AccountFactory([$format->reveal()], [$rewriter->reveal()], true);
+        $factory = new AccountFactory([$format->reveal()], [$rewriter->reveal()], true, true, []);
 
         $this->assertSame(
             $account,
@@ -95,7 +114,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
         $rewriterB = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
         $rewriterB->rewrite('NOT-VALID')->willReturn('VALID');
 
-        $factory = new AccountFactory([$format->reveal()], [$rewriterA->reveal(), $rewriterB->reveal()], true);
+        $factory = new AccountFactory([$format->reveal()], [$rewriterA->reveal(), $rewriterB->reveal()], true, true, []);
 
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('NOT-VALID');
@@ -108,7 +127,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
     {
         list($account, $format, $rewriter) = $setup;
 
-        $factory = new AccountFactory([$format->reveal()], [$rewriter->reveal()], false);
+        $factory = new AccountFactory([$format->reveal()], [$rewriter->reveal()], false, true, []);
 
         $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('NOT-VALID');

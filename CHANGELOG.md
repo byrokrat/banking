@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Add rewrite that trims left side zeros from account number.
 - Add support for `AccountNumber->equals()`.
+- Add support for preprocessors to enable more complex rewrites.
 
 ## [1.3.2] - 2016-12-28
 

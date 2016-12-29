@@ -71,39 +71,41 @@ Format of the raw account number
 --------------------------------
 When processing a raw account number the following rules apply:
 
-1. Spaces are ignored.
-1. Left side zeros are ignored.
+1. Spaces are removed.
+1. Left side zeros are removed.
 1. An optional `,` delimiter between clearing and serial numbers may be used.
-1. An optional `-` delimiter may be used before check digits.
+1. Other characters then digits and `,` are ignored.
 
-The following formats are all valid (and considered equal)
+The following formats are all valid (and considered equal):
 
-    14053542562
-    1405,3542562
-    1405,354256-2
-    1405,354 256-2
+    91501111134
+    9150,1111134
+    9150,111113-4
+    9150,111 113-4
 
 ### Clearing number check digits for Swedbank accounts
 
 Swedbank account numbers with clearing numbers starting with `8` may specify a
 fifth clearing number check digit. The clearing number check digit is optional,
-but if present a `,` must be used to mark where the clearing number ends and the
-serial number begins.
+but if present the parser will use it to validate the clearing number.
 
-The following formats are valid (and equal)
+The following formats are valid (and equal):
 
     81050,744202466
     8105-0,744202466
 
+> Please note that if the clearing check digit is `0` and no `,` is used to
+> separate the clearing and serial numbers the parser may not understand that
+> the `0` is part of the clearing number, resulting in data loss. For this
+> reason it is a good habit to always use a `,` to separate the clearing and
+> serial numbers.
+
 Parsing Bankgiro and PlusGiro accounts
 --------------------------------------
-> **NOTE:** When parsing Bankgiro or PlusGiro account numbers without delimiters
-> always whitelist the expected format before parsing.
-
 The `-` delimiter is optional when parsing Bankgiro and PlusGiro account numbers.
-When omitted it may not be possible determine if the raw number is indeed a Bankgiro
-or PlusGiro account number: `5805-6201` is a valid Bankgiro number and `5805620-1`
-is a valid PlusGiro number.
+When omitted it may not be possible determine if the raw number is indeed a
+Bankgiro or PlusGiro account number: `5805-6201` is a valid Bankgiro number and
+`5805620-1` is a valid PlusGiro number.
 
 This issue is resolved by using the dedicated factories `BankgiroFactory` and
 `PlusgiroFactory` instead of the regular `AccountFactory`.
@@ -114,7 +116,7 @@ namespace byrokrat\banking;
 
 $account = (new PlusgiroFactory)->createAccount('58056201');
 
-// outputs 1 (true)
+// true
 echo $account->getBankName() == BankNames::BANK_PLUSGIRO;
 ```
 
@@ -124,12 +126,6 @@ namespace byrokrat\banking;
 
 $account = (new BankgiroFactory)->createAccount('58056201');
 
-// outputs 1 (true)
+// true
 echo $account->getBankName() == BankNames::BANK_BANKGIRO;
 ```
-
-Credits
--------
-Banking is covered under the [WTFPL](http://www.wtfpl.net/)
-
-@author Hannes Forsgård (hannes.forsgard@fripost.org)

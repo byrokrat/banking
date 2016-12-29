@@ -3,7 +3,7 @@
 namespace byrokrat\banking\Rewriter;
 
 /**
- * Trim ceros from account left side
+ * Trim zeros from account left side
  */
 class LeftTrimRewriter implements RewriterStrategy
 {

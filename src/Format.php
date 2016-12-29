@@ -56,7 +56,7 @@ class Format
      */
     public function parse($number)
     {
-        if (!preg_match($this->structure, str_replace(' ', '', $number), $matches)) {
+        if (!preg_match($this->structure, $number, $matches)) {
             throw new InvalidStructureException("Invalid account number structure $number");
         }
 
