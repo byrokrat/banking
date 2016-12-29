@@ -3,6 +3,8 @@
 namespace byrokrat\banking\Format;
 
 use byrokrat\banking\FormatFactory;
+use byrokrat\banking\UnknownFormat;
+use byrokrat\banking\BankNames;
 use byrokrat\banking\AccountFactory;
 use byrokrat\banking\AccountNumber;
 
@@ -107,7 +109,8 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
     public function testInvalidAccountNumber($formatId, $number, $expectedException)
     {
         $this->setExpectedException($expectedException);
-        self::getAccountFormats()[$formatId]->parse($number);
+        $format = $formatId == BankNames::FORMAT_UNKNOWN ? new UnknownFormat : self::getAccountFormats()[$formatId];
+        $format->parse($number);
     }
 
     /**
