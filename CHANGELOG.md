@@ -4,15 +4,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- Add rewrite that trims left side zeros from account number.
-- Add support for `AccountNumber->equals()`.
-- Add support for preprocessors to enable more complex rewrites.
+- Nothing..
+
+## [1.4.0] - 2017-01-08
+
+### Added
+- Now trims left side zeros from account number
+- Add `AccountNumber->equals()`
+- Add preprocessors in `AccountFactory` to enable more complex rewrites
 
 ## [1.3.2] - 2016-12-28
 
-### Fixed
-- Marked `Formats` as deprecated (in favour of `FormatFactory`)
+### Changed
 - Bumped minimum php requirement to `5.5` (due to the use of generators in testsuite)
+
+### Fixed
 - Updated account formats to match latest bgc release: `2016-10-31`
 
 ## [1.3.1] - 2016-12-27
@@ -25,18 +31,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Rewrite erroneous raw account numbers or suggest changes in `AccountFactory`
 
-### Fixed
+### Changed
 - Format nordea personal account numbers as personal id numbers in `getNumber()`
 
 ## [1.2.0] - 2016-10-13
 
 ### Added
-- Support for nordea personal account numbers without clearing number (assuming clearing 3300).
+- Support for nordea personal account numbers without clearing number (assuming clearing 3300)
 
 ## [1.1.1] - 2016-08-18
 
 ### Added
-- `.gitattributes` to prevent tests and unneeded files from being included in composer installs.
+- `.gitattributes` to prevent tests and unneeded files from being included in composer installs
 
 ## [1.1.0] - 2016-05-07
 

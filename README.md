@@ -158,7 +158,7 @@ echo $account->getSerialNumber();
 echo $account->getCheckDigit();
 ```
 
-Validate that to account objects represents the same number using `equals()`.
+Validate that two account objects represents the same number using `equals()`.
 
 <!--
     @example equals
@@ -176,8 +176,8 @@ When omitted it may not be possible determine if the raw number is indeed a
 Bankgiro or PlusGiro account number: `5805-6201` is a valid Bankgiro number and
 `5805620-1` is a valid PlusGiro number.
 
-This issue is resolved by using the dedicated factories `BankgiroFactory` and
-`PlusgiroFactory` instead of the regular `AccountFactory`.
+This issue is resolved by using `BankgiroFactory` or `PlusgiroFactory` instead
+of the regular `AccountFactory`.
 
 <!--
     @example plusgiro
