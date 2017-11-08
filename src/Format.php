@@ -73,4 +73,26 @@ class Format
 
         return $account;
     }
+
+    public function has_validator($class_name)
+    {
+        foreach($this->validators as $validator) {
+            if(is_a($validator, $class_name)) {
+                return TRUE;
+            }
+        }
+
+        return FALSE;
+    }
+
+    public function get_validator($class_name)
+    {
+        foreach($this->validators as $validator) {
+            if(is_a($validator, $class_name)) {
+                return $validator;
+            }
+        }
+
+        return FALSE;
+    }
 }
