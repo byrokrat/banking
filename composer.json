@@ -27,6 +27,7 @@
         "byrokrat/id": "~1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4"
+        "phpunit/phpunit": "^4",
+        "hanneskod/readme-tester": "1.0-beta.1"
     }
 }

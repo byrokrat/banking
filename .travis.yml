@@ -10,8 +10,7 @@ php:
   - 5.5
 
 install:
-  - if [[ "$TRAVIS_PHP_VERSION" == '5.5' ]]; then composer install ; fi
-  - if [[ "$TRAVIS_PHP_VERSION" != '5.5' ]]; then composer require hanneskod/readme-tester:^1.0@beta ; fi
+  - composer install
 
 script:
   - if [[ "$TRAVIS_PHP_VERSION" == '7.0' ]]; then vendor/bin/phpunit --coverage-clover=coverage.clover ; fi
