@@ -2,6 +2,7 @@
 
 namespace byrokrat\banking;
 
+use byrokrat\banking\Exception\UnableToCreateAccountException;
 use Prophecy\Argument;
 
 /**
@@ -144,6 +145,15 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
             BankNames::BANK_UNKNOWN,
             $factory->createAccount('1234,1234567')->getBankName()
         );
+    }
+
+
+    public function testWrongLength()
+    {
+        $factory = new AccountFactory;
+
+        $this->setExpectedException(UnableToCreateAccountException::class);
+        $factory->createAccount('3300,123456789');
     }
 
     public function testIgnoringUnknownWhenCheckDigitFails()
