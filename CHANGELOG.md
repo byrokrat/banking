@@ -9,17 +9,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.4.0] - 2017-01-08
 
 ### Added
-- Now trims left side zeros from account number
-- Add `AccountNumber->equals()`
-- Add preprocessors in `AccountFactory` to enable more complex rewrites
+- Now trims left side zeros when parsing account numbers
+- `AccountNumber->equals()`
+- Preprocessors in `AccountFactory` to enable more complex rewrites
+
+### Deprecated
+- `ClearingSeparatorRewriter`, use `NonDigitRemovingRewriter` instead
 
 ## [1.3.2] - 2016-12-28
 
 ### Changed
-- Bumped minimum php requirement to `5.5` (due to the use of generators in testsuite)
+- Bumped minimum php requirement to `5.5`
 
 ### Fixed
 - Updated account formats to match latest bgc release: `2016-10-31`
+
+### Deprecated
+- `Formats`, use `FormatFactory` instead
 
 ## [1.3.1] - 2016-12-27
 
