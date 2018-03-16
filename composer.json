@@ -4,7 +4,7 @@
     "keywords": ["Nordea", "SEB", "PlusGiro", "Bankgiro", "Swedbank"],
     "homepage": "https://github.com/byrokrat/banking",
     "type": "library",
-    "license": "WTFPL",
+    "license": "Unlicense",
     "authors": [
         {
             "name": "Hannes Forsgård",
