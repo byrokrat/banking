@@ -32,7 +32,7 @@ class ClearingValidator implements Validator
      * Clearing must be in one of the specified ranges to be considered valid.
      *
      * @param  AccountNumber $number
-     * @return null
+     * @return void
      * @throws InvalidClearingNumberException If clearing number is not valid
      */
     public function validate(AccountNumber $number)

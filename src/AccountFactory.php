@@ -29,7 +29,7 @@ class AccountFactory
     private $allowRewrites;
 
     /**
-     * @var UnknownFormat The unknown format or null if unknown is disallowed
+     * @var ?UnknownFormat The unknown format or null if unknown is disallowed
      */
     private $unknownFormat;
 
@@ -109,8 +109,10 @@ class AccountFactory
         $parseMap = [
             'success' => [],
             'rewrite' => [],
-            'exception' => []
         ];
+
+        /** @var ?\Exception $parseException */
+        $parseException = null;
 
         $rewrites = array_map(
             function (RewriterStrategy $strategy) use ($number) {
@@ -125,7 +127,7 @@ class AccountFactory
                 continue;
             } catch (InvalidAccountNumberException $exception) {
                 if ($exception instanceof InvalidCheckDigitException) {
-                    $parseMap['exception'] = $exception;
+                    $parseException = $exception;
                 }
 
                 foreach ($rewrites as $rewrite) {
@@ -182,11 +184,11 @@ class AccountFactory
             );
         }
 
-        if ($parseMap['exception']) {
+        if ($parseException) {
             throw new UnableToCreateAccountException(
-                "Unable to parse account $number: {$parseMap['exception']->getMessage()}",
+                "Unable to parse account $number: {$parseException->getMessage()}",
                 0,
-                $parseMap['exception']
+                $parseException
             );
         }
 

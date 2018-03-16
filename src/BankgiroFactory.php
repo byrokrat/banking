@@ -17,7 +17,7 @@ class BankgiroFactory extends AccountFactory implements BankNames
      * Create bankgiro account object using number
      *
      * @param  string $number
-     * @return Bankgiro
+     * @return AccountNumber
      * @throws Exception\UnableToCreateAccountException If unable to create
      */
     public function createAccount($number)

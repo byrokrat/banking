@@ -17,7 +17,7 @@ class PlusgiroFactory extends AccountFactory implements BankNames
      * Create plusgiro account object using number
      *
      * @param  string $number
-     * @return PlusGiro
+     * @return AccountNumber
      * @throws Exception\UnableToCreateAccountException If unable to create
      */
     public function createAccount($number)
