@@ -506,6 +506,19 @@
         ]
     },
     {
+        "bank_id": "BANK_MEDMERA",
+        "valid_account_numbers": [
+            {
+                "account_number": "9650,1111112",
+                "parts": {
+                    "clearing": "9650",
+                    "serial": "111111",
+                    "check_digit": "2"
+                }
+            }
+        ]
+    },
+    {
         "bank_id": "BANK_NORDAX",
         "valid_account_numbers": [
             {
@@ -1025,19 +1038,6 @@
                     "clearing": "9890",
                     "serial": "123456789",
                     "check_digit": "7"
-                }
-            }
-        ]
-    },
-    {
-        "bank_id": "BANK_ROYAL_OF_SCOTLAND",
-        "valid_account_numbers": [
-            {
-                "account_number": "9090,1111130",
-                "parts": {
-                    "clearing": "9090",
-                    "serial": "111113",
-                    "check_digit": "0"
                 }
             }
         ]

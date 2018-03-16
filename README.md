@@ -12,13 +12,13 @@ Bankgirot among others.
 
 Introduction
 ------------
-*Banking* provides a way of parsing and validating bank account numbers from the
+Banking provides a way of parsing and validating bank account numbers from the
 swedish banking system. It validates clearing numbers, the structure of the
 account number as well as check digits. It also defines value objects for account
 numbers, with formatting capabilities and methods for accessing the different
 parts of the account number and to identify the bank the number belongs to.
 
-*Banking* understands account number formats as released by BGC in [2016-10-31](https://www.bankgirot.se/globalassets/dokument/anvandarmanualer/bankernaskontonummeruppbyggnad_anvandarmanual_sv.pdf). (If you find a newer release please open an issue on github.)
+Understands account number formats as released by [BGC](https://www.bankgirot.se/globalassets/dokument/anvandarmanualer/bankernaskontonummeruppbyggnad_anvandarmanual_sv.pdf) in **2017-08-15**. (If you find a newer release please open an issue on github.)
 
 Installation
 ------------

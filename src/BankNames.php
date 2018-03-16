@@ -28,6 +28,7 @@ interface BankNames
     const BANK_LAN_OCH_SPAR = 'Lån & Spar Bank Sverige';
     const BANK_LANSFORSAKRINGAR = "Länsförsäkringar Bank";
     const BANK_MARGINALEN = "Marginalen Bank";
+    const BANK_MEDMERA = "MedMera Bank AB";
     const BANK_NORDAX = "Nordax Finans AB";
     const BANK_NORDEA = "Nordea";
     const BANK_NORDEA_PLUSGIROT = "Nordea/PlusGirot";
@@ -68,6 +69,7 @@ interface BankNames
     const FORMAT_LANSFORSAKRINGAR_1A = 'lansforsakringar_1a';
     const FORMAT_LANSFORSAKRINGAR_1B = 'lansforsakringar_1b';
     const FORMAT_MARGINALEN = 'marginalen';
+    const FORMAT_MEDMERA = "medmera";
     const FORMAT_NORDAX = 'nordax';
     const FORMAT_NORDEA_1A = 'nordea_1a';
     const FORMAT_NORDEA_1B = 'nordea_1b';

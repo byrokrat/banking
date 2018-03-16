@@ -201,6 +201,15 @@ class FormatFactory implements BankNames
                     new CheckDigitType1AValidator
                 ]
             ),
+            self::FORMAT_MEDMERA => new Format(
+                self::BANK_MEDMERA,
+                self::STRUCT_TYPE1,
+                'byrokrat\banking\BaseAccount',
+                [
+                    new ClearingValidator([[9650, 9659]]),
+                    new CheckDigitType1BValidator
+                ]
+            ),
             self::FORMAT_NORDAX => new Format(
                 self::BANK_NORDAX,
                 self::STRUCT_TYPE1,
@@ -261,15 +270,6 @@ class FormatFactory implements BankNames
                 'byrokrat\banking\BaseAccount',
                 [
                     new ClearingValidator([[9880, 9889]]),
-                    new CheckDigitType1BValidator
-                ]
-            ),
-            self::FORMAT_ROYAL_OF_SCOTLAND => new Format(
-                self::BANK_ROYAL_OF_SCOTLAND,
-                self::STRUCT_TYPE1,
-                'byrokrat\banking\BaseAccount',
-                [
-                    new ClearingValidator([[9090, 9099]]),
                     new CheckDigitType1BValidator
                 ]
             ),
