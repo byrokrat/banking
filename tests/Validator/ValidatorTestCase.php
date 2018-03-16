@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Validator;
 
-abstract class ValidatorTestCase extends \PHPUnit_Framework_TestCase
+abstract class ValidatorTestCase extends \PHPUnit\Framework\TestCase
 {
     protected function getAccountNumberMock()
     {

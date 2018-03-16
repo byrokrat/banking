@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking;
 
-class BaseAccountTest extends \PHPUnit_Framework_TestCase
+class BaseAccountTest extends \PHPUnit\Framework\TestCase
 {
     public function testSimpleGetters()
     {

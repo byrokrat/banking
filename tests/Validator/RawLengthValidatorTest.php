@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Validator;
 
-class RawLengthValidatorTest extends \PHPUnit_Framework_TestCase
+class RawLengthValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidLength()
     {
@@ -23,7 +23,7 @@ class RawLengthValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getRawNumber')
             ->will($this->returnValue('1234,5'));
 
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidStructureException');
+        $this->expectException('byrokrat\banking\Exception\InvalidStructureException');
         (new RawLengthValidator(4))->validate($number);
     }
 }

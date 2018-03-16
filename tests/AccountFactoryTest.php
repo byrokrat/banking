@@ -7,7 +7,7 @@ use Prophecy\Argument;
 /**
  * @covers \byrokrat\banking\AccountFactory
  */
-class AccountFactoryTest extends \PHPUnit_Framework_TestCase
+class AccountFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateAccount()
     {
@@ -36,7 +36,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory = new AccountFactory([$formatA->reveal(), $formatB->reveal()], [], false, false, []);
 
-        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
+        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('FOOBAR');
     }
 
@@ -116,7 +116,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory = new AccountFactory([$format->reveal()], [$rewriterA->reveal(), $rewriterB->reveal()], true, true, []);
 
-        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
+        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('NOT-VALID');
     }
 
@@ -129,7 +129,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory = new AccountFactory([$format->reveal()], [$rewriter->reveal()], false, true, []);
 
-        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
+        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('NOT-VALID');
     }
 
@@ -153,7 +153,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory = new AccountFactory([$format->reveal()], [], true, true);
 
-        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
+        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('1234,1234567');
     }
 
@@ -164,7 +164,7 @@ class AccountFactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory = new AccountFactory([$format->reveal()], [], true, true);
 
-        $this->setExpectedException('byrokrat\banking\Exception\UnableToCreateAccountException');
+        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
         $factory->createAccount('this-is-not-a-valid-number')->getBankName();
     }
 }

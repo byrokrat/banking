@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Rewriter;
 
-class LeftTrimRewriterTest extends \PHPUnit_Framework_TestCase
+class LeftTrimRewriterTest extends \PHPUnit\Framework\TestCase
 {
     public function testRewrite()
     {

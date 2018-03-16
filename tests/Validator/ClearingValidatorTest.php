@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Validator;
 
-class ClearingValidatorTest extends \PHPUnit_Framework_TestCase
+class ClearingValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function getValidator()
     {
@@ -55,7 +55,7 @@ class ClearingValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getClearingNumber')
             ->will($this->returnValue($clearing));
 
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidClearingNumberException');
+        $this->expectException('byrokrat\banking\Exception\InvalidClearingNumberException');
         $this->getValidator()->validate($number);
     }
 }

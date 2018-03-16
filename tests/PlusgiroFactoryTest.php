@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * @covers \byrokrat\banking\PlusgiroFactory
  */
-class PlusgiroFactoryTest extends \PHPUnit_Framework_TestCase
+class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateBankgiroAccount()
     {

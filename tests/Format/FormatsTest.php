@@ -11,7 +11,7 @@ use byrokrat\banking\AccountNumber;
 /**
  * Test account numbers from testdata.json
  */
-class FormatsTest extends \PHPUnit_Framework_TestCase
+class FormatsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @const Default account data
@@ -108,7 +108,7 @@ class FormatsTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidAccountNumber($formatId, $number, $expectedException)
     {
-        $this->setExpectedException($expectedException);
+        $this->expectException($expectedException);
         $format = $formatId == BankNames::FORMAT_UNKNOWN ? new UnknownFormat : self::getAccountFormats()[$formatId];
         $format->parse($number);
     }

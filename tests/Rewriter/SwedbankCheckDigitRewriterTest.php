@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Rewriter;
 
-class SwedbankCheckDigitRewriterTest extends \PHPUnit_Framework_TestCase
+class SwedbankCheckDigitRewriterTest extends \PHPUnit\Framework\TestCase
 {
     public function testRewrite()
     {

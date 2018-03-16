@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Bumped minimum php requirement to `7.0`
+
 ### Fixed
 - Updated account formats to match latest bgc release: `2017-08-15`
 

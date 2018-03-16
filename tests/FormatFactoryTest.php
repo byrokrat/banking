@@ -5,7 +5,7 @@ namespace byrokrat\banking;
 /**
  * @covers \byrokrat\banking\FormatFactory
  */
-class FormatFactoryTest extends \PHPUnit_Framework_TestCase
+class FormatFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateFormats()
     {

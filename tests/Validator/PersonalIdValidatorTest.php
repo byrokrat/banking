@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Validator;
 
-class PersonalIdValidatorTest extends \PHPUnit_Framework_TestCase
+class PersonalIdValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidPersonalId()
     {
@@ -31,7 +31,7 @@ class PersonalIdValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getCheckDigit')
             ->will($this->returnValue('2'));
 
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
+        $this->expectException('byrokrat\banking\Exception\InvalidCheckDigitException');
         (new PersonalIdValidator)->validate($number);
     }
 
@@ -47,7 +47,7 @@ class PersonalIdValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getCheckDigit')
             ->will($this->returnValue('9'));
 
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidAccountNumberException');
+        $this->expectException('byrokrat\banking\Exception\InvalidAccountNumberException');
         (new PersonalIdValidator)->validate($number);
     }
 }

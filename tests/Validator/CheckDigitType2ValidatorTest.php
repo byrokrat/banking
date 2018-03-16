@@ -24,7 +24,7 @@ class CheckDigitType2ValidatorTest extends ValidatorTestCase
             ->method('isValid')
             ->will($this->returnValue(false));
 
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
+        $this->expectException('byrokrat\banking\Exception\InvalidCheckDigitException');
         (new CheckDigitType2Validator($checksum))->validate(
             $this->getAccountNumberMock()
         );

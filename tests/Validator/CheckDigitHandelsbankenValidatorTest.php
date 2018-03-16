@@ -24,7 +24,7 @@ class CheckDigitHandelsbankenValidatorTest extends ValidatorTestCase
             ->method('isValid')
             ->will($this->returnValue(false));
 
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidCheckDigitException');
+        $this->expectException('byrokrat\banking\Exception\InvalidCheckDigitException');
         (new CheckDigitHandelsbankenValidator($checksum))->validate(
             $this->getAccountNumberMock()
         );

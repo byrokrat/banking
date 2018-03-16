@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Rewriter;
 
-class NonDigitRemovingRewriterTest extends \PHPUnit_Framework_TestCase
+class NonDigitRemovingRewriterTest extends \PHPUnit\Framework\TestCase
 {
     public function testRewrite()
     {

@@ -2,7 +2,7 @@
 
 namespace byrokrat\banking\Rewriter;
 
-class RewriterFactoryTest extends \PHPUnit_Framework_TestCase
+class RewriterFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreatePreprocessors()
     {

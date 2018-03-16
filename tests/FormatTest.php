@@ -5,17 +5,17 @@ namespace byrokrat\banking;
 /**
  * @covers \byrokrat\banking\Format
  */
-class FormatTest extends \PHPUnit_Framework_TestCase
+class FormatTest extends \PHPUnit\Framework\TestCase
 {
     public function testInvalidStructure()
     {
-        $this->setExpectedException('byrokrat\banking\Exception\InvalidStructureException');
+        $this->expectException('byrokrat\banking\Exception\InvalidStructureException');
         (new Format('bank', '/foo/', '', []))->parse('bar');
     }
 
     public function testInvalidRegexp()
     {
-        $this->setExpectedException('byrokrat\banking\Exception\LogicException');
+        $this->expectException('byrokrat\banking\Exception\LogicException');
         (new Format('bank', '/foo/', '', []))->parse('foo');
     }
 
