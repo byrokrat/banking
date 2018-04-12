@@ -16,14 +16,9 @@
             "byrokrat\\banking\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "byrokrat\\banking\\": "tests/"
-        }
-    },
     "require": {
-        "php": ">=7.0",
-        "byrokrat/checkdigit": "~1.0",
-        "byrokrat/id": "~1.0"
+        "php": ">=7.1",
+        "byrokrat/id": "~1.0",
+        "drupol/phpermutations": "^1.3"
     }
 }

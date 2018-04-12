@@ -10,8 +10,8 @@ Data types and factories for bank accounts in the swedish banking system,
 Handelsbanken, ICA-banken, Nordea, SEB, Skandiabanken, Swedbank, PlusGirot,
 Bankgirot among others.
 
-Introduction
-------------
+## Introduction
+
 Banking provides a way of parsing and validating bank account numbers from the
 swedish banking system. It validates clearing numbers, the structure of the
 account number as well as check digits. It also defines value objects for account
@@ -20,15 +20,16 @@ parts of the account number and to identify the bank the number belongs to.
 
 Understands account number formats as released by [BGC](https://www.bankgirot.se/globalassets/dokument/anvandarmanualer/bankernaskontonummeruppbyggnad_anvandarmanual_sv.pdf) in **2017-08-15**. (If you find a newer release please open an issue on github.)
 
-Installation
-------------
+## Installation
+
 ```shell
 composer require byrokrat/banking:^1.0
 ```
 
-Usage
------
-Parse raw account numbers using the [AccountFactory](/src/AccountFactory.php).
+## Usage
+
+The main entry point of the library is the [AccountFactory](/src/AccountFactory.php)
+that is used to create valid [AccountNumber](/src/AccountNumber.php) objects.
 
 <!--
     @example factory
@@ -41,30 +42,45 @@ $account = $accountFactory->createAccount('50001111116');
 echo $account->getNumber();
 ```
 
-*Banking* also does its best to recognize different number formats.
+The standard factory does its best to recognize different number formats.
 
-1. Spaces are removed.
-1. Left side zeros are removed.
+1. Spaces, hyphens and dots are ignored.
 1. An optional `,` delimiter between clearing and serial numbers may be used.
-1. Other characters then digits and `,` are ignored.
+1. Misplaced clearing-serial delimiters are ignored.
 
 The following formats are all valid and considered equal to the account number
 of the previous example.
 
 <!--
     @example formats
-    @extends factory
-    @expectOutput /^1+$/
+    @include factory
+    @expectOutput /1+$/
 -->
 ```php
 echo $accountFactory->createAccount('50001111116')->equals($account);
 echo $accountFactory->createAccount('5000,1111116')->equals($account);
 echo $accountFactory->createAccount('5000-1111116')->equals($account);
-echo $accountFactory->createAccount('0050001111116')->equals($account);
 echo $accountFactory->createAccount('5000,111111-6')->equals($account);
 echo $accountFactory->createAccount('5000,111 111-6')->equals($account);
 echo $accountFactory->createAccount('5000000001111116')->equals($account);
 echo $accountFactory->createAccount('5000,000001111116')->equals($account);
+```
+
+### Using a stricter factory
+
+For a factory that fails on all invalid chars inject a `StrictFactory` at construct.
+
+<!--
+    @example StrictFactory
+    @expectError
+-->
+```php
+$accountFactory = new \byrokrat\banking\AccountFactory(
+    new \byrokrat\banking\StrictFactory
+);
+
+// Fails..
+$accountFactory->createAccount('5000-1111116');
 ```
 
 ### Clearing number check digits for Swedbank accounts
@@ -75,12 +91,12 @@ but if present the parser will use it to validate the clearing number.
 
 <!--
     @example swedbank
-    @extends factory
-    @expectOutput /^1+$/
+    @include factory
+    @expectOutput /1$/
 -->
 ```php
-$swedbank = $accountFactory->createAccount('8105-0,744202466');
-echo $accountFactory->createAccount('81050,744202466')->equals($swedbank);
+$swedbank = $accountFactory->createAccount('8105-9,744202466');
+echo $accountFactory->createAccount('81059,744202466')->equals($swedbank);
 ```
 
 > Please note that if the clearing check digit is `0` and no comma (`,`) is used
@@ -99,32 +115,20 @@ of bank identifiers see [BankNames](/src/BankNames.php).
 
 <!--
     @example getBankName
-    @extends factory
-    @expectOutput "SEB1"
+    @include factory
+    @expectOutput "/SEB1$/"
 -->
 ```php
 echo $account->getBankName();
 echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_SEB;
 ```
 
-Get the raw and unformatted number using `getRawNumber()`.
-
-<!--
-    @example getRawNumber
-    @extends factory
-    @expectOutput "50001111116"
--->
-```php
-echo $account->getRawNumber();
-```
-
-Get a formatted permutation using `getNumber()` or PHPs magical `__tostring()`
-method.
+Get number using `getNumber()` or PHPs magical `__tostring()` method.
 
 <!--
     @example getNumber
-    @extends factory
-    @expectOutput "5000,111 111-65000,111 111-6"
+    @include factory
+    @expectOutput "/5000,111 111-65000,111 111-6$/"
 -->
 ```php
 echo $account->getNumber();
@@ -135,8 +139,8 @@ Get the generic 16 digit format as defined by BGC using `get16()`.
 
 <!--
     @example get16
-    @extends factory
-    @expectOutput "5000000001111116"
+    @include factory
+    @expectOutput "/5000000001111116$/"
 -->
 ```php
 echo $account->get16();
@@ -148,8 +152,8 @@ respectively.
 
 <!--
     @example parts
-    @extends factory
-    @expectOutput "50001111116"
+    @include factory
+    @expectOutput "/50001111116$/"
 -->
 ```php
 echo $account->getClearingNumber();
@@ -162,8 +166,8 @@ Validate that two account objects represents the same number using `equals()`.
 
 <!--
     @example equals
-    @extends factory
-    @expectOutput "1"
+    @include factory
+    @expectOutput "/1$/"
 -->
 ```php
 echo $account->equals($account);
@@ -171,13 +175,12 @@ echo $account->equals($account);
 
 ### Parsing Bankgiro and PlusGiro accounts
 
-The `-` delimiter is optional when parsing Bankgiro and PlusGiro account numbers.
-When omitted it may not be possible determine if the raw number is indeed a
-Bankgiro or PlusGiro account number: `5805-6201` is a valid Bankgiro number and
-`5805620-1` is a valid PlusGiro number.
+Use `BankgiroFactory` or `PlusgiroFactory` to parse bankgiro and plusgiro account numbers.
 
-This issue is resolved by using `BankgiroFactory` or `PlusgiroFactory` instead
-of the regular `AccountFactory`.
+> The `-` delimiter is optional when parsing Bankgiro and PlusGiro account numbers.
+> When omitted it may not be possible determine if the raw number is indeed a
+> Bankgiro or PlusGiro account number: `5805-6201` is a valid Bankgiro number and
+> `5805620-1` is a valid PlusGiro number.
 
 <!--
     @example plusgiro

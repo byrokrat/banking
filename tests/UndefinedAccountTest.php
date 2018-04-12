@@ -96,10 +96,10 @@ class UndefinedAccountTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertFalse(
             (new UndefinedAccount('', '0', '', ''))->equals(
-                new UndefinedAccount('', '', '', ''), true
+                new UndefinedAccount('', '', '', ''),
+                true
             ),
             'Accounts should not be considered equal as clearing checkdigit differs'
         );
-
     }
 }
