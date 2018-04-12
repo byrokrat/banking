@@ -1,34 +1,26 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
 
-use byrokrat\banking\Validator;
 use byrokrat\banking\AccountNumber;
-use byrokrat\banking\Exception\InvalidCheckDigitException;
-use byrokrat\banking\Exception\InvalidAccountNumberException;
 use byrokrat\id\PersonalId;
 
 /**
- * Validate personal ids
+ * Validate that account numbers are valid swedish personal ids
  */
-class PersonalIdValidator implements Validator
+class PersonalIdValidator implements ValidatorInterface
 {
-    /**
-     * Validate that number is a swedish personal id
-     *
-     * @param  AccountNumber $number
-     * @return null
-     * @throws InvalidCheckDigitException    If checkdigit is not valid
-     * @throws InvalidAccountNumberException If number is not a valid personal id
-     */
-    public function validate(AccountNumber $number)
+    public function validate(AccountNumber $number): ResultInterface
     {
         try {
             new PersonalId($number->getSerialNumber() . $number->getCheckDigit());
+            return new Success("Valid personal id number");
         } catch (\byrokrat\id\Exception\InvalidCheckDigitException $e) {
-            throw new InvalidCheckDigitException("Invalid check digit {$number->getCheckDigit()} in $number", 0, $e);
+            return new Failure("Invalid check digit {$number->getCheckDigit()}");
         } catch (\byrokrat\id\Exception\RuntimeException $e) {
-            throw new InvalidAccountNumberException("Account number $number is not a valid personal id number", 0, $e);
+            return new Failure("Account number is not a valid personal id number");
         }
     }
 }

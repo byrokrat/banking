@@ -1,53 +1,46 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
+
+use byrokrat\banking\AccountNumber;
 
 class PersonalIdValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidPersonalId()
     {
-        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getSerialNumber()->willReturn('841128394');
+        $number->getCheckDigit()->willReturn('1');
 
-        $number->expects($this->any())
-            ->method('getSerialNumber')
-            ->will($this->returnValue('841128394'));
-
-        $number->expects($this->any())
-            ->method('getCheckDigit')
-            ->will($this->returnValue('1'));
-
-        $this->assertNull((new PersonalIdValidator)->validate($number));
+        $this->assertInstanceOf(
+            Success::CLASS,
+            (new PersonalIdValidator)->validate($number->reveal())
+        );
     }
 
-    public function testExceptionOnInvalidCheckDigit()
+    public function testInvalidCheckDigit()
     {
-        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getSerialNumber()->willReturn('841128394');
+        $number->getCheckDigit()->willReturn('2');
 
-        $number->expects($this->any())
-            ->method('getSerialNumber')
-            ->will($this->returnValue('841128394'));
-
-        $number->expects($this->any())
-            ->method('getCheckDigit')
-            ->will($this->returnValue('2'));
-
-        $this->expectException('byrokrat\banking\Exception\InvalidCheckDigitException');
-        (new PersonalIdValidator)->validate($number);
+        $this->assertInstanceOf(
+            Failure::CLASS,
+            (new PersonalIdValidator)->validate($number->reveal())
+        );
     }
 
-    public function testExceptionOnInvalidDate()
+    public function testInvalidDate()
     {
-        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getSerialNumber()->willReturn('841328394');
+        $number->getCheckDigit()->willReturn('9');
 
-        $number->expects($this->any())
-            ->method('getSerialNumber')
-            ->will($this->returnValue('841328394'));
-
-        $number->expects($this->any())
-            ->method('getCheckDigit')
-            ->will($this->returnValue('9'));
-
-        $this->expectException('byrokrat\banking\Exception\InvalidAccountNumberException');
-        (new PersonalIdValidator)->validate($number);
+        $this->assertInstanceOf(
+            Failure::CLASS,
+            (new PersonalIdValidator)->validate($number->reveal())
+        );
     }
 }

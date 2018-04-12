@@ -1,32 +1,34 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
 
-class CheckDigitType2ValidatorTest extends ValidatorTestCase
+use byrokrat\banking\AccountNumber;
+
+class CheckDigitType2ValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidCheckDigit()
     {
-        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
-        $checksum->expects($this->once())
-            ->method('isValid')
-            ->with('1234567')
-            ->will($this->returnValue(true));
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getSerialNumber()->willReturn('666666');
+        $number->getCheckDigit()->willReturn('3');
 
-        $this->assertNull((new CheckDigitType2Validator($checksum))->validate(
-            $this->getAccountNumberMock()
-        ));
+        $this->assertInstanceOf(
+            Success::CLASS,
+            (new CheckDigitType2Validator)->validate($number->reveal())
+        );
     }
 
-    public function testExceptionOnInvalidCheckDigit()
+    public function testInvalidCheckDigit()
     {
-        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
-        $checksum->expects($this->once())
-            ->method('isValid')
-            ->will($this->returnValue(false));
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getSerialNumber()->willReturn('666666');
+        $number->getCheckDigit()->willReturn('7');
 
-        $this->expectException('byrokrat\banking\Exception\InvalidCheckDigitException');
-        (new CheckDigitType2Validator($checksum))->validate(
-            $this->getAccountNumberMock()
+        $this->assertInstanceOf(
+            Failure::CLASS,
+            (new CheckDigitType2Validator)->validate($number->reveal())
         );
     }
 }
