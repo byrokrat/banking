@@ -1,24 +1,22 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Rewriter;
 
 /**
- * Create standard sets of preprocessors and rewrites
+ * Create the default set of rewriters
  */
 class RewriterFactory
 {
-    public function createPreprocessors()
-    {
-        return [
-            new NonDigitRemovingRewriter,
-            new LeftTrimRewriter
-        ];
-    }
+    const MINIMAL_SERIAL_REWRITE_LENGTH = 6;
 
-    public function createRewrites()
+    public function createRewriters(): RewriterContainer
     {
-        return [
-            new SwedbankCheckDigitRewriter
-        ];
+        return new RewriterContainer(
+            new ClearingCheckDigitRewriter,
+            new SerialTrimRewriter(self::MINIMAL_SERIAL_REWRITE_LENGTH),
+            new ClearingPrependingRewriter('3300')
+        );
     }
 }

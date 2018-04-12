@@ -2,16 +2,15 @@
 
 namespace byrokrat\banking\Rewriter;
 
+use byrokrat\banking\AccountNumber;
+
 /**
  * Strategy interface for rewriting account numbers
  */
-interface RewriterStrategy
+interface RewriterInterface
 {
     /**
      * Rewrite number according to strategy
-     *
-     * @param  string $number
-     * @return string
      */
-    public function rewrite($number);
+    public function rewrite(AccountNumber $account): AccountNumber;
 }
