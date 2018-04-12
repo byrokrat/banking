@@ -1,21 +1,18 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking;
 
-class BaseAccountTest extends \PHPUnit\Framework\TestCase
+class UndefinedAccountTest extends \PHPUnit\Framework\TestCase
 {
     public function testSimpleGetters()
     {
-        $account = new BaseAccount('bank', 'raw', 'clear', 'clearCheck', 'serial', 'check');
+        $account = new UndefinedAccount('clear', 'clearCheck', 'serial', 'check');
 
         $this->assertSame(
-            'bank',
+            '',
             $account->getBankName()
-        );
-
-        $this->assertSame(
-            'raw',
-            $account->getRawNumber()
         );
 
         $this->assertSame(
@@ -43,12 +40,12 @@ class BaseAccountTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '1111-2,333 333 33-4',
-            (new BaseAccount('', '', '1111', '2', '33333333', '4'))->getNumber()
+            (new UndefinedAccount('1111', '2', '33333333', '4'))->getNumber()
         );
 
         $this->assertSame(
             '1111,333 333 33-4',
-            (new BaseAccount('', '', '1111', '', '33333333', '4'))->getNumber()
+            (new UndefinedAccount('1111', '', '33333333', '4'))->getNumber()
         );
     }
 
@@ -56,52 +53,53 @@ class BaseAccountTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '1111000333333334',
-            (new BaseAccount('', '', '1111', '2', '33333333', '4'))->get16()
+            (new UndefinedAccount('1111', '2', '33333333', '4'))->get16()
         );
     }
 
     public function testEquals()
     {
-        $account = new BaseAccount('bank', 'raw', 'clear', 'clearCheck', 'serial', 'check');
-
-        $this->assertTrue(
-            $account->equals(new BaseAccount('bank', '', 'clear', 'clearCheck', 'serial', 'check')),
-            'Accounts should be considered equal as raw does not count'
-        );
+        $account = new UndefinedAccount('clear', 'clearCheck', 'serial', 'check');
 
         $this->assertFalse(
-            $account->equals(new BaseAccount('FAIL', 'raw', 'clear', 'clearCheck', 'serial', 'check')),
-            'Accounts should not be equal as the bank name differ'
-        );
-
-        $this->assertFalse(
-            $account->equals(new BaseAccount('bank', 'raw', 'FAIL', 'clearCheck', 'serial', 'check')),
+            $account->equals(new UndefinedAccount('FAIL', 'clearCheck', 'serial', 'check')),
             'Accounts should not be equal as the clearing number differ'
         );
 
         $this->assertFalse(
-            $account->equals(new BaseAccount('bank', 'raw', 'clear', 'clearCheck', 'FAIL', 'check')),
+            $account->equals(new UndefinedAccount('clear', 'clearCheck', 'FAIL', 'check')),
             'Accounts should not be equal as the serial number differ'
         );
 
         $this->assertFalse(
-            $account->equals(new BaseAccount('bank', 'raw', 'clear', 'clearCheck', 'serial', 'FAIL')),
+            $account->equals(new UndefinedAccount('clear', 'clearCheck', 'serial', 'FAIL')),
             'Accounts should not be equal as the check digit differ'
         );
 
         $this->assertFalse(
-            $account->equals(new BaseAccount('bank', 'raw', 'clear', 'FAIL', 'serial', 'check')),
+            $account->equals(new UndefinedAccount('clear', 'FAIL', 'serial', 'check')),
             'Accounts should not be equal as the clearing check digit differ'
         );
 
         $this->assertTrue(
-            $account->equals(new BaseAccount('bank', 'raw', 'clear', '', 'serial', 'check')),
+            $account->equals(new UndefinedAccount('clear', '', 'serial', 'check')),
             'Accounts should be considered equal even though clearing checkdigit is missing'
         );
 
         $this->assertFalse(
-            $account->equals(new BaseAccount('bank', 'raw', 'clear', '', 'serial', 'check'), true),
+            $account->equals(new UndefinedAccount('clear', '', 'serial', 'check'), true),
             'Accounts should not be considered equal as clearing checkdigit is missing and strict mode is enabled'
         );
+    }
+
+    public function testEqualsWhenClearingCheckIsCero()
+    {
+        $this->assertFalse(
+            (new UndefinedAccount('', '0', '', ''))->equals(
+                new UndefinedAccount('', '', '', ''), true
+            ),
+            'Accounts should not be considered equal as clearing checkdigit differs'
+        );
+
     }
 }

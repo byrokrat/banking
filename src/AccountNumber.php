@@ -9,70 +9,45 @@ interface AccountNumber
 {
     /**
      * Get name of the Bank this number belongs to
-     *
-     * @return string
      */
-    public function getBankName();
-
-    /**
-     * Get the raw number
-     *
-     * @return string
-     */
-    public function getRawNumber();
+    public function getBankName(): string;
 
     /**
      * Get account number as a formatted string
-     *
-     * @return string
      */
-    public function getNumber();
+    public function getNumber(): string;
 
     /**
      * Get account number as a formatted string
-     *
-     * Internally calls getNumber()
-     *
-     * @return string
      */
-    public function __toString();
+    public function __toString(): string;
 
     /**
-     * Get clearing number
-     *
-     * @return string 4 digits
+     * Get clearing number (4 digits)
      */
-    public function getClearingNumber();
+    public function getClearingNumber(): string;
 
     /**
-     * Get the check digit of the clearing number
-     *
-     * @return string 1 or 0 digits
+     * Get the check digit of the clearing number (1 or 0 digits)
      */
-    public function getClearingCheckDigit();
+    public function getClearingCheckDigit(): string;
 
     /**
-     * Get account serial number
-     *
-     * @return string 1 to 11 digits
+     * Get account serial number (1 to 11 digits)
      */
-    public function getSerialNumber();
+    public function getSerialNumber(): string;
 
     /**
-     * Get account check digit
-     *
-     * @return string 1 digit
+     * Get account check digit (1 digit)
      */
-    public function getCheckDigit();
+    public function getCheckDigit(): string;
 
     /**
      * Get account as a 16 digit number
      *
      * Clearing number (4 digits) + x number of ceros + serial number
-     *
-     * @return string 16 digits
      */
-    public function get16();
+    public function get16(): string;
 
     /**
      * Check if account is considered equal to this account
@@ -85,10 +60,6 @@ interface AccountNumber
      * ignored, except when strict mode is enforced. In strict mode a
      * missing clearing check digit on one of the accounts is considered
      * a sign of non-equality.
-     *
-     * @param  AccountNumber $account
-     * @param  bool          $strict
-     * @return bool
      */
-    public function equals(AccountNumber $account, $strict = false);
+    public function equals(AccountNumber $account, bool $strict = false): bool;
 }

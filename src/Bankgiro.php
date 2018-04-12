@@ -1,13 +1,25 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking;
 
 /**
- * Account number for Bankgirot clearing system
+ * Bankgiro account number
  */
-class Bankgiro extends BaseAccount
+class Bankgiro extends UndefinedAccount
 {
-    public function getNumber()
+    public function __construct(string $serial, string $check)
+    {
+        parent::__construct('0000', '', $serial, $check);
+    }
+
+    public function getBankName(): string
+    {
+        return BankNames::BANK_BANKGIRO;
+    }
+
+    public function getNumber(): string
     {
         return sprintf(
             '%s-%s%s',
@@ -15,15 +27,5 @@ class Bankgiro extends BaseAccount
             substr($this->getSerialNumber(), -3),
             $this->getCheckDigit()
         );
-    }
-
-    public function getClearingNumber()
-    {
-        return '0000';
-    }
-
-    public function getSerialNumber()
-    {
-        return str_replace('-', '', parent::getSerialNumber());
     }
 }
