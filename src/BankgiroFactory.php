@@ -1,27 +1,44 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking;
 
+use byrokrat\banking\Exception\InvalidAccountNumberException;
+use byrokrat\banking\Validator\CheckDigitType2Validator;
+use byrokrat\banking\Validator\ValidatorInterface;
+
 /**
- * Plusgiroi account number factory
+ * Bankgiro account number factory
  */
-class BankgiroFactory extends AccountFactory implements BankNames
+class BankgiroFactory implements AccountFactoryInterface
 {
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
     public function __construct()
     {
-        $formats = (new FormatFactory)->createFormats();
-        parent::__construct([self::FORMAT_BANKGIRO => $formats[self::FORMAT_BANKGIRO]]);
+        $this->validator = new CheckDigitType2Validator;
     }
 
-    /**
-     * Create bankgiro account object using number
-     *
-     * @param  string $number
-     * @return AccountNumber
-     * @throws Exception\UnableToCreateAccountException If unable to create
-     */
-    public function createAccount($number)
+    public function createAccount(string $number): AccountNumber
     {
-        return parent::createAccount($number);
+        if (!preg_match('/^(\d{3,4})-?(\d{3})(\d)$/', $number, $matches)) {
+            throw new InvalidAccountNumberException("Invalid bankgiro account number structure");
+        }
+
+        $account = new Bankgiro($matches[1].$matches[2], $matches[3]);
+
+        $result = $this->validator->validate($account);
+
+        if (!$result->isValid()) {
+            throw new InvalidAccountNumberException(
+                "Unable to parse bankgiro $number: {$result->getMessage()}"
+            );
+        }
+
+        return $account;
     }
 }

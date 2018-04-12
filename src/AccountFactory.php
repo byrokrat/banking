@@ -1,205 +1,74 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking;
 
-use byrokrat\banking\Rewriter\RewriterStrategy;
+use byrokrat\banking\Format\FormatContainer;
+use byrokrat\banking\Format\FormatFactory;
+use byrokrat\banking\Rewriter\RewriterContainer;
 use byrokrat\banking\Rewriter\RewriterFactory;
-use byrokrat\banking\Exception\UnableToCreateAccountException;
 use byrokrat\banking\Exception\InvalidAccountNumberException;
-use byrokrat\banking\Exception\InvalidCheckDigitException;
 
 /**
- * Account number factory
+ * Account number factory for accounts using clearing numbers
  */
-class AccountFactory
+class AccountFactory implements AccountFactoryInterface
 {
     /**
-     * @var Format[] Possible formats used when parsing account
+     * @var AccountFactoryInterface
+     */
+    private $decoratedFactory;
+
+    /**
+     * @var RewriterContainer
+     */
+    private $rewriters;
+
+    /**
+     * @var FormatContainer
      */
     private $formats;
 
     /**
-     * @var RewriterStrategy[] Strategies for rewriting failing account numbers
-     */
-    private $rewrites;
-
-    /**
-     * @var bool Flag if rewrites should be allowed when creating account objects
-     */
-    private $allowRewrites;
-
-    /**
-     * @var ?UnknownFormat The unknown format or null if unknown is disallowed
-     */
-    private $unknownFormat;
-
-    /**
-     * @var RewriterStrategy[] Preprocessors used to alter account before parsing starts
-     */
-    private $preprocessors;
-
-    /**
-     * @param Format[]           $formats       Possible formats used when parsing account
-     * @param RewriterStrategy[] $rewrites      Rewrites used if parsed the raw account number fails
-     * @param boolean            $allowRewrites Flag if rewrites should be allowed when creating account objects
-     * @param boolean            $allowUnknown  Flag if the unknown account format should be used
-     * @param RewriterStrategy[] $preprocessors Preprocessors used to alter account before parsing starts
+     * @param AccountFactoryInterface $decorated Decorated account factory
+     * @param RewriterContainer       $rewriters Rewriters used if parsed the raw account number fails
+     * @param FormatContainer         $formats   Possible formats used when parsing account
      */
     public function __construct(
-        array $formats = [],
-        array $rewrites = null,
-        $allowRewrites = true,
-        $allowUnknown = true,
-        $preprocessors = null
+        AccountFactoryInterface $decorated = null,
+        RewriterContainer $rewriters = null,
+        FormatContainer $formats = null
     ) {
+        $this->decoratedFactory = $decorated ?: new PermissiveFactory;
+        $this->rewriters = $rewriters ?: (new RewriterFactory)->createRewriters();
         $this->formats = $formats ?: (new FormatFactory)->createFormats();
-        $this->rewrites = is_array($rewrites) ? $rewrites : (new RewriterFactory)->createRewrites();
-        $this->allowRewrites = $allowRewrites;
-        $this->unknownFormat = $allowUnknown ? new UnknownFormat : null;
-        $this->preprocessors = is_array($preprocessors) ? $preprocessors : (new RewriterFactory)->createPreprocessors();
     }
 
-    /**
-     * Enable formats
-     *
-     * Please note that formats not listed will be dropped and
-     * can not be recovered.
-     *
-     * @param  string[] $formats List of formats to whitelist
-     * @return null
-     */
-    public function whitelistFormats(array $formats)
+    public function createAccount(string $number): AccountNumber
     {
-        foreach ($this->formats as $formatId => $format) {
-            if (!in_array($formatId, $formats)) {
-                unset($this->formats[$formatId]);
+        $account = $this->decoratedFactory->createAccount($number);
+
+        $format = $this->formats->getFormatFromClearing($account);
+
+        $result = $format->validate($account);
+
+        if ($result->isValid()) {
+            return new BankAccount($format->getBankName(), $account);
+        }
+
+        foreach ($this->rewriters as $rewriter) {
+            $rewrittenAccount = $rewriter->rewrite($account);
+
+            $rewrittenFormat = $this->formats->getFormatFromClearing($rewrittenAccount);
+
+            if ($rewrittenFormat->validate($rewrittenAccount)->isValid()) {
+                return new BankAccount($rewrittenFormat->getBankName(), $rewrittenAccount);
             }
         }
-    }
 
-    /**
-     * Disable formats
-     *
-     * Please note that listed formats will be dropped and
-     * can not be recovered.
-     *
-     * @param  string[] $formats List of formats to blacklist
-     * @return null
-     */
-    public function blacklistFormats(array $formats)
-    {
-        foreach ($formats as $format) {
-            unset($this->formats[$format]);
-        }
-    }
-
-    /**
-     * Create bank account object using number
-     *
-     * @param  string $number
-     * @return AccountNumber
-     * @throws UnableToCreateAccountException If unable to create
-     */
-    public function createAccount($number)
-    {
-        foreach ($this->preprocessors as $preprocessor) {
-            $number = $preprocessor->rewrite($number);
-        }
-
-        $parseMap = [
-            'success' => [],
-            'rewrite' => [],
-        ];
-
-        /** @var ?\Exception $parseException */
-        $parseException = null;
-
-        $rewrites = array_map(
-            function (RewriterStrategy $strategy) use ($number) {
-                return $strategy->rewrite($number);
-            },
-            $this->rewrites
+        throw new InvalidAccountNumberException(
+            "Unable to parse account $number using format {$format->getBankName()}:\n{$result->getMessage()}"
         );
-
-        foreach ($this->formats as $format) {
-            try {
-                $parseMap['success'][] = $format->parse($number);
-                continue;
-            } catch (InvalidAccountNumberException $exception) {
-                if ($exception instanceof InvalidCheckDigitException) {
-                    $parseException = $exception;
-                }
-
-                foreach ($rewrites as $rewrite) {
-                    try {
-                        $parseMap['rewrite'][] = $format->parse($rewrite);
-                    } catch (InvalidAccountNumberException $e) {
-                        continue;
-                    }
-                }
-            }
-        }
-
-        if (count($parseMap['success']) == 1) {
-            return $parseMap['success'][0];
-        }
-
-        if (count($parseMap['success']) > 1) {
-            throw new UnableToCreateAccountException(
-                sprintf(
-                    'Unable to parse account %s, multiple matching formats: %s.',
-                    $number,
-                    implode(
-                        ' and ',
-                        array_map(
-                            function (AccountNumber $account) {
-                                return $account->getBankName();
-                            },
-                            $parseMap['success']
-                        )
-                    )
-                )
-            );
-        }
-
-        if (count($parseMap['rewrite']) == 1 && $this->allowRewrites) {
-            return $parseMap['rewrite'][0];
-        }
-
-        if ($parseMap['rewrite']) {
-            throw new UnableToCreateAccountException(
-                sprintf(
-                    'Unable to parse account %s. You may rewrite number as: %s.',
-                    $number,
-                    implode(
-                        ' or ',
-                        array_map(
-                            function (AccountNumber $account) {
-                                return $account->getNumber();
-                            },
-                            $parseMap['rewrite']
-                        )
-                    )
-                )
-            );
-        }
-
-        if ($parseException) {
-            throw new UnableToCreateAccountException(
-                "Unable to parse account $number: {$parseException->getMessage()}",
-                0,
-                $parseException
-            );
-        }
-
-        if ($this->unknownFormat) {
-            try {
-                return $this->unknownFormat->parse($number);
-            } catch (InvalidAccountNumberException $exception) {
-                // ignore failure to parse unknown account
-            }
-        }
-
-        throw new UnableToCreateAccountException("Unable to parse account $number.");
     }
 }
