@@ -13,7 +13,7 @@ class AmfaFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9660", "", "111113", "0");
+        return new \byrokrat\banking\UndefinedAccount("", "9660", "", "111113", "0");
     }
 
     public function testGetBankName()

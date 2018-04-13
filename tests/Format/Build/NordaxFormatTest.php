@@ -13,7 +13,7 @@ class NordaxFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9640", "", "111113", "7");
+        return new \byrokrat\banking\UndefinedAccount("", "9640", "", "111113", "7");
     }
 
     public function testGetBankName()

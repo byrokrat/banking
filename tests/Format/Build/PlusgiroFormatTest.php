@@ -13,7 +13,7 @@ class PlusgiroFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9500", "", "210918", "9");
+        return new \byrokrat\banking\UndefinedAccount("", "9500", "", "210918", "9");
     }
 
     public function testGetBankName()

@@ -54,6 +54,7 @@ class PermissiveFactory implements AccountFactoryInterface
         }
 
         return new UndefinedAccount(
+            $number,
             $parts[self::CLEARING],
             $parts[self::CLEARING_CHECK],
             $parts[self::SERIAL],

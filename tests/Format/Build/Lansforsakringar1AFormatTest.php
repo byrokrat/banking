@@ -13,7 +13,7 @@ class Lansforsakringar1AFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("3400", "", "111112", "8");
+        return new \byrokrat\banking\UndefinedAccount("", "3400", "", "111112", "8");
     }
 
     public function testGetBankName()

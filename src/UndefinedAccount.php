@@ -10,6 +10,11 @@ namespace byrokrat\banking;
 class UndefinedAccount implements AccountNumber
 {
     /**
+     * @var string
+     */
+    private $raw;
+
+    /**
      * @var string Account clearing number
      */
     private $clearing;
@@ -29,8 +34,9 @@ class UndefinedAccount implements AccountNumber
      */
     private $checkDigit;
 
-    public function __construct(string $clearing, string $clearingCheck, string $serial, string $check)
+    public function __construct(string $raw, string $clearing, string $clearingCheck, string $serial, string $check)
     {
+        $this->raw = $raw;
         $this->clearing = $clearing;
         $this->clearingCheckDigit = $clearingCheck;
         $this->serial = $serial;
@@ -40,6 +46,11 @@ class UndefinedAccount implements AccountNumber
     public function getBankName(): string
     {
         return '';
+    }
+
+    public function getRawNumber(): string
+    {
+        return $this->raw;
     }
 
     public function getNumber(): string

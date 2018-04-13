@@ -12,6 +12,7 @@ class SerialTrimRewriterTest extends \PHPUnit\Framework\TestCase
     {
         $number = $this->prophesize(AccountNumber::CLASS);
 
+        $number->getRawNumber()->willReturn('raw');
         $number->getClearingNumber()->willReturn('1');
         $number->getClearingCheckDigit()->willReturn('2');
         $number->getSerialNumber()->willReturn('0003');
@@ -27,6 +28,7 @@ class SerialTrimRewriterTest extends \PHPUnit\Framework\TestCase
     {
         $number = $this->prophesize(AccountNumber::CLASS);
 
+        $number->getRawNumber()->willReturn('raw');
         $number->getClearingNumber()->willReturn('');
         $number->getClearingCheckDigit()->willReturn('');
         $number->getSerialNumber()->willReturn('0012345');
@@ -43,6 +45,7 @@ class SerialTrimRewriterTest extends \PHPUnit\Framework\TestCase
     {
         $number = $this->prophesize(AccountNumber::CLASS);
 
+        $number->getRawNumber()->willReturn('raw');
         $number->getClearingNumber()->willReturn('');
         $number->getClearingCheckDigit()->willReturn('');
         $number->getSerialNumber()->willReturn('003');

@@ -13,7 +13,7 @@ class Riksgalden1FormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9880", "", "111113", "6");
+        return new \byrokrat\banking\UndefinedAccount("", "9880", "", "111113", "6");
     }
 
     public function testGetBankName()

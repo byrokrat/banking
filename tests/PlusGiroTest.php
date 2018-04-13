@@ -13,7 +13,15 @@ class PlusGiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_PLUSGIRO,
-            (new PlusGiro('', ''))->getBankName()
+            (new PlusGiro('', '', ''))->getBankName()
+        );
+    }
+
+    public function testGetRawNumber()
+    {
+        $this->assertSame(
+            'raw',
+            (new PlusGiro('raw', '', ''))->getRawNumber()
         );
     }
 
@@ -21,7 +29,7 @@ class PlusGiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '0000',
-            (new PlusGiro('', ''))->getClearingNumber()
+            (new PlusGiro('', '', ''))->getClearingNumber()
         );
     }
 
@@ -29,7 +37,7 @@ class PlusGiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '11',
-            (new PlusGiro('11', ''))->getSerialNumber()
+            (new PlusGiro('', '11', ''))->getSerialNumber()
         );
     }
 
@@ -37,7 +45,7 @@ class PlusGiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '123456-7',
-            (new PlusGiro('123456', '7'))->getNumber()
+            (new PlusGiro('', '123456', '7'))->getNumber()
         );
     }
 }

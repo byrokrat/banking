@@ -13,7 +13,7 @@ class Swedbank2FormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("8214", "9", "923472612", "4");
+        return new \byrokrat\banking\UndefinedAccount("", "8214", "9", "923472612", "4");
     }
 
     public function testGetBankName()

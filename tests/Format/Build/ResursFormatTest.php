@@ -13,7 +13,7 @@ class ResursFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9280", "", "111112", "0");
+        return new \byrokrat\banking\UndefinedAccount("", "9280", "", "111112", "0");
     }
 
     public function testGetBankName()

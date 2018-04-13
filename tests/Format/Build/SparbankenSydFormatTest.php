@@ -13,7 +13,7 @@ class SparbankenSydFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9570", "", "123456789", "7");
+        return new \byrokrat\banking\UndefinedAccount("", "9570", "", "123456789", "7");
     }
 
     public function testGetBankName()

@@ -13,6 +13,11 @@ interface AccountNumber
     public function getBankName(): string;
 
     /**
+     * Get the raw number
+     */
+    public function getRawNumber(): string;
+
+    /**
      * Get account number as a formatted string
      */
     public function getNumber(): string;

@@ -23,7 +23,7 @@ Understands account number formats as released by [BGC](https://www.bankgirot.se
 ## Installation
 
 ```shell
-composer require byrokrat/banking:^1.0
+composer require byrokrat/banking:^2.0
 ```
 
 ## Usage
@@ -121,6 +121,17 @@ of bank identifiers see [BankNames](/src/BankNames.php).
 ```php
 echo $account->getBankName();
 echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_SEB;
+```
+
+Get the raw and unformatted number using `getRawNumber()`.
+
+<!--
+    @example getRawNumber
+    @include factory
+    @expectOutput "/50001111116$/"
+-->
+```php
+echo $account->getRawNumber();
 ```
 
 Get number using `getNumber()` or PHPs magical `__tostring()` method.

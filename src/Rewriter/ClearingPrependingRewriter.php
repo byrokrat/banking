@@ -25,6 +25,7 @@ class ClearingPrependingRewriter implements RewriterInterface
     public function rewrite(AccountNumber $account): AccountNumber
     {
         return new UndefinedAccount(
+            $account->getRawNumber(),
             $this->clearing,
             '',
             $account->getClearingNumber() . $account->getClearingCheckDigit() . $account->getSerialNumber(),

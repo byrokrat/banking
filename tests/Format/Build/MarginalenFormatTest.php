@@ -13,7 +13,7 @@ class MarginalenFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9230", "", "111112", "1");
+        return new \byrokrat\banking\UndefinedAccount("", "9230", "", "111112", "1");
     }
 
     public function testGetBankName()

@@ -13,7 +13,7 @@ class LanOchSparFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9630", "", "111112", "5");
+        return new \byrokrat\banking\UndefinedAccount("", "9630", "", "111112", "5");
     }
 
     public function testGetBankName()

@@ -15,6 +15,7 @@ class ClearingCheckDigitRewriter implements RewriterInterface
     public function rewrite(AccountNumber $account): AccountNumber
     {
         return new UndefinedAccount(
+            $account->getRawNumber(),
             $account->getClearingNumber(),
             (string)substr($account->getSerialNumber(), 0, 1),
             (string)substr($account->getSerialNumber(), 1),

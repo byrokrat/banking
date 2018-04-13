@@ -13,7 +13,7 @@ class AvanzaFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9550", "", "111113", "8");
+        return new \byrokrat\banking\UndefinedAccount("", "9550", "", "111113", "8");
     }
 
     public function testGetBankName()

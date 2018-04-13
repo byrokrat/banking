@@ -29,6 +29,7 @@ class SerialTrimRewriter implements RewriterInterface
         }
 
         return new UndefinedAccount(
+            $account->getRawNumber(),
             $account->getClearingNumber(),
             $account->getClearingCheckDigit(),
             str_pad(ltrim($account->getSerialNumber(), '0'), $this->minimalLength, '0', STR_PAD_LEFT),

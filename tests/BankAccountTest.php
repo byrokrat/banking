@@ -4,63 +4,51 @@ declare(strict_types = 1);
 
 namespace byrokrat\banking;
 
+use Prophecy\Argument;
+
 class BankAccountTest extends \PHPUnit\Framework\TestCase
 {
-    public function testSimpleGetters()
+    public function testBankName()
     {
-        $account = new BankAccount('bank', new UndefinedAccount('clear', 'clearCheck', 'serial', 'check'));
-
         $this->assertSame(
             'bank',
-            $account->getBankName()
-        );
-
-        $this->assertSame(
-            'clear',
-            $account->getClearingNumber()
-        );
-
-        $this->assertSame(
-            'clearCheck',
-            $account->getClearingCheckDigit()
-        );
-
-        $this->assertSame(
-            'serial',
-            $account->getSerialNumber()
-        );
-
-        $this->assertSame(
-            'check',
-            $account->getCheckDigit()
+            (new BankAccount('bank', $this->createMock(AccountNumber::CLASS)))->getBankName()
         );
     }
 
-    public function testGetNumber()
+    public function testDecoration()
     {
         $decorated = $this->prophesize(AccountNumber::CLASS);
-        $decorated->getNumber()->willReturn('foobar');
 
-        $this->assertSame(
-            'foobar',
-            (new BankAccount('', $decorated->reveal()))->getNumber()
-        );
+        $decorated->getRawNumber()->willReturn('raw');
+        $decorated->getNumber()->willReturn('formatted');
+        $decorated->getClearingNumber()->willReturn('clear');
+        $decorated->getClearingCheckDigit()->willReturn('clearCheck');
+        $decorated->getSerialNumber()->willReturn('serial');
+        $decorated->getCheckDigit()->willReturn('check');
+        $decorated->get16()->willReturn('16');
+
+        $account = new BankAccount('bank', $decorated->reveal());
+
+        $this->assertSame('bank', $account->getBankName());
+        $this->assertSame('raw', $account->getRawNumber());
+        $this->assertSame('formatted', $account->getNumber());
+        $this->assertSame('clear', $account->getClearingNumber());
+        $this->assertSame('clearCheck', $account->getClearingCheckDigit());
+        $this->assertSame('serial', $account->getSerialNumber());
+        $this->assertSame('check', $account->getCheckDigit());
+        $this->assertSame('16', $account->get16());
     }
 
-    public function testGet16()
+    public function testEqualsFailIfDifferentBank()
     {
         $decorated = $this->prophesize(AccountNumber::CLASS);
-        $decorated->get16()->willReturn('foobar');
 
-        $this->assertSame(
-            'foobar',
-            (new BankAccount('', $decorated->reveal()))->get16()
-        );
-    }
+        $decorated->equals(Argument::any(), false)->willReturn(true);
+        $decorated->getBankName()->willReturn('');
 
-    public function testEquals()
-    {
-        $decorated = new UndefinedAccount('', '', '', '');
+        $decorated = $decorated->reveal();
+
         $this->assertFalse(
             (new BankAccount('bar', $decorated))->equals($decorated),
             'Accounts should not be equal as the bank name differ'

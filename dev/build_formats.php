@@ -22,7 +22,7 @@ foreach ($defs['formats'] as $data) {
 echo "Validating that there are no clearing number collisions > ";
 foreach (range(1000, 9999) as $clearing) {
     $formatFound = false;
-    $account = new UndefinedAccount((string)$clearing, '', '' ,'');
+    $account = new UndefinedAccount('', (string)$clearing, '', '' ,'');
     foreach ($createdFormats as $format) {
         if ($format->isValidClearing($account)) {
             if ($formatFound) {

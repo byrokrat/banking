@@ -13,7 +13,7 @@ class SebFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("5102", "", "015875", "1");
+        return new \byrokrat\banking\UndefinedAccount("", "5102", "", "015875", "1");
     }
 
     public function testGetBankName()

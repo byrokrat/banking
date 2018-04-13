@@ -13,7 +13,7 @@ class MedMeraFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9650", "", "111111", "2");
+        return new \byrokrat\banking\UndefinedAccount("", "9650", "", "111111", "2");
     }
 
     public function testGetBankName()

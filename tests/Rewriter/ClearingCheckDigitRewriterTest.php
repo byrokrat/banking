@@ -12,6 +12,7 @@ class ClearingCheckDigitRewriterTest extends \PHPUnit\Framework\TestCase
     {
         $number = $this->prophesize(AccountNumber::CLASS);
 
+        $number->getRawNumber()->willReturn('raw');
         $number->getClearingNumber()->willReturn('1');
         $number->getClearingCheckDigit()->willReturn('');
         $number->getSerialNumber()->willReturn('23');
@@ -27,6 +28,7 @@ class ClearingCheckDigitRewriterTest extends \PHPUnit\Framework\TestCase
     {
         $number = $this->prophesize(AccountNumber::CLASS);
 
+        $number->getRawNumber()->willReturn('raw');
         $number->getClearingNumber()->willReturn('1');
         $number->getClearingCheckDigit()->willReturn('');
         $number->getSerialNumber()->willReturn('');

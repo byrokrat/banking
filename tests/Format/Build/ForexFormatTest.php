@@ -13,7 +13,7 @@ class ForexFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9400", "", "111112", "8");
+        return new \byrokrat\banking\UndefinedAccount("", "9400", "", "111112", "8");
     }
 
     public function testGetBankName()

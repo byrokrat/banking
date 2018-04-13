@@ -13,7 +13,7 @@ class HandelsbankenFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("6000", "", "30128669", "8");
+        return new \byrokrat\banking\UndefinedAccount("", "6000", "", "30128669", "8");
     }
 
     public function testGetBankName()

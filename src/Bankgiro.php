@@ -9,9 +9,9 @@ namespace byrokrat\banking;
  */
 class Bankgiro extends UndefinedAccount
 {
-    public function __construct(string $serial, string $check)
+    public function __construct(string $raw, string $serial, string $check)
     {
-        parent::__construct('0000', '', $serial, $check);
+        parent::__construct($raw, '0000', '', $serial, $check);
     }
 
     public function getBankName(): string

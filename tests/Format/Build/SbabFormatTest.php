@@ -13,7 +13,7 @@ class SbabFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9250", "", "111112", "5");
+        return new \byrokrat\banking\UndefinedAccount("", "9250", "", "111112", "5");
     }
 
     public function testGetBankName()

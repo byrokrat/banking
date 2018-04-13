@@ -30,6 +30,11 @@ class BankAccount implements AccountNumber
         return $this->bankName;
     }
 
+    public function getRawNumber(): string
+    {
+        return $this->decorated->getRawNumber();
+    }
+
     public function getNumber(): string
     {
         return $this->decorated->getNumber();

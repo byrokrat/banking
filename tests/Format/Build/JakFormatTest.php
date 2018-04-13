@@ -13,7 +13,7 @@ class JakFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9670", "", "111113", "2");
+        return new \byrokrat\banking\UndefinedAccount("", "9670", "", "111113", "2");
     }
 
     public function testGetBankName()

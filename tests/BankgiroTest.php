@@ -13,7 +13,15 @@ class BankgiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_BANKGIRO,
-            (new Bankgiro('', ''))->getBankName()
+            (new Bankgiro('', '', ''))->getBankName()
+        );
+    }
+
+    public function testGetRawNumber()
+    {
+        $this->assertSame(
+            'raw',
+            (new Bankgiro('raw', '', ''))->getRawNumber()
         );
     }
 
@@ -21,7 +29,7 @@ class BankgiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '0000',
-            (new Bankgiro('', ''))->getClearingNumber()
+            (new Bankgiro('', '', ''))->getClearingNumber()
         );
     }
 
@@ -29,7 +37,7 @@ class BankgiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '11',
-            (new Bankgiro('11', ''))->getSerialNumber()
+            (new Bankgiro('', '11', ''))->getSerialNumber()
         );
     }
 
@@ -37,7 +45,7 @@ class BankgiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '123-4567',
-            (new Bankgiro('123456', '7'))->getNumber()
+            (new Bankgiro('', '123456', '7'))->getNumber()
         );
     }
 
@@ -45,7 +53,7 @@ class BankgiroTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '1234-5678',
-            (new Bankgiro('1234567', '8'))->getNumber()
+            (new Bankgiro('', '1234567', '8'))->getNumber()
         );
     }
 }

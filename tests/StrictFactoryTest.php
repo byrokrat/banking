@@ -20,7 +20,7 @@ class StrictFactoryTest extends \PHPUnit\Framework\TestCase
     public function testSimpleNumber()
     {
         $this->assertEquals(
-            new UndefinedAccount('4444', '', '51111', '2'),
+            new UndefinedAccount('4444511112', '4444', '', '51111', '2'),
             (new StrictFactory)->createAccount('4444511112')
         );
     }
@@ -28,7 +28,7 @@ class StrictFactoryTest extends \PHPUnit\Framework\TestCase
     public function testClearingNumberSeparator()
     {
         $this->assertEquals(
-            new UndefinedAccount('4444', '', '51111', '2'),
+            new UndefinedAccount('4444,511112', '4444', '', '51111', '2'),
             (new StrictFactory)->createAccount('4444,511112')
         );
     }
@@ -36,7 +36,7 @@ class StrictFactoryTest extends \PHPUnit\Framework\TestCase
     public function testClearingNumberCheckDigitSeparator()
     {
         $this->assertEquals(
-            new UndefinedAccount('4444', '5', '1111', '2'),
+            new UndefinedAccount('44445,11112', '4444', '5', '1111', '2'),
             (new StrictFactory)->createAccount('44445,11112')
         );
     }

@@ -13,7 +13,7 @@ class LandshypotekFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9390", "", "111113", "3");
+        return new \byrokrat\banking\UndefinedAccount("", "9390", "", "111113", "3");
     }
 
     public function testGetBankName()

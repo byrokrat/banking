@@ -13,7 +13,7 @@ class NordeaPersonalFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("3300", "", "111111111", "6");
+        return new \byrokrat\banking\UndefinedAccount("", "3300", "", "111111111", "6");
     }
 
     public function testGetBankName()

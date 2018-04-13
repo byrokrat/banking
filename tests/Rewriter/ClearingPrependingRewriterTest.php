@@ -12,6 +12,7 @@ class ClearingPrependingRewriterTest extends \PHPUnit\Framework\TestCase
     {
         $number = $this->prophesize(AccountNumber::CLASS);
 
+        $number->getRawNumber()->willReturn('raw');
         $number->getClearingNumber()->willReturn('2');
         $number->getClearingCheckDigit()->willReturn('3');
         $number->getSerialNumber()->willReturn('4');

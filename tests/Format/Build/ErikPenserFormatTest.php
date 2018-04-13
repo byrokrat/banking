@@ -13,7 +13,7 @@ class ErikPenserFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9590", "", "111113", "5");
+        return new \byrokrat\banking\UndefinedAccount("", "9590", "", "111113", "5");
     }
 
     public function testGetBankName()

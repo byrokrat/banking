@@ -13,7 +13,7 @@ class SantanderFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9460", "", "111112", "9");
+        return new \byrokrat\banking\UndefinedAccount("", "9460", "", "111112", "9");
     }
 
     public function testGetBankName()

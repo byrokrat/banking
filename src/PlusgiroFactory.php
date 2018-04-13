@@ -29,7 +29,7 @@ class PlusgiroFactory implements AccountFactoryInterface
             throw new InvalidAccountNumberException("Invalid PlusGiro account number structure");
         }
 
-        $account = new PlusGiro($matches[1], $matches[2]);
+        $account = new PlusGiro($number, $matches[1], $matches[2]);
 
         $result = $this->validator->validate($account);
 

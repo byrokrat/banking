@@ -29,7 +29,7 @@ class BankgiroFactory implements AccountFactoryInterface
             throw new InvalidAccountNumberException("Invalid bankgiro account number structure");
         }
 
-        $account = new Bankgiro($matches[1].$matches[2], $matches[3]);
+        $account = new Bankgiro($number, $matches[1].$matches[2], $matches[3]);
 
         $result = $this->validator->validate($account);
 

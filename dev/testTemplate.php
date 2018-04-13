@@ -12,7 +12,7 @@ class <?= $data['classname'] ?>Test extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("<?= implode('", "', $data['example']) ?>");
+        return new \byrokrat\banking\UndefinedAccount("", "<?= implode('", "', $data['example']) ?>");
     }
 
     public function testGetBankName()

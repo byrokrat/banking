@@ -13,7 +13,7 @@ class SkandiabankenFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("9150", "", "111113", "4");
+        return new \byrokrat\banking\UndefinedAccount("", "9150", "", "111113", "4");
     }
 
     public function testGetBankName()
