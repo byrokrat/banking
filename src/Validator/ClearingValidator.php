@@ -37,14 +37,18 @@ class ClearingValidator implements Validator
      */
     public function validate(AccountNumber $number)
     {
-        $clearing = intval($number->getClearingNumber());
+       $clearing = $number->getClearingNumber();
+       if(!$this->validateClearingNumber($clearing)) {
+          throw new InvalidClearingNumberException("Invalid clearing number $clearing in $number");
+       }
+    }
 
-        foreach ($this->clearingRanges as $clearingRange) {
-            if ($clearing >= $clearingRange[0] && $clearing <= $clearingRange[1]) {
-                return;
-            }
-        }
-
-        throw new InvalidClearingNumberException("Invalid clearing number $clearing in $number");
+    public function validateClearingNumber($clearing) {
+       foreach ($this->clearingRanges as $clearingRange) {
+          if ($clearing >= $clearingRange[0] && $clearing <= $clearingRange[1]) {
+             return true;
+          }
+       }
+       return false;
     }
 }

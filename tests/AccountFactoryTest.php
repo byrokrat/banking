@@ -2,6 +2,8 @@
 
 namespace byrokrat\banking;
 
+use byrokrat\banking\Exception\UnableToCreateAccountException;
+use byrokrat\banking\Validator\ClearingValidator;
 use Prophecy\Argument;
 
 /**
@@ -90,6 +92,7 @@ class AccountFactoryTest extends \PHPUnit\Framework\TestCase
         $format = $this->prophesize('byrokrat\banking\Format');
         $format->parse('NOT-VALID')->willThrow('byrokrat\banking\Exception\InvalidAccountNumberException');
         $format->parse('VALID')->willReturn($account);
+        $format->get_validator(ClearingValidator::class)->willReturn(false);
 
         $rewriter = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
         $rewriter->rewrite('NOT-VALID')->willReturn('VALID');
@@ -137,6 +140,7 @@ class AccountFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $format = $this->prophesize('byrokrat\banking\Format');
         $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidClearingNumberException');
+        $format->get_validator(ClearingValidator::class)->willReturn(false);
 
         $factory = new AccountFactory([$format->reveal()], [], true, true);
 
@@ -146,10 +150,20 @@ class AccountFactoryTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+
+    public function testWrongLength()
+    {
+        $factory = new AccountFactory;
+
+        $this->setExpectedException(UnableToCreateAccountException::class);
+        $factory->createAccount('3300,123456789');
+    }
+
     public function testIgnoringUnknownWhenCheckDigitFails()
     {
         $format = $this->prophesize('byrokrat\banking\Format');
         $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidCheckDigitException');
+        $format->get_validator(ClearingValidator::class)->willReturn(false);
 
         $factory = new AccountFactory([$format->reveal()], [], true, true);
 

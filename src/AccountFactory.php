@@ -2,11 +2,13 @@
 
 namespace byrokrat\banking;
 
+use byrokrat\banking\Exception\InvalidClearingNumberException;
 use byrokrat\banking\Rewriter\RewriterStrategy;
 use byrokrat\banking\Rewriter\RewriterFactory;
 use byrokrat\banking\Exception\UnableToCreateAccountException;
 use byrokrat\banking\Exception\InvalidAccountNumberException;
 use byrokrat\banking\Exception\InvalidCheckDigitException;
+use byrokrat\banking\Validator\ClearingValidator;
 
 /**
  * Account number factory
@@ -128,6 +130,15 @@ class AccountFactory
             } catch (InvalidAccountNumberException $exception) {
                 if ($exception instanceof InvalidCheckDigitException) {
                     $parseException = $exception;
+                }
+
+                if(!($exception instanceof InvalidClearingNumberException)) {
+                   $clearing_validator = $format->get_validator(ClearingValidator::class);
+                   if($clearing_validator) {
+                      if($clearing_validator->validateClearingNumber($number)) {
+                         $parseMap['exception'] = $exception;
+                      }
+                   }
                 }
 
                 foreach ($rewrites as $rewrite) {
