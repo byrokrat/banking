@@ -67,7 +67,7 @@ echo $accountFactory->createAccount('5000,000001111116')->equals($account);
 
 For a factory that only allows digits and correctly placed clearing-serial
 delimiters (`,`) pass an instance of `StrictFactory` as the first argument to
-`AccountFactory::__construct().`
+`AccountFactory::__construct()`.
 
 <!--
     @example StrictFactory
@@ -82,12 +82,12 @@ $accountFactory->createAccount('5000-1111116');
 
 ### Rewrites
 
-When parsing an account number fails the standard factory attempts to rewrite
+When parsing an account number fails the standard factory attempts rewriting it
 to see if a valid account number can be produced.
 
 1. It tries to interpret the first digit of the serial number as a clearing check digit.
 1. It tries to trim left side ceros from the serial number.
-1. It tries to append the clearing number `3300` to se if the account number is
+1. It tries to append the clearing number `3300` to see if the account number is
    a valid Nordea personal account number.
 
 If any of the rewrites (or any combination of rewrites) is successful the rewritten
@@ -130,7 +130,7 @@ echo $accountFactory->createAccount('81059,744202466')->equals($swedbank);
 > reason it is a good habit to always use a comma to separate the clearing and
 > serial numbers.
 
-### Error messages
+### Catching parser errors
 
 When parsing fails an exception is thrown. Inspect the exception message for an
 in-depth description of the parser stages and where the error occurred.
@@ -156,96 +156,6 @@ Unable to parse account 8105-8,744202464 using format Swedbank:
  * [FAIL] Invalid check digit 4, expected 6
  * [FAIL] Invalid clearing number check digit 8, expected 9
  * Valid serial length 8
-```
-
-### The account number object
-
-Created account objects implement the [AccountNumber](/src/AccountNumber.php)
-interface, which defines the following api.
-
-#### `getBankName()`
-
-Gets the name of the bank a number belongs to. (For a list of bank identifiers
-see [BankNames](/src/BankNames.php).)
-
-<!--
-    @example getBankName
-    @include factory
-    @expectOutput "/SEB1$/"
--->
-```php
-echo $account->getBankName();
-echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_SEB;
-```
-
-#### `getRawNumber()`
-
-Gets the raw and unformatted number.
-
-<!--
-    @example getRawNumber
-    @include factory
-    @expectOutput "/50001111116$/"
--->
-```php
-echo $account->getRawNumber();
-```
-
-#### `getNumber()`
-
-Gets a formatted permutation of account number. Using PHPs magical `__tostring()`
-method calls `getNumber()` internaly.
-
-<!--
-    @example getNumber
-    @include factory
-    @expectOutput "/5000,111 111-65000,111 111-6$/"
--->
-```php
-echo $account->getNumber();
-echo $account;
-```
-
-#### `get16()`
-
-Gets the generic 16 digit format as defined by BGC.
-
-<!--
-    @example get16
-    @include factory
-    @expectOutput "/5000000001111116$/"
--->
-```php
-echo $account->get16();
-```
-
-#### `getClearingNumber()`, `getClearingCheckDigit()`, `getSerialNumber()` and `getCheckDigit()`
-
-Gets the extracted account number parts.
-
-<!--
-    @example parts
-    @include factory
-    @expectOutput "/50001111116$/"
--->
-```php
-echo $account->getClearingNumber();
-echo $account->getClearingCheckDigit();
-echo $account->getSerialNumber();
-echo $account->getCheckDigit();
-```
-
-#### `equals()`
-
-Validates that two account objects represents the same number.
-
-<!--
-    @example equals
-    @include factory
-    @expectOutput "/1$/"
--->
-```php
-echo $account->equals($account);
 ```
 
 ### Parsing Bankgiro and PlusGiro accounts
@@ -275,4 +185,94 @@ echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_PLUSGIRO;
 ```php
 $account = (new \byrokrat\banking\BankgiroFactory)->createAccount('58056201');
 echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_BANKGIRO;
+```
+
+## The AccountNumber API
+
+Created account objects implement the [AccountNumber](/src/AccountNumber.php)
+interface, which defines the following api.
+
+### `getBankName()`
+
+Gets the name of the bank a number belongs to (for a list of bank identifiers
+see [BankNames](/src/BankNames.php)).
+
+<!--
+    @example getBankName
+    @include factory
+    @expectOutput "/SEB1$/"
+-->
+```php
+echo $account->getBankName();
+echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_SEB;
+```
+
+### `getRawNumber()`
+
+Gets the raw and unformatted number.
+
+<!--
+    @example getRawNumber
+    @include factory
+    @expectOutput "/50001111116$/"
+-->
+```php
+echo $account->getRawNumber();
+```
+
+### `getNumber()`
+
+Gets a formatted permutation of account number. Using PHPs magical `__tostring()`
+method calls `getNumber()` internaly.
+
+<!--
+    @example getNumber
+    @include factory
+    @expectOutput "/5000,111 111-65000,111 111-6$/"
+-->
+```php
+echo $account->getNumber();
+echo $account;
+```
+
+### `get16()`
+
+Gets the generic 16 digit format as defined by BGC.
+
+<!--
+    @example get16
+    @include factory
+    @expectOutput "/5000000001111116$/"
+-->
+```php
+echo $account->get16();
+```
+
+### `getClearingNumber()`, `getClearingCheckDigit()`, `getSerialNumber()` and `getCheckDigit()`
+
+Gets the extracted account number parts.
+
+<!--
+    @example parts
+    @include factory
+    @expectOutput "/50001111116$/"
+-->
+```php
+echo $account->getClearingNumber();
+echo $account->getClearingCheckDigit();
+echo $account->getSerialNumber();
+echo $account->getCheckDigit();
+```
+
+### `equals()`
+
+Validates that two account objects represents the same number.
+
+<!--
+    @example equals
+    @include factory
+    @expectOutput "/1$/"
+-->
+```php
+echo $account->equals($account);
 ```
