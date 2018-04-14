@@ -5,23 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2.0.0 - TBD
 
-### Added
-
-- Nothing.
-
 ### Changed
 
-- No longer falls back on `Unknown` format when a clearing number matches
+- No longer falls back on `Unknown` format when a clearing number matches.
 - Bankgiro and PlusGiro accounts can no longer be created through `AccountFactory`.
-  Use `BankgiroFactory` and `PlusgiroFactory` instead
-- Smarter rewrites with rewriter combinations
-- Improved error messages when parsing an account number fails
-- Renaming and refactoring throughout the code base
-- Require php `7.1`
+  Use `BankgiroFactory` and `PlusgiroFactory` instead.
+- Smarter rewrites with rewriter combinations.
+- Improved error messages when parsing an account number fails.
+- Renaming and refactoring throughout the code base.
+- Require php `7.1`.
 
 ### Removed
 
-- Preprocessors
+- Preprocessors.
 
 ## 1.4.1 - 2018-04-12
 
