@@ -27,10 +27,29 @@ class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testExceptionOnInvalidStructure()
+    public function invalidStructureProvider()
+    {
+        return [
+            ['5805-6201'],
+            ['-1'],
+            ['-12'],
+            ['1-'],
+            ['1'],
+            ['1-12'],
+            ['12345678-1'],
+            ['1234567-12'],
+            ['234,9048-0'],
+            ['00000000000000018'],
+        ];
+    }
+
+    /**
+     * @dataProvider invalidStructureProvider
+     */
+    public function testExceptionOnInvalidStructure(string $raw)
     {
         $this->expectException(InvalidAccountNumberException::CLASS);
-        (new PlusgiroFactory)->createAccount('5805-6201');
+        (new PlusgiroFactory)->createAccount($raw);
     }
 
     public function testExceptionOnInvalidCheckDigit()
