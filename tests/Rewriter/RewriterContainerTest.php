@@ -27,8 +27,8 @@ class RewriterContainerTest extends \PHPUnit\Framework\TestCase
             [
                 new ChainingRewriter($A),
                 new ChainingRewriter($B),
-                new ChainingRewriter($A, $B),
                 new ChainingRewriter($B, $A),
+                new ChainingRewriter($A, $B),
             ],
             iterator_to_array((new RewriterContainer($A, $B))->getIterator())
         );

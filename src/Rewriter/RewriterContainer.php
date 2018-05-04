@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace byrokrat\banking\Rewriter;
 
-use drupol\phpermutations\Generators\Permutations;
-
 /**
  * Container of rewriters
  */
@@ -23,13 +21,13 @@ class RewriterContainer implements \IteratorAggregate
 
     /**
      * Generates all possible permutations of all possible lenghts of the rewriter set
+     *
+     * @return \Traversable & iterable<ChainingRewriter>
      */
     public function getIterator(): \Traversable
     {
-        foreach (range(1, count($this->rewriters)) as $length) {
-            foreach ((new Permutations($this->rewriters, $length))->generator() as $permutation) {
-                yield new ChainingRewriter(...$permutation);
-            }
+        foreach (Permutator::getPermutations($this->rewriters) as $permutation) {
+            yield new ChainingRewriter(...$permutation);
         }
     }
 }

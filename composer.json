@@ -18,7 +18,6 @@
     },
     "require": {
         "php": ">=7.1",
-        "byrokrat/id": "~1.0",
-        "drupol/phpermutations": "^1.3"
+        "byrokrat/id": "~1.0"
     }
 }
