@@ -37,7 +37,7 @@ used to create [AccountNumber](/src/AccountNumber.php) objects.
 ```php
 $accountFactory = new \byrokrat\banking\AccountFactory;
 $account = $accountFactory->createAccount('50001111116');
-// Prints a formatted version of the validated number (5000,111 111-6)
+// Prints a formatted version of the validated number (5000,111111-6)
 echo $account->getNumber();
 ```
 
