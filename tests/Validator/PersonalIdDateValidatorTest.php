@@ -6,7 +6,7 @@ namespace byrokrat\banking\Validator;
 
 use byrokrat\banking\AccountNumber;
 
-class PersonalIdValidatorTest extends \PHPUnit\Framework\TestCase
+class PersonalIdDateValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidPersonalId()
     {
@@ -16,19 +16,7 @@ class PersonalIdValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Success::CLASS,
-            (new PersonalIdValidator)->validate($number->reveal())
-        );
-    }
-
-    public function testInvalidCheckDigit()
-    {
-        $number = $this->prophesize(AccountNumber::CLASS);
-        $number->getSerialNumber()->willReturn('841128394');
-        $number->getCheckDigit()->willReturn('2');
-
-        $this->assertInstanceOf(
-            Failure::CLASS,
-            (new PersonalIdValidator)->validate($number->reveal())
+            (new PersonalIdDateValidator)->validate($number->reveal())
         );
     }
 
@@ -40,7 +28,7 @@ class PersonalIdValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new PersonalIdValidator)->validate($number->reveal())
+            (new PersonalIdDateValidator)->validate($number->reveal())
         );
     }
 }

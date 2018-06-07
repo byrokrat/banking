@@ -236,7 +236,7 @@
             "classname": "NordeaPersonalFormat",
             "bank": "BANK_NORDEA",
             "clearing-validator": "ClearingValidator([[3300, 3300], [3782, 3782]])",
-            "additional-validators": ["PersonalIdValidator", "SerialLengthValidator(9, 9)", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType2Validator", "PersonalIdDateValidator", "SerialLengthValidator(9, 9)", "NoClearingCheckDigitValidator"],
             "example": ["3300", "", "111111111", "6"]
         },
         {

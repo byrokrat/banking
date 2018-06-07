@@ -29,7 +29,8 @@ class NordeaPersonalFormat implements \byrokrat\banking\Format\FormatInterface
     protected function getAdditionalValidators(): array
     {
         return [
-            new \byrokrat\banking\Validator\PersonalIdValidator,
+            new \byrokrat\banking\Validator\CheckDigitType2Validator,
+            new \byrokrat\banking\Validator\PersonalIdDateValidator,
             new \byrokrat\banking\Validator\SerialLengthValidator(9, 9),
             new \byrokrat\banking\Validator\NoClearingCheckDigitValidator,
         ];

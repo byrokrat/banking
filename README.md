@@ -23,6 +23,8 @@ parts of the account number and to identify the bank the number belongs to.
 composer require byrokrat/banking:^2.0
 ```
 
+> Banking requires php `>=7.1` but has no other dependencies.
+
 ## Usage
 
 The main entry point is the [AccountFactory](/src/AccountFactoryInterface.php) that is
