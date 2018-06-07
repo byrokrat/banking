@@ -1,170 +1,119 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking;
 
-use Prophecy\Argument;
+use byrokrat\banking\Format\FormatInterface;
+use byrokrat\banking\Format\FormatContainer;
+use byrokrat\banking\Rewriter\RewriterInterface;
+use byrokrat\banking\Rewriter\RewriterContainer;
+use byrokrat\banking\Validator\Failure;
+use byrokrat\banking\Validator\Success;
+use byrokrat\banking\Exception\InvalidAccountNumberException;
 
 /**
  * @covers \byrokrat\banking\AccountFactory
  */
 class AccountFactoryTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCreateAccount()
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testInit()
     {
-        $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
+        $decoratedFactory = $this->prophesize(AccountFactoryInterface::CLASS);
+        $rewriters = $this->prophesize(RewriterContainer::CLASS);
+        $formats = $this->prophesize(FormatContainer::CLASS);
 
-        $format = $this->prophesize('byrokrat\banking\Format');
-        $format->parse('VALID')->willReturn($account);
+        $getAccountFactory = function () use ($decoratedFactory, $rewriters, $formats) {
+            return new AccountFactory(
+                $decoratedFactory->reveal(),
+                $rewriters->reveal(),
+                $formats->reveal()
+            );
+        };
 
-        $factory = new AccountFactory([$format->reveal()], [], false, false, []);
-
-        $this->assertSame(
-            $account,
-            $factory->createAccount('VALID')
-        );
-    }
-
-    public function testExceptionWhenMultipleFormatsMatch()
-    {
-        $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
-
-        $formatA = $this->prophesize('byrokrat\banking\Format');
-        $formatA->parse('FOOBAR')->willReturn($account);
-
-        $formatB = $this->prophesize('byrokrat\banking\Format');
-        $formatB->parse('FOOBAR')->willReturn($account);
-
-        $factory = new AccountFactory([$formatA->reveal(), $formatB->reveal()], [], false, false, []);
-
-        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
-        $factory->createAccount('FOOBAR');
-    }
-
-    public function testBlacklist()
-    {
-        $factory = new AccountFactory;
-        $factory->blacklistFormats([BankNames::FORMAT_BANKGIRO]);
-
-        $this->assertSame(
-            BankNames::BANK_PLUSGIRO,
-            $factory->createAccount('58056201')->getBankName(),
-            'When bankgiro is BLACKLISTED 58056201 is considerad a valid plusgiro account'
-        );
-    }
-
-    public function testWhitelist()
-    {
-        $factory = new AccountFactory;
-        $factory->whitelistFormats([BankNames::FORMAT_BANKGIRO]);
-
-        $this->assertSame(
-            BankNames::BANK_BANKGIRO,
-            $factory->createAccount('58056201')->getBankName(),
-            'When bankgiro is WHITELISTED 58056201 is considerad a valid bankgiro account'
-        );
-    }
-
-    public function testRreprocess()
-    {
-        $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
-
-        $format = $this->prophesize('byrokrat\banking\Format');
-        $format->parse('NOT-VALID')->willThrow('byrokrat\banking\Exception\InvalidAccountNumberException');
-        $format->parse('VALID')->willReturn($account);
-
-        $preprocessor = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
-        $preprocessor->rewrite('NOT-VALID')->willReturn('VALID');
-
-        $factory = new AccountFactory([$format->reveal()], [], false, false, [$preprocessor->reveal()]);
-
-        $this->assertSame(
-            $account,
-            $factory->createAccount('NOT-VALID')
-        );
-    }
-
-    public function testRewrite()
-    {
-        $account = $this->prophesize('byrokrat\banking\AccountNumber')->reveal();
-
-        $format = $this->prophesize('byrokrat\banking\Format');
-        $format->parse('NOT-VALID')->willThrow('byrokrat\banking\Exception\InvalidAccountNumberException');
-        $format->parse('VALID')->willReturn($account);
-
-        $rewriter = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
-        $rewriter->rewrite('NOT-VALID')->willReturn('VALID');
-
-        $factory = new AccountFactory([$format->reveal()], [$rewriter->reveal()], true, true, []);
-
-        $this->assertSame(
-            $account,
-            $factory->createAccount('NOT-VALID')
-        );
-
-        return [$account, $format, $rewriter];
+        return [$getAccountFactory, $decoratedFactory, $formats, $rewriters];
     }
 
     /**
-     * @depends testRewrite
+     * @depends testInit
      */
-    public function testExceptionWhenMultipleRewritesMatch(array $setup)
+    public function testCreateAccount($setup)
     {
-        list($account, $format, $rewriterA) = $setup;
+        list($getAccountFactory, $decoratedFactory, $formats) = $setup;
 
-        $rewriterB = $this->prophesize('byrokrat\banking\Rewriter\RewriterStrategy');
-        $rewriterB->rewrite('NOT-VALID')->willReturn('VALID');
+        $account = $this->createMock(AccountNumber::CLASS);
+        $decoratedFactory->createAccount('raw')->willReturn($account);
 
-        $factory = new AccountFactory([$format->reveal()], [$rewriterA->reveal(), $rewriterB->reveal()], true, true, []);
+        $format = $this->prophesize(FormatInterface::CLASS);
+        $format->validate($account)->willReturn(new Success(''));
+        $format->getBankName()->willReturn('bank');
 
-        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
-        $factory->createAccount('NOT-VALID');
-    }
+        $formats->getFormatFromClearing($account)->willReturn($format->reveal());
 
-    /**
-     * @depends testRewrite
-     */
-    public function testSuggestRewrite(array $setup)
-    {
-        list($account, $format, $rewriter) = $setup;
-
-        $factory = new AccountFactory([$format->reveal()], [$rewriter->reveal()], false, true, []);
-
-        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
-        $factory->createAccount('NOT-VALID');
-    }
-
-    public function testUnknownFormatWhenNothingMatch()
-    {
-        $format = $this->prophesize('byrokrat\banking\Format');
-        $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidClearingNumberException');
-
-        $factory = new AccountFactory([$format->reveal()], [], true, true);
-
-        $this->assertSame(
-            BankNames::BANK_UNKNOWN,
-            $factory->createAccount('1234,1234567')->getBankName()
+        $this->assertEquals(
+            new BankAccount('bank', $account),
+            $getAccountFactory()->createAccount('raw')
         );
     }
 
-    public function testIgnoringUnknownWhenCheckDigitFails()
+    /**
+     * @depends testInit
+     */
+    public function testRewrite($setup)
     {
-        $format = $this->prophesize('byrokrat\banking\Format');
-        $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidCheckDigitException');
+        list($getAccountFactory, $decoratedFactory, $formats, $rewriters) = $setup;
 
-        $factory = new AccountFactory([$format->reveal()], [], true, true);
+        $account = $this->createMock(AccountNumber::CLASS);
+        $decoratedFactory->createAccount('raw')->willReturn($account);
 
-        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
-        $factory->createAccount('1234,1234567');
+        $rewrittenAccount = $this->createMock(AccountNumber::CLASS);
+
+        $format = $this->prophesize(FormatInterface::CLASS);
+        $format->getBankName()->willReturn('bank');
+        $format->validate($account)->willReturn(new Failure(''));
+        $format->validate($rewrittenAccount)->willReturn(new Success(''));
+
+        $formats->getFormatFromClearing($account)->willReturn($format->reveal())->shouldBeCalled();
+        $formats->getFormatFromClearing($rewrittenAccount)->willReturn($format->reveal())->shouldBeCalled();
+
+        $rewriter = $this->prophesize(RewriterInterface::CLASS);
+        $rewriter->rewrite($account)->willReturn($rewrittenAccount);
+
+        $rewriters->getIterator()->willReturn(new \ArrayIterator([$rewriter]));
+
+        $this->assertEquals(
+            new BankAccount('bank', $rewrittenAccount),
+            $getAccountFactory()->createAccount('raw')
+        );
     }
 
-    public function testExceptionWhenUnableToCreate()
+    /**
+     * @depends testInit
+     */
+    public function testExceptionWhenUnableToCreate($setup)
     {
-        $format = $this->prophesize('byrokrat\banking\Format');
-        $format->parse(Argument::any())->willThrow('byrokrat\banking\Exception\InvalidClearingNumberException');
+        list($getAccountFactory, $decoratedFactory, $formats, $rewriters) = $setup;
 
-        $factory = new AccountFactory([$format->reveal()], [], true, true);
+        $account = $this->createMock(AccountNumber::CLASS);
+        $decoratedFactory->createAccount('raw')->willReturn($account);
 
-        $this->expectException('byrokrat\banking\Exception\UnableToCreateAccountException');
-        $factory->createAccount('this-is-not-a-valid-number')->getBankName();
+        $format = $this->prophesize(FormatInterface::CLASS);
+        $format->validate($account)->willReturn(new Failure(''));
+        $format->getBankName()->willReturn('');
+
+        $formats->getFormatFromClearing($account)->willReturn($format->reveal());
+
+        $rewriters->getIterator()->willReturn(new \ArrayIterator([]));
+
+        $this->expectException(Exception\InvalidAccountNumberException::CLASS);
+        $getAccountFactory()->createAccount('raw');
+    }
+
+    public function testDefaultSetup()
+    {
+        $this->assertNotNull(new AccountFactory);
     }
 }

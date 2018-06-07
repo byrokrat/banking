@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
 
 use byrokrat\banking\AccountNumber;
@@ -10,10 +12,10 @@ use byrokrat\banking\AccountNumber;
  * Type1B checksum calculation is made on the entire clearing number, and
  * seven digits of the actual account number.
  */
-class CheckDigitType1BValidator extends CheckDigitType1AValidator
+class CheckDigitType1BValidator extends CheckDigitValidator
 {
-    protected function processNumber(AccountNumber $number)
+    protected function calculateCheckDigit(AccountNumber $number): string
     {
-        return $number->getClearingNumber() . $number->getSerialNumber() . $number->getCheckDigit();
+        return Modulo11::calculateCheckDigit($number->getClearingNumber() . $number->getSerialNumber());
     }
 }

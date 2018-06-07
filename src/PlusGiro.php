@@ -1,19 +1,30 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking;
 
-/**
- * Account number for PlusGirot clearing system
- */
-class PlusGiro extends BaseAccount
+use byrokrat\banking\Formatter\PlusgiroFormatter;
+
+class PlusGiro extends UndefinedAccount
 {
-    public function getNumber()
+    public function __construct(string $raw, string $serial, string $check)
     {
-        return ltrim(parent::getNumber(), '0,');
+        parent::__construct($raw, '0000', '', $serial, $check);
     }
 
-    public function getClearingNumber()
+    public function getBankName(): string
     {
-        return parent::getClearingNumber() ?: '0000';
+        return BankNames::BANK_PLUSGIRO;
+    }
+
+    public function getNumber(): string
+    {
+        return $this->format(new PlusgiroFormatter);
+    }
+
+    public function prettyprint(): string
+    {
+        return $this->format(new PlusgiroFormatter);
     }
 }

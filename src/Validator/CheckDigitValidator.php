@@ -1,51 +1,33 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
 
-use byrokrat\banking\Validator;
 use byrokrat\banking\AccountNumber;
-use byrokrat\banking\Exception\InvalidCheckDigitException;
-use byrokrat\checkdigit\Calculator;
 
 /**
  * Validate check digits
  */
-abstract class CheckDigitValidator implements Validator
+abstract class CheckDigitValidator implements ValidatorInterface
 {
-    /**
-     * @var Calculator Checksum calculator
-     */
-    private $checksum;
-
-    /**
-     * Load checksum calculator
-     *
-     * @param Calculator $checksum
-     */
-    public function __construct(Calculator $checksum)
+    public function validate(AccountNumber $number): ResultInterface
     {
-        $this->checksum = $checksum;
-    }
-
-    /**
-     * Validate check digit
-     *
-     * @param  AccountNumber $number
-     * @return null
-     * @throws InvalidCheckDigitException If check digit is not valid
-     */
-    public function validate(AccountNumber $number)
-    {
-        if (!$this->checksum->isValid($this->processNumber($number))) {
-            throw new InvalidCheckDigitException("Invalid check digit in $number");
+        if ($number->getCheckDigit() === '' || $number->getSerialNumber() === '') {
+            return new Failure('Unable to validate checkdigit, not enough digits');
         }
+
+        $expected = $this->calculateCheckDigit($number);
+
+        if ($number->getCheckDigit() == $expected) {
+            return new Success("Valid check digit $expected");
+        }
+
+        return new Failure("Invalid check digit {$number->getCheckDigit()}, expected $expected");
     }
 
     /**
-     * Get number to validate
-     *
-     * @param  AccountNumber $number
-     * @return string
+     * Calculate the expected checkdigit
      */
-    abstract protected function processNumber(AccountNumber $number);
+    abstract protected function calculateCheckDigit(AccountNumber $number): string;
 }

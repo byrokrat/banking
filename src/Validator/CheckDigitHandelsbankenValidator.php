@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
 
 use byrokrat\banking\AccountNumber;
@@ -9,10 +11,10 @@ use byrokrat\banking\AccountNumber;
  *
  * Checksum calculation is made on the serial number.
  */
-class CheckDigitHandelsbankenValidator extends CheckDigitType1AValidator
+class CheckDigitHandelsbankenValidator extends CheckDigitValidator
 {
-    protected function processNumber(AccountNumber $number)
+    protected function calculateCheckDigit(AccountNumber $number): string
     {
-        return $number->getSerialNumber() . $number->getCheckDigit();
+        return Modulo11::calculateCheckDigit($number->getSerialNumber());
     }
 }

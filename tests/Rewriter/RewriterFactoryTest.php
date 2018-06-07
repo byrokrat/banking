@@ -1,26 +1,16 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Rewriter;
 
 class RewriterFactoryTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCreatePreprocessors()
+    public function testCreateRewriters()
     {
-        foreach ((new RewriterFactory)->createPreprocessors() as $preprocessor) {
-            $this->assertInstanceOf(
-                'byrokrat\banking\Rewriter\RewriterStrategy',
-                $preprocessor
-            );
-        }
-    }
-
-    public function testCreateRewrites()
-    {
-        foreach ((new RewriterFactory)->createRewrites() as $rewrite) {
-            $this->assertInstanceOf(
-                'byrokrat\banking\Rewriter\RewriterStrategy',
-                $rewrite
-            );
-        }
+        $this->assertInstanceOf(
+            RewriterContainer::CLASS,
+            (new RewriterFactory)->createRewriters()
+        );
     }
 }

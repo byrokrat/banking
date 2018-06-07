@@ -1,41 +1,58 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
 
-class ClearingCheckDigitValidatorTest extends ValidatorTestCase
+use byrokrat\banking\AccountNumber;
+
+class ClearingCheckDigitValidatorTest extends \PHPUnit\Framework\TestCase
 {
-    public function testValidCheckDigit()
+    public function testValidClearingCheckDigit()
     {
-        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
-        $checksum->expects($this->once())
-            ->method('isValid')
-            ->with('12345')
-            ->will($this->returnValue(true));
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getClearingNumber()->willReturn('4444');
+        $number->getClearingCheckDigit()->willReturn('6');
 
-        $this->assertNull((new ClearingCheckDigitValidator($checksum))->validate(
-            $this->getAccountNumberMock()
-        ));
-    }
-
-    public function testExceptionOnInvalidCheckDigit()
-    {
-        $checksum = $this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock();
-        $checksum->expects($this->once())
-            ->method('isValid')
-            ->will($this->returnValue(false));
-
-        $this->expectException('byrokrat\banking\Exception\InvalidCheckDigitException');
-        (new ClearingCheckDigitValidator($checksum))->validate(
-            $this->getAccountNumberMock()
+        $this->assertInstanceOf(
+            Success::CLASS,
+            (new ClearingCheckDigitValidator)->validate($number->reveal())
         );
     }
 
-    public function testIgnoreUnspecifiedCheckDigit()
+    public function testInvalidClearingCheckDigit()
     {
-        $this->assertNull(
-            (new ClearingCheckDigitValidator($this->getMockBuilder('byrokrat\checkdigit\Modulo10')->getMock()))->validate(
-                $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock()
-            )
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getClearingNumber()->willReturn('4444');
+        $number->getClearingCheckDigit()->willReturn('5');
+
+        $this->assertInstanceOf(
+            Failure::CLASS,
+            (new ClearingCheckDigitValidator)->validate($number->reveal())
+        );
+    }
+
+    public function testInvalidClearingCheckDigitCero()
+    {
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getClearingNumber()->willReturn('4444');
+        $number->getClearingCheckDigit()->willReturn('0');
+
+        $this->assertInstanceOf(
+            Failure::CLASS,
+            (new ClearingCheckDigitValidator)->validate($number->reveal())
+        );
+    }
+
+    public function testNoClearingCheckDigit()
+    {
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getClearingNumber()->willReturn('4444');
+        $number->getClearingCheckDigit()->willReturn('');
+
+        $this->assertInstanceOf(
+            Success::CLASS,
+            (new ClearingCheckDigitValidator)->validate($number->reveal())
         );
     }
 }

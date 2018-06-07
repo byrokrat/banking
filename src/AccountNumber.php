@@ -2,6 +2,8 @@
 
 namespace byrokrat\banking;
 
+use byrokrat\banking\Formatter\FormatterInterface;
+
 /**
  * Account number interface
  */
@@ -9,70 +11,60 @@ interface AccountNumber
 {
     /**
      * Get name of the Bank this number belongs to
-     *
-     * @return string
      */
-    public function getBankName();
+    public function getBankName(): string;
 
     /**
      * Get the raw number
-     *
-     * @return string
      */
-    public function getRawNumber();
+    public function getRawNumber(): string;
+
+    /**
+     * Format this number using a formatter
+     */
+    public function format(FormatterInterface $formatter): string;
 
     /**
      * Get account number as a formatted string
-     *
-     * @return string
      */
-    public function getNumber();
+    public function getNumber(): string;
 
     /**
      * Get account number as a formatted string
-     *
-     * Internally calls getNumber()
-     *
-     * @return string
      */
-    public function __toString();
+    public function __toString(): string;
 
     /**
-     * Get clearing number
-     *
-     * @return string 4 digits
+     * Similar to getNumber() but with more eye candy
      */
-    public function getClearingNumber();
-
-    /**
-     * Get the check digit of the clearing number
-     *
-     * @return string 1 or 0 digits
-     */
-    public function getClearingCheckDigit();
-
-    /**
-     * Get account serial number
-     *
-     * @return string 1 to 11 digits
-     */
-    public function getSerialNumber();
-
-    /**
-     * Get account check digit
-     *
-     * @return string 1 digit
-     */
-    public function getCheckDigit();
+    public function prettyprint(): string;
 
     /**
      * Get account as a 16 digit number
      *
      * Clearing number (4 digits) + x number of ceros + serial number
-     *
-     * @return string 16 digits
      */
-    public function get16();
+    public function get16(): string;
+
+    /**
+     * Get clearing number (4 digits)
+     */
+    public function getClearingNumber(): string;
+
+    /**
+     * Get the check digit of the clearing number (1 or 0 digits)
+     */
+    public function getClearingCheckDigit(): string;
+
+    /**
+     * Get account serial number (1 to 11 digits)
+     */
+    public function getSerialNumber(): string;
+
+    /**
+     * Get account check digit (1 digit)
+     */
+    public function getCheckDigit(): string;
 
     /**
      * Check if account is considered equal to this account
@@ -85,10 +77,6 @@ interface AccountNumber
      * ignored, except when strict mode is enforced. In strict mode a
      * missing clearing check digit on one of the accounts is considered
      * a sign of non-equality.
-     *
-     * @param  AccountNumber $account
-     * @param  bool          $strict
-     * @return bool
      */
-    public function equals(AccountNumber $account, $strict = false);
+    public function equals(AccountNumber $account, bool $strict = false): bool;
 }

@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
 
 use byrokrat\banking\AccountNumber;
-use byrokrat\checkdigit\Modulo10;
 
 /**
  * Validate check digits for type 2 accounts
@@ -12,13 +13,8 @@ use byrokrat\checkdigit\Modulo10;
  */
 class CheckDigitType2Validator extends CheckDigitValidator
 {
-    public function __construct(Modulo10 $checksum = null)
+    protected function calculateCheckDigit(AccountNumber $number): string
     {
-        parent::__construct($checksum ?: new Modulo10);
-    }
-
-    protected function processNumber(AccountNumber $number)
-    {
-        return $number->getSerialNumber() . $number->getCheckDigit();
+        return Modulo10::calculateCheckDigit($number->getSerialNumber());
     }
 }

@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace byrokrat\banking\Validator;
+
+use byrokrat\banking\AccountNumber;
 
 class ClearingValidatorTest extends \PHPUnit\Framework\TestCase
 {
-    public function getValidator()
+    public function createValidator()
     {
         return new ClearingValidator(
             [
@@ -28,12 +32,13 @@ class ClearingValidatorTest extends \PHPUnit\Framework\TestCase
      */
     public function testValidClearing($clearing)
     {
-        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
-        $number->expects($this->any())
-            ->method('getClearingNumber')
-            ->will($this->returnValue($clearing));
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getClearingNumber()->willReturn($clearing);
 
-        $this->assertNull($this->getValidator()->validate($number));
+        $this->assertInstanceOf(
+            Success::CLASS,
+            $this->createValidator()->validate($number->reveal())
+        );
     }
 
     public function invalidProvider()
@@ -50,12 +55,12 @@ class ClearingValidatorTest extends \PHPUnit\Framework\TestCase
      */
     public function testExceptionOnInvalidClearing($clearing)
     {
-        $number = $this->getMockBuilder('byrokrat\banking\AccountNumber')->getMock();
-        $number->expects($this->any())
-            ->method('getClearingNumber')
-            ->will($this->returnValue($clearing));
+        $number = $this->prophesize(AccountNumber::CLASS);
+        $number->getClearingNumber()->willReturn($clearing);
 
-        $this->expectException('byrokrat\banking\Exception\InvalidClearingNumberException');
-        $this->getValidator()->validate($number);
+        $this->assertInstanceOf(
+            Failure::CLASS,
+            $this->createValidator()->validate($number->reveal())
+        );
     }
 }

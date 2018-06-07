@@ -3,7 +3,7 @@
 namespace byrokrat\banking;
 
 /**
- * Bank and format identifiers
+ * Names of banks in the swedish clearing system
  */
 interface BankNames
 {
@@ -45,49 +45,4 @@ interface BankNames
     const BANK_SPARBANKEN_SYD = "Sparbanken Syd";
     const BANK_SWEDBANK = "Swedbank";
     const BANK_UNKNOWN = "Unknown";
-
-    const FORMAT_ALANDSBANKEN = 'alandsbanken';
-    const FORMAT_AMFA = 'amfa';
-    const FORMAT_AVANZA = 'avanza';
-    const FORMAT_BANKGIRO = 'bankgiro';
-    const FORMAT_BLUESTEP = "bluestep";
-    const FORMAT_BNP_PARIBAS = 'bnp_paribas';
-    const FORMAT_CITIBANK = 'citibank';
-    const FORMAT_DANSKE_1 = 'danske_bank_1';
-    const FORMAT_DANSKE_2 = 'danske_bank_2';
-    const FORMAT_DNB = 'dnb';
-    const FORMAT_EKOBANKEN = "ekobanken";
-    const FORMAT_ERIK_PENSER = 'erik_penser';
-    const FORMAT_FOREX = 'forex';
-    const FORMAT_GE_MONEY = 'ge_money_bank';
-    const FORMAT_HANDELSBANKEN = 'handelsbanken';
-    const FORMAT_ICA = 'ica';
-    const FORMAT_IKANO = 'ikano';
-    const FORMAT_JAK = "jak";
-    const FORMAT_LANDSHYPOTEK = 'landshypotek';
-    const FORMAT_LAN_OCH_SPAR = 'lan_och_spar';
-    const FORMAT_LANSFORSAKRINGAR_1A = 'lansforsakringar_1a';
-    const FORMAT_LANSFORSAKRINGAR_1B = 'lansforsakringar_1b';
-    const FORMAT_MARGINALEN = 'marginalen';
-    const FORMAT_MEDMERA = "medmera";
-    const FORMAT_NORDAX = 'nordax';
-    const FORMAT_NORDEA_1A = 'nordea_1a';
-    const FORMAT_NORDEA_1B = 'nordea_1b';
-    const FORMAT_NORDEA_PERSONAL = 'nordea_personal';
-    const FORMAT_NORDNET = 'nordnet';
-    const FORMAT_PLUSGIRO = 'plusgiro';
-    const FORMAT_PLUSGIRO_CLEARING = 'plusgiro_clearing';
-    const FORMAT_RESURS = 'resurs';
-    const FORMAT_RIKSGALDEN_1 = 'riksgalden_1';
-    const FORMAT_RIKSGALDEN_2 = 'riksgalden_2';
-    const FORMAT_ROYAL_OF_SCOTLAND = 'royal_bank_of_scotland';
-    const FORMAT_SANTANDER = "Santander Consumer Bank AS";
-    const FORMAT_SBAB = 'sbab';
-    const FORMAT_SEB = 'seb';
-    const FORMAT_SKANDIABANKEN = 'skandiabanken';
-    const FORMAT_SPARBANKEN_ORESUND = 'sparbanken_oresund';
-    const FORMAT_SPARBANKEN_SYD = 'sparbanken_syd';
-    const FORMAT_SWEDBANK_1 = 'swedbank_1';
-    const FORMAT_SWEDBANK_2 = 'swedbank_2';
-    const FORMAT_UNKNOWN = 'unknown';
 }
