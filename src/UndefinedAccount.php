@@ -9,6 +9,8 @@ namespace byrokrat\banking;
  */
 class UndefinedAccount implements AccountNumber
 {
+    use Formatter\FormattableTrait;
+
     /**
      * @var string
      */
@@ -53,22 +55,6 @@ class UndefinedAccount implements AccountNumber
         return $this->raw;
     }
 
-    public function getNumber(): string
-    {
-        return sprintf(
-            '%s%s,%s-%s',
-            $this->getClearingNumber(),
-            $this->getClearingCheckDigit() !== '' ? '-' . $this->getClearingCheckDigit() : '',
-            trim(chunk_split($this->getSerialNumber(), 3, ' ')),
-            $this->getCheckDigit()
-        );
-    }
-
-    public function __toString(): string
-    {
-        return $this->getNumber();
-    }
-
     public function getClearingNumber(): string
     {
         return $this->clearing;
@@ -89,13 +75,6 @@ class UndefinedAccount implements AccountNumber
         return $this->checkDigit;
     }
 
-    public function get16(): string
-    {
-        return $this->getClearingNumber()
-            . str_pad($this->getSerialNumber(), 11, '0', STR_PAD_LEFT)
-            . $this->getCheckDigit();
-    }
-
     public function equals(AccountNumber $account, bool $strict = false): bool
     {
         $has = function (string $number): bool {
@@ -112,5 +91,10 @@ class UndefinedAccount implements AccountNumber
                 || !$has($account->getClearingCheckDigit())
                 || $this->getClearingCheckDigit() == $account->getClearingCheckDigit()
             );
+    }
+
+    protected function getFormattable(): AccountNumber
+    {
+        return $this;
     }
 }

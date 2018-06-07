@@ -48,4 +48,12 @@ class PlusGiroTest extends \PHPUnit\Framework\TestCase
             (new PlusGiro('', '123456', '7'))->getNumber()
         );
     }
+
+    public function testPrettyprint()
+    {
+        $this->assertSame(
+            '123456-7',
+            (new PlusGiro('', '123456', '7'))->prettyprint()
+        );
+    }
 }

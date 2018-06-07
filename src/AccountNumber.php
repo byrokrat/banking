@@ -2,6 +2,8 @@
 
 namespace byrokrat\banking;
 
+use byrokrat\banking\Formatter\FormatterInterface;
+
 /**
  * Account number interface
  */
@@ -18,6 +20,11 @@ interface AccountNumber
     public function getRawNumber(): string;
 
     /**
+     * Format this number using a formatter
+     */
+    public function format(FormatterInterface $formatter): string;
+
+    /**
      * Get account number as a formatted string
      */
     public function getNumber(): string;
@@ -26,6 +33,18 @@ interface AccountNumber
      * Get account number as a formatted string
      */
     public function __toString(): string;
+
+    /**
+     * Similar to getNumber() but with more eye candy
+     */
+    public function prettyprint(): string;
+
+    /**
+     * Get account as a 16 digit number
+     *
+     * Clearing number (4 digits) + x number of ceros + serial number
+     */
+    public function get16(): string;
 
     /**
      * Get clearing number (4 digits)
@@ -46,13 +65,6 @@ interface AccountNumber
      * Get account check digit (1 digit)
      */
     public function getCheckDigit(): string;
-
-    /**
-     * Get account as a 16 digit number
-     *
-     * Clearing number (4 digits) + x number of ceros + serial number
-     */
-    public function get16(): string;
 
     /**
      * Check if account is considered equal to this account

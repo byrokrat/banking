@@ -30,7 +30,7 @@ used to create [AccountNumber](/src/AccountNumber.php) objects.
 
 <!--
     @example factory
-    @expectOutput "5000,111 111-6"
+    @expectOutput "5000,111111-6"
 -->
 ```php
 $accountFactory = new \byrokrat\banking\AccountFactory;
@@ -192,7 +192,7 @@ echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_BANKGIRO;
 Created account objects implement the [AccountNumber](/src/AccountNumber.php)
 interface, which defines the following api.
 
-### `getBankName()`
+#### `getBankName()`
 
 Gets the name of the bank a number belongs to (for a list of bank identifiers
 see [BankNames](/src/BankNames.php)).
@@ -207,7 +207,7 @@ echo $account->getBankName();
 echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_SEB;
 ```
 
-### `getRawNumber()`
+#### `getRawNumber()`
 
 Gets the raw and unformatted number.
 
@@ -220,7 +220,7 @@ Gets the raw and unformatted number.
 echo $account->getRawNumber();
 ```
 
-### `getNumber()`
+#### `getNumber()`
 
 Gets a formatted permutation of account number. Using PHPs magical `__tostring()`
 method calls `getNumber()` internaly.
@@ -228,14 +228,27 @@ method calls `getNumber()` internaly.
 <!--
     @example getNumber
     @include factory
-    @expectOutput "/5000,111 111-65000,111 111-6$/"
+    @expectOutput "/5000,111111-65000,111111-6$/"
 -->
 ```php
 echo $account->getNumber();
 echo $account;
 ```
 
-### `get16()`
+#### `prettyprint()`
+
+Gets a formatted permutation of account number with more eye candy.
+
+<!--
+    @example prettyprint
+    @include factory
+    @expectOutput "/5000,111 111-6$/"
+-->
+```php
+echo $account->prettyprint();
+```
+
+#### `get16()`
 
 Gets the generic 16 digit format as defined by BGC.
 
@@ -248,7 +261,7 @@ Gets the generic 16 digit format as defined by BGC.
 echo $account->get16();
 ```
 
-### `getClearingNumber()`, `getClearingCheckDigit()`, `getSerialNumber()` and `getCheckDigit()`
+#### `getClearingNumber()`, `getClearingCheckDigit()`, `getSerialNumber()` and `getCheckDigit()`
 
 Gets the extracted account number parts.
 
@@ -264,7 +277,7 @@ echo $account->getSerialNumber();
 echo $account->getCheckDigit();
 ```
 
-### `equals()`
+#### `equals()`
 
 Validates that two account objects represents the same number.
 

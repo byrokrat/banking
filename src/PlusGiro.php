@@ -4,9 +4,8 @@ declare(strict_types = 1);
 
 namespace byrokrat\banking;
 
-/**
- * PlusGiro account number
- */
+use byrokrat\banking\Formatter\PlusgiroFormatter;
+
 class PlusGiro extends UndefinedAccount
 {
     public function __construct(string $raw, string $serial, string $check)
@@ -21,10 +20,11 @@ class PlusGiro extends UndefinedAccount
 
     public function getNumber(): string
     {
-        return sprintf(
-            '%s-%s',
-            $this->getSerialNumber(),
-            $this->getCheckDigit()
-        );
+        return $this->format(new PlusgiroFormatter);
+    }
+
+    public function prettyprint(): string
+    {
+        return $this->format(new PlusgiroFormatter);
     }
 }

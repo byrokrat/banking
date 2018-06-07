@@ -9,6 +9,8 @@ namespace byrokrat\banking;
  */
 class BankAccount implements AccountNumber
 {
+    use Formatter\FormattableTrait;
+
     /**
      * @var string The name of the Bank this number belongs to
      */
@@ -35,16 +37,6 @@ class BankAccount implements AccountNumber
         return $this->decorated->getRawNumber();
     }
 
-    public function getNumber(): string
-    {
-        return $this->decorated->getNumber();
-    }
-
-    public function __toString(): string
-    {
-        return $this->decorated->__toString();
-    }
-
     public function getClearingNumber(): string
     {
         return $this->decorated->getClearingNumber();
@@ -65,13 +57,13 @@ class BankAccount implements AccountNumber
         return $this->decorated->getCheckDigit();
     }
 
-    public function get16(): string
-    {
-        return $this->decorated->get16();
-    }
-
     public function equals(AccountNumber $account, bool $strict = false): bool
     {
         return $this->decorated->equals($account, $strict) && $this->getBankName() == $account->getBankName();
+    }
+
+    protected function getFormattable(): AccountNumber
+    {
+        return $this;
     }
 }

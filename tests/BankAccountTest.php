@@ -21,23 +21,19 @@ class BankAccountTest extends \PHPUnit\Framework\TestCase
         $decorated = $this->prophesize(AccountNumber::CLASS);
 
         $decorated->getRawNumber()->willReturn('raw');
-        $decorated->getNumber()->willReturn('formatted');
         $decorated->getClearingNumber()->willReturn('clear');
         $decorated->getClearingCheckDigit()->willReturn('clearCheck');
         $decorated->getSerialNumber()->willReturn('serial');
         $decorated->getCheckDigit()->willReturn('check');
-        $decorated->get16()->willReturn('16');
 
         $account = new BankAccount('bank', $decorated->reveal());
 
         $this->assertSame('bank', $account->getBankName());
         $this->assertSame('raw', $account->getRawNumber());
-        $this->assertSame('formatted', $account->getNumber());
         $this->assertSame('clear', $account->getClearingNumber());
         $this->assertSame('clearCheck', $account->getClearingCheckDigit());
         $this->assertSame('serial', $account->getSerialNumber());
         $this->assertSame('check', $account->getCheckDigit());
-        $this->assertSame('16', $account->get16());
     }
 
     public function testEqualsFailIfDifferentBank()

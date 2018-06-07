@@ -21,12 +21,12 @@ class UndefinedAccountTest extends \PHPUnit\Framework\TestCase
     public function testGetNumber()
     {
         $this->assertSame(
-            '1111-2,333 333 33-4',
+            '1111-2,33333333-4',
             (new UndefinedAccount('', '1111', '2', '33333333', '4'))->getNumber()
         );
 
         $this->assertSame(
-            '1111,333 333 33-4',
+            '1111,33333333-4',
             (new UndefinedAccount('', '1111', '', '33333333', '4'))->getNumber()
         );
     }

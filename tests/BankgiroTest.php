@@ -41,19 +41,24 @@ class BankgiroTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testGetNumberSevenDigits()
+    public function testGetNumber()
     {
         $this->assertSame(
             '123-4567',
             (new Bankgiro('', '123456', '7'))->getNumber()
         );
-    }
 
-    public function testGetNumberEightDigits()
-    {
         $this->assertSame(
             '1234-5678',
             (new Bankgiro('', '1234567', '8'))->getNumber()
+        );
+    }
+
+    public function testPrettyprint()
+    {
+        $this->assertSame(
+            '123-4567',
+            (new Bankgiro('', '123456', '7'))->prettyprint()
         );
     }
 }
