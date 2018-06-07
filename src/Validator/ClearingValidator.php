@@ -35,6 +35,8 @@ class ClearingValidator implements ValidatorInterface
     {
         $clearing = intval($number->getClearingNumber());
 
+        $clearingRange = ['0', '0'];
+
         foreach ($this->clearingRanges as $clearingRange) {
             if ($clearing >= $clearingRange[0] && $clearing <= $clearingRange[1]) {
                 return new Success(
