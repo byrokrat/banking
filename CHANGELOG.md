@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased..
+
+### Added
+
+- The `DelegatingFactory` for chaining multiple factories.
+
 ## 2.0.0 - 2018-07-07
 
 ### Added

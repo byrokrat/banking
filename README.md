@@ -189,6 +189,25 @@ $account = (new \byrokrat\banking\BankgiroFactory)->createAccount('58056201');
 echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_BANKGIRO;
 ```
 
+### Creating a factory that can parse both regular accounts and bankgiro or plusgiro accounts
+
+Use `DelegatingFactory` the create a factory that incorporates the functionality
+of one or more factories in a single object.
+
+<!--
+    @example delegation
+    @expectOutput 1
+-->
+```php
+$factory = new \byrokrat\banking\DelegatingFactory(
+    new \byrokrat\banking\AccountFactory,
+    new \byrokrat\banking\BankgiroFactory
+);
+
+$account = $factory->createAccount('58056201');
+echo $account->getBankName() == \byrokrat\banking\BankNames::BANK_BANKGIRO;
+```
+
 ## The AccountNumber API
 
 Created account objects implement the [AccountNumber](/src/AccountNumber.php)
