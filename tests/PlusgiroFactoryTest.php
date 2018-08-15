@@ -27,6 +27,14 @@ class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+    public function testLeftTrimZeros()
+    {
+        $this->assertSame(
+            BankNames::BANK_PLUSGIRO,
+            (new PlusgiroFactory)->createAccount('0000000058056201')->getBankName()
+        );
+    }
+
     public function invalidStructureProvider()
     {
         return [
@@ -39,7 +47,6 @@ class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
             ['12345678-1'],
             ['1234567-12'],
             ['234,9048-0'],
-            ['00000000000000018'],
         ];
     }
 

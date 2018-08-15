@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - The `DelegatingFactory` for chaining multiple factories.
 
+### Fixed
+
+- `BankgiroFactory` and `PlusgiroFactory` now supports trimming left side zeros.
+
 ## 2.0.0 - 2018-07-07
 
 ### Added

@@ -25,7 +25,7 @@ class BankgiroFactory implements AccountFactoryInterface
 
     public function createAccount(string $number): AccountNumber
     {
-        if (!preg_match('/^(\d{3,4})-?(\d{3})(\d)$/', $number, $matches)) {
+        if (!preg_match('/^0*(\d{3,4})-?(\d{3})(\d)$/', $number, $matches)) {
             throw new InvalidAccountNumberException("Invalid bankgiro account number structure");
         }
 

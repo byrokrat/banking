@@ -27,6 +27,14 @@ class BankgiroFactoryTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+    public function testLeftTrimZeros()
+    {
+        $this->assertSame(
+            BankNames::BANK_BANKGIRO,
+            (new BankgiroFactory)->createAccount('0000000058056201')->getBankName()
+        );
+    }
+
     public function testParseSearialNumber()
     {
         $this->assertSame(
@@ -50,7 +58,6 @@ class BankgiroFactoryTest extends \PHPUnit\Framework\TestCase
             ['123-123'],
             ['123-12345'],
             ['1234,5805-6200'],
-            ['00000000011114444'],
         ];
     }
 

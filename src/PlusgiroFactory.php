@@ -25,7 +25,7 @@ class PlusgiroFactory implements AccountFactoryInterface
 
     public function createAccount(string $number): AccountNumber
     {
-        if (!preg_match('/^(\d{1,7})-?(\d)$/', $number, $matches)) {
+        if (!preg_match('/^0*(\d{1,7})-?(\d)$/', $number, $matches)) {
             throw new InvalidAccountNumberException("Invalid PlusGiro account number structure");
         }
 
