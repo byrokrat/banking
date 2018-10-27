@@ -17,9 +17,14 @@ class ClearingCheckDigitRewriter implements RewriterInterface
         return new UndefinedAccount(
             $account->getRawNumber(),
             $account->getClearingNumber(),
-            (string)substr($account->getSerialNumber(), 0, 1),
-            (string)substr($account->getSerialNumber(), 1),
+            self::substr($account->getSerialNumber(), 0, 1),
+            self::substr($account->getSerialNumber(), 1),
             $account->getCheckDigit()
         );
+    }
+
+    private static function substr(...$args): string
+    {
+        return (string)call_user_func_array('substr', $args);
     }
 }

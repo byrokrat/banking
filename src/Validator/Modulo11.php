@@ -45,7 +45,7 @@ class Modulo11
         $sum = 0;
 
         foreach (array_reverse(str_split($number)) as $pos => $digit) {
-            $sum += $digit * self::getWeight($pos, 2);
+            $sum += (int)$digit * self::getWeight($pos, 2);
         }
 
         // Calculate check digit from remainder
