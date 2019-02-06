@@ -89,7 +89,7 @@ to see if a valid account number can be produced.
 
 1. It tries to interpret the first digit of the serial number as a clearing check digit.
 1. It tries to trim left side ceros from the serial number.
-1. It tries to append the clearing number `3300` to see if the account number is
+1. It tries to prepend the clearing number `3300` to see if the account number is
    a valid Nordea personal account number.
 
 If any of the rewrites (or any combination of rewrites) is successful the rewritten
