@@ -20,7 +20,7 @@ parts of the account number and to identify the bank the number belongs to.
 ## Installation
 
 ```shell
-composer require byrokrat/banking:^2.0
+composer require byrokrat/banking
 ```
 
 > Banking requires php `>=7.1` but has no other dependencies.
