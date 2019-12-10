@@ -3,6 +3,7 @@ sudo: false
 language: php
 
 php:
+  - 7.4
   - 7.3
   - 7.2
   - 7.1
@@ -11,8 +12,8 @@ install:
   - composer install
 
 script:
-  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then phpunit --coverage-clover=coverage.clover ; fi
-  - if [[ "$TRAVIS_PHP_VERSION" != '7.1' ]]; then phpunit ; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then vendor/bin/phpunit --coverage-clover=coverage.clover ; fi
+  - if [[ "$TRAVIS_PHP_VERSION" != '7.1' ]]; then vendor/bin/phpunit ; fi
 
 after_script:
   - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then wget https://scrutinizer-ci.com/ocular.phar ; fi

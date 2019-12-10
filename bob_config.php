@@ -9,7 +9,7 @@ task('test', ['phpunit', 'examples']);
 
 desc('Run phpunit tests');
 task('phpunit', function() {
-    sh('phpunit', null, ['failOnError' => true]);
+    sh('vendor/bin/phpunit', null, ['failOnError' => true]);
     println('Phpunit tests passed');
 });
 
