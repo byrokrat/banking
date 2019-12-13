@@ -24,6 +24,7 @@ interface BankNames
     const BANK_ICA = "ICA Banken AB";
     const BANK_IKANO = "IKANO Bank";
     const BANK_JAK = "JAK Medlemsbank";
+    const BANK_KLARNA = "Klarna Bank";
     const BANK_LANDSHYPOTEK = "Landshypotek AB";
     const BANK_LAN_OCH_SPAR = 'Lån & Spar Bank Sverige';
     const BANK_LANSFORSAKRINGAR = "Länsförsäkringar Bank";
@@ -43,6 +44,7 @@ interface BankNames
     const BANK_SKANDIABANKEN = "Skandiabanken";
     const BANK_SPARBANKEN_ORESUND = "Sparbanken Öresund AB";
     const BANK_SPARBANKEN_SYD = "Sparbanken Syd";
+    const BANK_SVEA = "Svea Bank AB";
     const BANK_SWEDBANK = "Swedbank";
     const BANK_UNKNOWN = "Unknown";
 }

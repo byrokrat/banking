@@ -9,25 +9,25 @@ namespace byrokrat\banking\Format\Build;
  *
  * Generated in accordance with BGC specifications dated 2019-10-22.
  */
-class BluestepFormatTest extends \PHPUnit\Framework\TestCase
+class KlarnaFormatTest extends \PHPUnit\Framework\TestCase
 {
     private function getAccount(): \byrokrat\banking\AccountNumber
     {
-        return new \byrokrat\banking\UndefinedAccount("", "9680", "", "111112", "4");
+        return new \byrokrat\banking\UndefinedAccount("", "9789", "", "111111", "3");
     }
 
     public function testGetBankName()
     {
         $this->assertSame(
-            \byrokrat\banking\BankNames::BANK_BLUESTEP,
-            (new BluestepFormat)->getBankName()
+            \byrokrat\banking\BankNames::BANK_KLARNA,
+            (new KlarnaFormat)->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new BluestepFormat)->isValidClearing(
+            (new KlarnaFormat)->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class BluestepFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new BluestepFormat)->validate($this->getAccount())->isValid()
+            (new KlarnaFormat)->validate($this->getAccount())->isValid()
         );
     }
 }

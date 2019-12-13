@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.2.1 - 2019-12-13
+
+### Fixed
+
+- Updated account formats to match latest bgc release: `2019-10-22`
+
 ## 2.2.0 - 2018-10-27
 
 ### Added

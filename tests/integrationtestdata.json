@@ -14,7 +14,7 @@
         ]
     },
     {
-        "bank_id": "BANK_AMFA",
+        "bank_id": "BANK_SVEA",
         "valid_numbers": [
             {
                 "number": "9660,1111130",

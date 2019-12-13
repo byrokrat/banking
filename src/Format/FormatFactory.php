@@ -9,14 +9,14 @@ namespace byrokrat\banking\Format;
  *
  * This class has been auto-generated and should not be edited directly
  *
- * Generated in accordance with BGC specifications dated 2017-08-15.
+ * Generated in accordance with BGC specifications dated 2019-10-22.
  */
 class FormatFactory
 {
     public function createFormats(): FormatContainer
     {
         return new FormatContainer(...[
-            new Build\AmfaFormat,
+            new Build\SveaFormat,
             new Build\AvanzaFormat,
             new Build\BluestepFormat,
             new Build\BnpParibasFormat,
@@ -29,6 +29,7 @@ class FormatFactory
             new Build\IcaFormat,
             new Build\IkanoFormat,
             new Build\JakFormat,
+            new Build\KlarnaFormat,
             new Build\LandshypotekFormat,
             new Build\LanOchSparFormat,
             new Build\Lansforsakringar1AFormat,

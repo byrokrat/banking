@@ -7,7 +7,7 @@ namespace byrokrat\banking\Format\Build;
 /**
  * This class has been auto-generated and should not be edited directly
  *
- * Generated in accordance with BGC specifications dated 2017-08-15.
+ * Generated in accordance with BGC specifications dated 2019-10-22.
  */
 class AlandsbankenFormatTest extends \PHPUnit\Framework\TestCase
 {

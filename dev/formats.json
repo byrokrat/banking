@@ -1,9 +1,9 @@
 {
-    "specification-date": "2017-08-15",
+    "specification-date": "2019-10-22",
     "formats": [
         {
-            "classname": "AmfaFormat",
-            "bank": "BANK_AMFA",
+            "classname": "SveaFormat",
+            "bank": "BANK_SVEA",
             "clearing-validator": "ClearingValidator([[9660, 9669]])",
             "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
             "example": ["9660", "", "111113", "0"]
@@ -91,6 +91,13 @@
             "clearing-validator": "ClearingValidator([[9670, 9679]])",
             "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
             "example": ["9670", "", "111113", "2"]
+        },
+        {
+            "classname": "KlarnaFormat",
+            "bank": "BANK_KLARNA",
+            "clearing-validator": "ClearingValidator([[9780, 9789]])",
+            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "example": ["9789", "", "111111", "3"]
         },
         {
             "classname": "LandshypotekFormat",
