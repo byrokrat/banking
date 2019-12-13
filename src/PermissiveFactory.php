@@ -62,6 +62,9 @@ class PermissiveFactory implements AccountFactoryInterface
         );
     }
 
+    /**
+     * @param array<string, string> $parts
+     */
     private static function pushDigit(string $digit, array &$parts): void
     {
         $pending = $parts[self::CHECK];
@@ -74,6 +77,9 @@ class PermissiveFactory implements AccountFactoryInterface
         }
     }
 
+    /**
+     * @param array<string, string> $parts
+     */
     private static function terminateClearing(array &$parts): void
     {
         $pending = $parts[self::CHECK];

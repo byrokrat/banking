@@ -10,6 +10,7 @@ namespace byrokrat\banking\Rewriter;
 class Permutator
 {
     /**
+     * @param array<mixed> $set
      * @return \Generator & iterable<array>
      */
     public static function getPermutations(array $set): \Generator
@@ -22,7 +23,8 @@ class Permutator
     }
 
     /**
-     * @return array[]
+     * @param array<mixed> $set
+     * @return array<array>
      */
     private static function getPowerSet(array $set): array
     {
@@ -46,19 +48,21 @@ class Permutator
     }
 
     /**
+     * @param array<mixed> $set
+     * @param array<array> $permutations
      * @return \Generator & iterable<array>
      */
-    private static function generateFixedLengthPermutations(array $items, array $perms = []): \Generator
+    private static function generateFixedLengthPermutations(array $set, array $permutations = []): \Generator
     {
-        if (empty($items)) {
-            yield $perms;
+        if (empty($set)) {
+            yield $permutations;
         } else {
-            for ($i = count($items)-1; $i>=0; $i--) {
-                $newitems = $items;
-                $newperms = $perms;
-                list($foo) = array_splice($newitems, $i, 1);
-                array_unshift($newperms, $foo);
-                yield from self::generateFixedLengthPermutations($newitems, $newperms);
+            for ($i = count($set)-1; $i>=0; $i--) {
+                $newSet = $set;
+                $newPermutations = $permutations;
+                list($foo) = array_splice($newSet, $i, 1);
+                array_unshift($newPermutations, $foo);
+                yield from self::generateFixedLengthPermutations($newSet, $newPermutations);
             }
         }
     }

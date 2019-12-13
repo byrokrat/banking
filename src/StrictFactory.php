@@ -56,6 +56,9 @@ class StrictFactory implements AccountFactoryInterface
         );
     }
 
+    /**
+     * @param array<string, string> $parts
+     */
     private static function pushDigit(string $digit, array &$parts): void
     {
         $pending = $parts[self::CHECK];
@@ -68,6 +71,9 @@ class StrictFactory implements AccountFactoryInterface
         }
     }
 
+    /**
+     * @param array<string, string> $parts
+     */
     private static function terminateClearing(array &$parts): bool
     {
         $pending = $parts[self::CHECK];

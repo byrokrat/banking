@@ -12,14 +12,14 @@ use byrokrat\banking\AccountNumber;
 class ClearingValidator implements ValidatorInterface
 {
     /**
-     * @var array List of clearing number max and min values
+     * @var array<array> List of clearing number max and min values
      */
     private $clearingRanges;
 
     /**
      * Load ranges of valid clearing numbers
      *
-     * @param array $clearingRanges
+     * @param array<array> $clearingRanges
      */
     public function __construct(array $clearingRanges)
     {
