@@ -7,6 +7,10 @@ php:
     - 7.3
     - 7.2
 
+env:
+    global:
+        secure: bEwe5CpyxRkTbERUG9stkoa79gxIPN1mGbo4K7VLzxdVAtZYgz64tCuJ5WGJQecMuqsbxVscHJvHKDm6DMZqWbWbyq35QNxmhfSc/0sBI3GN2D6Ptf1mQiQ7fiBHwGaqpfOr5awl3dNgG7t3/xCf6Ul5x3yOZz5BLsu4NQ/cwFrOXSERXX6G0sADtDyVXYSDGf04+AmCpSbGZwzRV76FrjkwLSTqTH6xP6l9kZxe46819B4eB3ZQKyQzCMWFvach0o6roX7jmr7ME51LaO3QGQUebRAZnEmLgSoZscMm5EfMf+ejAQRvWBn3E3c9FtH/4lWjF6JYLcKs7t3d+zzlHSbMAN1V/eHlC8qJ8LVDpgj5KQQlOdjNBUW4yA8ZkAxgYNw0fLq0eewTGwmNFys7EZCjmScMAijF+6+xHO+OlvzLEFHysEpWVSwfQ7f8K3uy7RNYGOxwLQzUWvPupkT2rwe4zYDfcGMf7lHQ6hwN10GwTQirvWUDAcktlOv7ODv04iBShclTtXkuMXf4SZ87T8WHv+TGc6K5UUF0XJW+3YuLYfNV2+qAH3q7gCLwG917sFyU1vJCmkJ8xaDntluGUoggrN3iTEFhKPbHtQMxfEE32XgUSVNn+Vk1LigziEO3KIjx14rw+P2gpMHP0T0I6xjJAUYs4yQRcOafdKH6bBU=
+
 install:
     - make vendor/installed
     - wget -O phive.phar https://phar.io/releases/phive.phar
