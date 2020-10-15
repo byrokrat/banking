@@ -3,18 +3,14 @@ sudo: false
 language: php
 
 php:
-  - 7.4
-  - 7.3
-  - 7.2
-  - 7.1
+    - 7.4
+    - 7.3
+    - 7.2
 
 install:
-  - composer install
+    - make vendor/installed
+    - wget -O phive.phar https://phar.io/releases/phive.phar
+    - make tools/installed PHIVE_CMD="php phive.phar"
 
 script:
-  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then vendor/bin/phpunit --coverage-clover=coverage.clover ; fi
-  - if [[ "$TRAVIS_PHP_VERSION" != '7.1' ]]; then vendor/bin/phpunit ; fi
-
-after_script:
-  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then wget https://scrutinizer-ci.com/ocular.phar ; fi
-  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover ; fi
+    - make build

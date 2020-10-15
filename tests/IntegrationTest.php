@@ -16,7 +16,7 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
      */
     private static $accountFactory;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$accountFactory = new AccountFactory;
     }

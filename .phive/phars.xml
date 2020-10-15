@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phive xmlns="https://phar.io/phive">
+  <phar name="phpunit" version="8" installed="8.5.8" location="./tools/phpunit" copy="false"/>
+  <phar name="hanneskod/readme-tester" version="1" installed="1.0.0" location="./tools/readme-tester" copy="false"/>
+  <phar name="phpstan" version="^0.12.43" installed="0.12.43" location="./tools/phpstan" copy="false"/>
+  <phar name="phpcs" version="^3.5.6" installed="3.5.6" location="./tools/phpcs" copy="false"/>
+</phive>
