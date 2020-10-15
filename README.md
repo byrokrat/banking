@@ -22,7 +22,7 @@ parts of the account number and to identify the bank the number belongs to.
 composer require byrokrat/banking
 ```
 
-> Banking requires php `>=7.1` but has no other dependencies.
+> Banking requires php `7.2` but has no other dependencies.
 
 ## Usage
 
