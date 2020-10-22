@@ -3,12 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 2.2.2 - 2020-10-22
+
+### Fixed
+
+- Updated account formats to match latest bgc release: `2020-04-15`
 
 ### Changed
 
-- Requires php `7.2`.
-- Build using phpunit `8`.
+- Bumped minimum php requirement to `7.2`
+- Build using phpunit `8`
 
 ## 2.2.1 - 2019-12-13
 
@@ -26,11 +30,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- The `DelegatingFactory` for chaining multiple factories.
+- The `DelegatingFactory` for chaining multiple factories
 
 ### Fixed
 
-- `BankgiroFactory` and `PlusgiroFactory` now supports trimming left side zeros.
+- `BankgiroFactory` and `PlusgiroFactory` now supports trimming left side zeros
 
 ## 2.0.0 - 2018-07-07
 
@@ -42,17 +46,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- No longer falls back on `Unknown` format when a clearing number matches.
-- Bankgiro and PlusGiro accounts can no longer be created through `AccountFactory`.
-  Use `BankgiroFactory` and `PlusgiroFactory` instead.
-- Smarter rewrites with rewriter combinations.
-- Improved error messages when parsing fails.
-- Renaming and refactoring throughout the code base.
-- Requires php `7.1`.
+- No longer falls back on `Unknown` format when a clearing number matches
+- Bankgiro and PlusGiro accounts can no longer be created through `AccountFactory`
+  Use `BankgiroFactory` and `PlusgiroFactory` instead
+- Smarter rewrites with rewriter combinations
+- Improved error messages when parsing fails
+- Renaming and refactoring throughout the code base
+- Bumped minimum php requirement to `7.1`
 
 ### Removed
 
-- Preprocessors.
+- Preprocessors
 
 ## 1.4.1 - 2018-04-12
 

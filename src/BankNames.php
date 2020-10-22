@@ -26,7 +26,7 @@ interface BankNames
     const BANK_JAK = "JAK Medlemsbank";
     const BANK_KLARNA = "Klarna Bank";
     const BANK_LANDSHYPOTEK = "Landshypotek AB";
-    const BANK_LAN_OCH_SPAR = 'Lån & Spar Bank Sverige';
+    const BANK_LAN_OCH_SPAR = "Lån & Spar Bank Sverige";
     const BANK_LANSFORSAKRINGAR = "Länsförsäkringar Bank";
     const BANK_MARGINALEN = "Marginalen Bank";
     const BANK_MEDMERA = "MedMera Bank AB";
@@ -37,7 +37,7 @@ interface BankNames
     const BANK_PLUSGIRO = "PlusGiro";
     const BANK_RESURS = "Resurs Bank";
     const BANK_RIKSGALDEN = "Riksgälden";
-    const BANK_ROYAL_OF_SCOTLAND = "Royal bank of Scotland ";
+    const BANK_ROYAL_OF_SCOTLAND = "Royal bank of Scotland";
     const BANK_SANTANDER = "Santander Consumer Bank AS";
     const BANK_SBAB = "SBAB";
     const BANK_SEB = "SEB";

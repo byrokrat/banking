@@ -7,7 +7,7 @@ namespace byrokrat\banking\Format\Build;
 /**
  * This class has been auto-generated and should not be edited directly
  *
- * Generated in accordance with BGC specifications dated 2019-10-22.
+ * Generated in accordance with BGC specifications dated 2020-04-15.
  */
 class Riksgalden1Format implements \byrokrat\banking\Format\FormatInterface
 {
