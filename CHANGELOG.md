@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.2.3 - 2020-12-07
+
+### Fixed
+
+- Support `php 8.0`
+
+### Changed
+
+- Bumped minimum php requirement to `7.3`
+- Build using phpunit `9`
+
 ## 2.2.2 - 2020-10-22
 
 ### Fixed

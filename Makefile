@@ -1,7 +1,7 @@
 COMPOSER_CMD=composer
 PHIVE_CMD=phive
 
-PHPUNIT_CMD=tools/phpunit
+PHPUNIT_CMD=vendor/bin/phpunit
 README_TESTER_CMD=tools/readme-tester
 PHPSTAN_CMD=tools/phpstan
 PHPCS_CMD=tools/phpcs
@@ -42,7 +42,7 @@ analyze: phpstan phpcs
 
 .PHONY: phpstan
 phpstan: vendor/installed $(PHPSTAN_CMD)
-	$(PHPSTAN_CMD) analyze -l 7 src
+	$(PHPSTAN_CMD) analyze -l 8 src
 
 .PHONY: phpcs
 phpcs: $(PHPCS_CMD)
@@ -66,4 +66,4 @@ $(PHPSTAN_CMD): tools/installed
 
 $(PHPCS_CMD): tools/installed
 
-$(PHPUNIT_CMD): tools/installed
+$(PHPUNIT_CMD): vendor/installed

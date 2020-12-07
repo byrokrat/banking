@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class SerialLengthValidatorTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testValidLength()
     {
         $number = $this->prophesize(AccountNumber::CLASS);

@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class PersonalIdDateValidatorTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testValidPersonalId()
     {
         $number = $this->prophesize(AccountNumber::CLASS);

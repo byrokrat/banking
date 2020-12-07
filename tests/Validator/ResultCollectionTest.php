@@ -6,6 +6,8 @@ namespace byrokrat\banking\Validator;
 
 class ResultCollectionTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testSuccessIfAllResultsAreSuccess()
     {
         $result = $this->prophesize(ResultInterface::CLASS);

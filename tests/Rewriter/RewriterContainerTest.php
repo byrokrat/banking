@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class RewriterContainerTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testOneRewriter()
     {
         $rewriter = $this->prophesize(RewriterInterface::CLASS)->reveal();

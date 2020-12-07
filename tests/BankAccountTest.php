@@ -8,6 +8,8 @@ use Prophecy\Argument;
 
 class BankAccountTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testBankName()
     {
         $this->assertSame(

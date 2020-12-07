@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class ClearingValidatorTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function createValidator()
     {
         return new ClearingValidator(

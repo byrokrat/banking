@@ -9,6 +9,8 @@ namespace byrokrat\banking;
  */
 class DelegatingFactoryTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testDelegatesToFirstFactory()
     {
         $accountNumber = $this->createMock(AccountNumber::CLASS);

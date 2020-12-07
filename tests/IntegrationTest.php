@@ -76,25 +76,25 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
             'Created account should contain the expected bank name'
         );
 
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/^\d{4}$/',
             $account->getClearingNumber(),
             "Clearing must be 4 digits in $raw"
         );
 
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/^\d?$/',
             $account->getClearingCheckDigit(),
             "Clearing check digit must be 1 or 0 digits in $raw"
         );
 
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/^\d+$/',
             $account->getSerialNumber(),
             "Serial number must be numberic"
         );
 
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/^\d$/',
             $account->getCheckDigit(),
             "Check digit must be 1 digit in $raw"
@@ -105,7 +105,7 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
             "The formatted account ($account) must be a valid permutation of $raw"
         );
 
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/^\d{16}$/',
             $account->get16(),
             "The 16 format must consist of exactly 16 digits"

@@ -17,6 +17,8 @@ use byrokrat\banking\Exception\InvalidAccountNumberException;
  */
 class AccountFactoryTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     /**
      * @doesNotPerformAssertions
      */

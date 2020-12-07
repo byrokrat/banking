@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class NordeaEredFormatterTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testFormat()
     {
         $number = $this->prophesize(AccountNumber::CLASS);

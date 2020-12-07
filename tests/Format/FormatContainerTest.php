@@ -9,6 +9,8 @@ use byrokrat\banking\Exception\InvalidClearingNumberException;
 
 class FormatContainerTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testGetFormat()
     {
         $account = $this->prophesize(AccountNumber::CLASS)->reveal();

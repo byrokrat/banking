@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class PlusgiroFormatterTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testFormat()
     {
         $number = $this->prophesize(AccountNumber::CLASS);

@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class ClearingCheckDigitValidatorTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testValidClearingCheckDigit()
     {
         $number = $this->prophesize(AccountNumber::CLASS);

@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class SerialTrimRewriterTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testRewrite()
     {
         $number = $this->prophesize(AccountNumber::CLASS);

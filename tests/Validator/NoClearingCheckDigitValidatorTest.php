@@ -8,6 +8,8 @@ use byrokrat\banking\AccountNumber;
 
 class NoClearingCheckDigitValidatorTest extends \PHPUnit\Framework\TestCase
 {
+    use \Prophecy\PhpUnit\ProphecyTrait;
+
     public function testNoClearingCheckDigit()
     {
         $number = $this->prophesize(AccountNumber::CLASS);
