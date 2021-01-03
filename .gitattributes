@@ -8,5 +8,6 @@
 /CHANGELOG.md export-ignore
 /Makefile export-ignore
 /phpstan.neon export-ignore
+/phpcs.xml export-ignore
 /phpunit.xml export-ignore
 /README.md export-ignore
