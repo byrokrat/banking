@@ -6,6 +6,8 @@ namespace byrokrat\banking\Rewriter;
 
 /**
  * Container of rewriters
+ *
+ * @implements \IteratorAggregate<RewriterInterface>
  */
 class RewriterContainer implements \IteratorAggregate
 {
@@ -22,7 +24,7 @@ class RewriterContainer implements \IteratorAggregate
     /**
      * Generates all possible permutations of all possible lenghts of the rewriter set
      *
-     * @return \Traversable & iterable<ChainingRewriter>
+     * @return \Traversable & iterable<RewriterInterface>
      */
     public function getIterator(): \Traversable
     {
