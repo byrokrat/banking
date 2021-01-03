@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Formatter;
 
@@ -21,7 +21,7 @@ class StandardFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1111,33333333-4',
-            (new StandardFormatter)->format($number->reveal())
+            (new StandardFormatter())->format($number->reveal())
         );
     }
 
@@ -36,7 +36,7 @@ class StandardFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1111-2,33333333-4',
-            (new StandardFormatter)->format($number->reveal())
+            (new StandardFormatter())->format($number->reveal())
         );
     }
 }

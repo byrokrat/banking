@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class ResursFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_RESURS,
-            (new ResursFormat)->getBankName()
+            (new ResursFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new ResursFormat)->isValidClearing(
+            (new ResursFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class ResursFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new ResursFormat)->validate($this->getAccount())->isValid()
+            (new ResursFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

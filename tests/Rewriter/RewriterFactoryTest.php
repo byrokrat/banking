@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Rewriter;
 
@@ -10,7 +10,7 @@ class RewriterFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertInstanceOf(
             RewriterContainer::CLASS,
-            (new RewriterFactory)->createRewriters()
+            (new RewriterFactory())->createRewriters()
         );
     }
 }

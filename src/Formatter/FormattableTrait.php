@@ -18,7 +18,7 @@ trait FormattableTrait
 
     public function getNumber(): string
     {
-        return $this->format(new StandardFormatter);
+        return $this->format(new StandardFormatter());
     }
 
     public function __toString(): string
@@ -28,11 +28,11 @@ trait FormattableTrait
 
     public function get16(): string
     {
-        return $this->format(new Generic16Formatter);
+        return $this->format(new Generic16Formatter());
     }
 
     public function prettyprint(): string
     {
-        return $this->format(new PrettyprintingFormatter);
+        return $this->format(new PrettyprintingFormatter());
     }
 }

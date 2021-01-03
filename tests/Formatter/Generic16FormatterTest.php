@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Formatter;
 
@@ -21,7 +21,7 @@ class Generic16FormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1111000333333334',
-            (new Generic16Formatter)->format($number->reveal())
+            (new Generic16Formatter())->format($number->reveal())
         );
     }
 }

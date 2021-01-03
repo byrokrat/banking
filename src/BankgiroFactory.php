@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -20,7 +20,7 @@ class BankgiroFactory implements AccountFactoryInterface
 
     public function __construct()
     {
-        $this->validator = new CheckDigitType2Validator;
+        $this->validator = new CheckDigitType2Validator();
     }
 
     public function createAccount(string $number): AccountNumber
@@ -29,7 +29,7 @@ class BankgiroFactory implements AccountFactoryInterface
             throw new InvalidAccountNumberException("Invalid bankgiro account number structure");
         }
 
-        $account = new Bankgiro($number, $matches[1].$matches[2], $matches[3]);
+        $account = new Bankgiro($number, $matches[1] . $matches[2], $matches[3]);
 
         $result = $this->validator->validate($account);
 

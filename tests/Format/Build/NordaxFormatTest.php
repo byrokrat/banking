@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class NordaxFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_NORDAX,
-            (new NordaxFormat)->getBankName()
+            (new NordaxFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new NordaxFormat)->isValidClearing(
+            (new NordaxFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class NordaxFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new NordaxFormat)->validate($this->getAccount())->isValid()
+            (new NordaxFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

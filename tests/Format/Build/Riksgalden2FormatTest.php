@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class Riksgalden2FormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_RIKSGALDEN,
-            (new Riksgalden2Format)->getBankName()
+            (new Riksgalden2Format())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new Riksgalden2Format)->isValidClearing(
+            (new Riksgalden2Format())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class Riksgalden2FormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new Riksgalden2Format)->validate($this->getAccount())->isValid()
+            (new Riksgalden2Format())->validate($this->getAccount())->isValid()
         );
     }
 }

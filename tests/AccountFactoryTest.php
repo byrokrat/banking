@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -116,6 +116,6 @@ class AccountFactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testDefaultSetup()
     {
-        $this->assertNotNull(new AccountFactory);
+        $this->assertNotNull(new AccountFactory());
     }
 }

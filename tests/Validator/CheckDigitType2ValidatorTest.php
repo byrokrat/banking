@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Validator;
 
@@ -18,7 +18,7 @@ class CheckDigitType2ValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Success::CLASS,
-            (new CheckDigitType2Validator)->validate($number->reveal())
+            (new CheckDigitType2Validator())->validate($number->reveal())
         );
     }
 
@@ -30,7 +30,7 @@ class CheckDigitType2ValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new CheckDigitType2Validator)->validate($number->reveal())
+            (new CheckDigitType2Validator())->validate($number->reveal())
         );
     }
 }

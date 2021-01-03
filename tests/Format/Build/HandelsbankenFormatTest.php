@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class HandelsbankenFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_HANDELSBANKEN,
-            (new HandelsbankenFormat)->getBankName()
+            (new HandelsbankenFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new HandelsbankenFormat)->isValidClearing(
+            (new HandelsbankenFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class HandelsbankenFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new HandelsbankenFormat)->validate($this->getAccount())->isValid()
+            (new HandelsbankenFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

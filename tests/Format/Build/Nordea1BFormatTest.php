@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class Nordea1BFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_NORDEA,
-            (new Nordea1BFormat)->getBankName()
+            (new Nordea1BFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new Nordea1BFormat)->isValidClearing(
+            (new Nordea1BFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class Nordea1BFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new Nordea1BFormat)->validate($this->getAccount())->isValid()
+            (new Nordea1BFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

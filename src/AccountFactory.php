@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -40,9 +40,9 @@ class AccountFactory implements AccountFactoryInterface
         RewriterContainer $rewriters = null,
         FormatContainer $formats = null
     ) {
-        $this->decoratedFactory = $decorated ?: new PermissiveFactory;
-        $this->rewriters = $rewriters ?: (new RewriterFactory)->createRewriters();
-        $this->formats = $formats ?: (new FormatFactory)->createFormats();
+        $this->decoratedFactory = $decorated ?: new PermissiveFactory();
+        $this->rewriters = $rewriters ?: (new RewriterFactory())->createRewriters();
+        $this->formats = $formats ?: (new FormatFactory())->createFormats();
     }
 
     public function createAccount(string $number): AccountNumber

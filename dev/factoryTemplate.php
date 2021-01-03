@@ -1,5 +1,5 @@
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format;
 
@@ -16,7 +16,7 @@ class FormatFactory
     {
         return new FormatContainer(...[
 <?php foreach ($data['formats'] as $format) { ?>
-            new Build\<?= $format ?>,
+            new Build\<?= $format ?>(),
 <?php } ?>
         ]);
     }

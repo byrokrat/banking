@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Formatter;
 
@@ -21,7 +21,7 @@ class NordeaEredFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1111333333334',
-            (new NordeaEredFormatter)->format($number->reveal())
+            (new NordeaEredFormatter())->format($number->reveal())
         );
     }
 
@@ -36,7 +36,7 @@ class NordeaEredFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '11112333333334',
-            (new NordeaEredFormatter)->format($number->reveal())
+            (new NordeaEredFormatter())->format($number->reveal())
         );
     }
 
@@ -51,7 +51,7 @@ class NordeaEredFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1111111116',
-            (new NordeaEredFormatter)->format($number->reveal())
+            (new NordeaEredFormatter())->format($number->reveal())
         );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Validator;
 
@@ -19,7 +19,7 @@ class CheckDigitType1AValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Success::CLASS,
-            (new CheckDigitType1AValidator)->validate($number->reveal())
+            (new CheckDigitType1AValidator())->validate($number->reveal())
         );
     }
 
@@ -32,7 +32,7 @@ class CheckDigitType1AValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new CheckDigitType1AValidator)->validate($number->reveal())
+            (new CheckDigitType1AValidator())->validate($number->reveal())
         );
     }
 }

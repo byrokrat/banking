@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class AmfaFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_AMFA,
-            (new AmfaFormat)->getBankName()
+            (new AmfaFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new AmfaFormat)->isValidClearing(
+            (new AmfaFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class AmfaFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new AmfaFormat)->validate($this->getAccount())->isValid()
+            (new AmfaFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

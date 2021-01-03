@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Formatter;
 
@@ -21,7 +21,7 @@ class PrettyprintingFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1111,333 333 33-4',
-            (new PrettyprintingFormatter)->format($number->reveal())
+            (new PrettyprintingFormatter())->format($number->reveal())
         );
     }
 
@@ -36,7 +36,7 @@ class PrettyprintingFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1111-2,333 333 33-4',
-            (new PrettyprintingFormatter)->format($number->reveal())
+            (new PrettyprintingFormatter())->format($number->reveal())
         );
     }
 
@@ -51,7 +51,7 @@ class PrettyprintingFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '3300,111111-1116',
-            (new PrettyprintingFormatter)->format($number->reveal())
+            (new PrettyprintingFormatter())->format($number->reveal())
         );
     }
 }

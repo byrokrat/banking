@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Validator;
 
@@ -18,7 +18,7 @@ class ClearingCheckDigitValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Success::CLASS,
-            (new ClearingCheckDigitValidator)->validate($number->reveal())
+            (new ClearingCheckDigitValidator())->validate($number->reveal())
         );
     }
 
@@ -30,7 +30,7 @@ class ClearingCheckDigitValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new ClearingCheckDigitValidator)->validate($number->reveal())
+            (new ClearingCheckDigitValidator())->validate($number->reveal())
         );
     }
 
@@ -42,7 +42,7 @@ class ClearingCheckDigitValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new ClearingCheckDigitValidator)->validate($number->reveal())
+            (new ClearingCheckDigitValidator())->validate($number->reveal())
         );
     }
 
@@ -54,7 +54,7 @@ class ClearingCheckDigitValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Success::CLASS,
-            (new ClearingCheckDigitValidator)->validate($number->reveal())
+            (new ClearingCheckDigitValidator())->validate($number->reveal())
         );
     }
 }

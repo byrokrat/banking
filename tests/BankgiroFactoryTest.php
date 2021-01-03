@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -15,7 +15,7 @@ class BankgiroFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_BANKGIRO,
-            (new BankgiroFactory)->createAccount('58056201')->getBankName()
+            (new BankgiroFactory())->createAccount('58056201')->getBankName()
         );
     }
 
@@ -23,7 +23,7 @@ class BankgiroFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_BANKGIRO,
-            (new BankgiroFactory)->createAccount('5805-6201')->getBankName()
+            (new BankgiroFactory())->createAccount('5805-6201')->getBankName()
         );
     }
 
@@ -31,7 +31,7 @@ class BankgiroFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_BANKGIRO,
-            (new BankgiroFactory)->createAccount('0000000058056201')->getBankName()
+            (new BankgiroFactory())->createAccount('0000000058056201')->getBankName()
         );
     }
 
@@ -39,7 +39,7 @@ class BankgiroFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             '5805620',
-            (new BankgiroFactory)->createAccount('5805-6201')->getSerialNumber()
+            (new BankgiroFactory())->createAccount('5805-6201')->getSerialNumber()
         );
     }
 
@@ -67,12 +67,12 @@ class BankgiroFactoryTest extends \PHPUnit\Framework\TestCase
     public function testExceptionOnInvalidStructure(string $raw)
     {
         $this->expectException(InvalidAccountNumberException::CLASS);
-        (new BankgiroFactory)->createAccount($raw);
+        (new BankgiroFactory())->createAccount($raw);
     }
 
     public function testExceptionOnInvalidCheckDigit()
     {
         $this->expectException(InvalidAccountNumberException::CLASS);
-        (new BankgiroFactory)->createAccount('58056200');
+        (new BankgiroFactory())->createAccount('58056200');
     }
 }

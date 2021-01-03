@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -20,11 +20,11 @@ class Bankgiro extends UndefinedAccount
 
     public function getNumber(): string
     {
-        return $this->format(new BankgiroFormatter);
+        return $this->format(new BankgiroFormatter());
     }
 
     public function prettyprint(): string
     {
-        return $this->format(new BankgiroFormatter);
+        return $this->format(new BankgiroFormatter());
     }
 }

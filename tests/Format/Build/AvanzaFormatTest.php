@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class AvanzaFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_AVANZA,
-            (new AvanzaFormat)->getBankName()
+            (new AvanzaFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new AvanzaFormat)->isValidClearing(
+            (new AvanzaFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class AvanzaFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new AvanzaFormat)->validate($this->getAccount())->isValid()
+            (new AvanzaFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

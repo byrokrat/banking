@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class MarginalenFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_MARGINALEN,
-            (new MarginalenFormat)->getBankName()
+            (new MarginalenFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new MarginalenFormat)->isValidClearing(
+            (new MarginalenFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class MarginalenFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new MarginalenFormat)->validate($this->getAccount())->isValid()
+            (new MarginalenFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

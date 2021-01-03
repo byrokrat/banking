@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class BnpParibasFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_BNP_PARIBAS,
-            (new BnpParibasFormat)->getBankName()
+            (new BnpParibasFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new BnpParibasFormat)->isValidClearing(
+            (new BnpParibasFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class BnpParibasFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new BnpParibasFormat)->validate($this->getAccount())->isValid()
+            (new BnpParibasFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

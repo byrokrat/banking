@@ -5,266 +5,266 @@
             "classname": "SveaFormat",
             "bank": "BANK_SVEA",
             "clearing-validator": "ClearingValidator([[9660, 9669]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9660", "", "111113", "0"]
         },
         {
             "classname": "AvanzaFormat",
             "bank": "BANK_AVANZA",
             "clearing-validator": "ClearingValidator([[9550, 9569]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9550", "", "111113", "8"]
         },
         {
             "classname": "BluestepFormat",
             "bank": "BANK_BLUESTEP",
             "clearing-validator": "ClearingValidator([[9680, 9689]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9680", "", "111112", "4"]
         },
         {
             "classname": "BnpParibasFormat",
             "bank": "BANK_BNP_PARIBAS",
             "clearing-validator": "ClearingValidator([[9470, 9479]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9470", "", "111113", "0"]
         },
         {
             "classname": "CitibankFormat",
             "bank": "BANK_CITIBANK",
             "clearing-validator": "ClearingValidator([[9040, 9049]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9040", "", "111113", "1"]
         },
         {
             "classname": "Danske1Format",
             "bank": "BANK_DANSKE",
             "clearing-validator": "ClearingValidator([[1200, 1399], [2400, 2499]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["1200", "", "111112", "6"]
         },
         {
             "classname": "DnbFormat",
             "bank": "BANK_DNB",
             "clearing-validator": "ClearingValidator([[9190, 9199], [9260, 9269]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9190", "", "111113", "1"]
         },
         {
             "classname": "EkobankenFormat",
             "bank": "BANK_EKOBANKEN",
             "clearing-validator": "ClearingValidator([[9700, 9709]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9700", "", "111113", "0"]
         },
         {
             "classname": "ErikPenserFormat",
             "bank": "BANK_ERIK_PENSER",
             "clearing-validator": "ClearingValidator([[9590, 9599]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9590", "", "111113", "5"]
         },
         {
             "classname": "ForexFormat",
             "bank": "BANK_FOREX",
             "clearing-validator": "ClearingValidator([[9400, 9449]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9400", "", "111112", "8"]
         },
         {
             "classname": "IcaFormat",
             "bank": "BANK_ICA",
             "clearing-validator": "ClearingValidator([[9270, 9279]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9270", "", "111112", "9"]
         },
         {
             "classname": "IkanoFormat",
             "bank": "BANK_IKANO",
             "clearing-validator": "ClearingValidator([[9170, 9179]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9170", "", "111112", "8"]
         },
         {
             "classname": "JakFormat",
             "bank": "BANK_JAK",
             "clearing-validator": "ClearingValidator([[9670, 9679]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9670", "", "111113", "2"]
         },
         {
             "classname": "KlarnaFormat",
             "bank": "BANK_KLARNA",
             "clearing-validator": "ClearingValidator([[9780, 9789]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9789", "", "111111", "3"]
         },
         {
             "classname": "LandshypotekFormat",
             "bank": "BANK_LANDSHYPOTEK",
             "clearing-validator": "ClearingValidator([[9390, 9399]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9390", "", "111113", "3"]
         },
         {
             "classname": "LanOchSparFormat",
             "bank": "BANK_LAN_OCH_SPAR",
             "clearing-validator": "ClearingValidator([[9630, 9639]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9630", "", "111112", "5"]
         },
         {
             "classname": "Lansforsakringar1AFormat",
             "bank": "BANK_LANSFORSAKRINGAR",
             "clearing-validator": "ClearingValidator([[3400, 3409], [9060, 9069]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["3400", "", "111112", "8"]
         },
         {
             "classname": "Lansforsakringar1BFormat",
             "bank": "BANK_LANSFORSAKRINGAR",
             "clearing-validator": "ClearingValidator([[9020, 9029]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9020", "", "111113", "8"]
         },
         {
             "classname": "MarginalenFormat",
             "bank": "BANK_MARGINALEN",
             "clearing-validator": "ClearingValidator([[9230, 9239]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9230", "", "111112", "1"]
         },
         {
             "classname": "MedMeraFormat",
             "bank": "BANK_MEDMERA",
             "clearing-validator": "ClearingValidator([[9650, 9659]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9650", "", "111111", "2"]
         },
         {
             "classname": "NordaxFormat",
             "bank": "BANK_NORDAX",
             "clearing-validator": "ClearingValidator([[9640, 9649]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9640", "", "111113", "7"]
         },
         {
             "classname": "Nordea1AFormat",
             "bank": "BANK_NORDEA",
             "clearing-validator": "ClearingValidator([[1100, 1199], [1400, 2099], [3000, 3299], [3301, 3399], [3410, 3781], [3783, 3999]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["3032", "", "005001","7"]
         },
         {
             "classname": "Nordea1BFormat",
             "bank": "BANK_NORDEA",
             "clearing-validator": "ClearingValidator([[4000, 4999]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["4000", "", "111111", "2"]
         },
         {
             "classname": "NordnetFormat",
             "bank": "BANK_NORDNET",
             "clearing-validator": "ClearingValidator([[9100, 9109]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9100", "", "111113", "5"]
         },
         {
             "classname": "ResursFormat",
             "bank": "BANK_RESURS",
             "clearing-validator": "ClearingValidator([[9280, 9289]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9280", "", "111112", "0"]
         },
         {
             "classname": "Riksgalden1Format",
             "bank": "BANK_RIKSGALDEN",
             "clearing-validator": "ClearingValidator([[9880, 9889]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9880", "", "111113", "6"]
         },
         {
             "classname": "SantanderFormat",
             "bank": "BANK_SANTANDER",
             "clearing-validator": "ClearingValidator([[9460, 9469]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9460", "", "111112", "9"]
         },
         {
             "classname": "SbabFormat",
             "bank": "BANK_SBAB",
             "clearing-validator": "ClearingValidator([[9250, 9259]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9250", "", "111112", "5"]
         },
         {
             "classname": "SebFormat",
             "bank": "BANK_SEB",
             "clearing-validator": "ClearingValidator([[5000, 5999], [9120, 9124], [9130, 9149]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["5102", "", "015875", "1"]
         },
         {
             "classname": "SkandiabankenFormat",
             "bank": "BANK_SKANDIABANKEN",
             "clearing-validator": "ClearingValidator([[9150, 9169]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9150", "", "111113", "4"]
         },
         {
             "classname": "Swedbank1Format",
             "bank": "BANK_SWEDBANK",
             "clearing-validator": "ClearingValidator([[7000, 7999]])",
-            "additional-validators": ["CheckDigitType1AValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1AValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["7000", "", "111111", "6"]
         },
         {
             "classname": "AlandsbankenFormat",
             "bank": "BANK_ALANDSBANKEN",
             "clearing-validator": "ClearingValidator([[2300, 2399]])",
-            "additional-validators": ["CheckDigitType1BValidator", "StructType1Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType1BValidator()", "StructType1Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["2300", "", "111113", "3"]
         },
         {
             "classname": "Danske2Format",
             "bank": "BANK_DANSKE",
             "clearing-validator": "ClearingValidator([[9180, 9189]])",
-            "additional-validators": ["CheckDigitType2Validator", "StructType2Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType2Validator()", "StructType2Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9180", "", "123456789", "7"]
         },
         {
             "classname": "HandelsbankenFormat",
             "bank": "BANK_HANDELSBANKEN",
             "clearing-validator": "ClearingValidator([[6000, 6999]])",
-            "additional-validators": ["CheckDigitHandelsbankenValidator", "SerialLengthValidator(1, 8)", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitHandelsbankenValidator()", "SerialLengthValidator(1, 8)", "NoClearingCheckDigitValidator()"],
             "example": ["6000", "", "30128669", "8"]
         },
         {
             "classname": "NordeaPersonalFormat",
             "bank": "BANK_NORDEA",
             "clearing-validator": "ClearingValidator([[3300, 3300], [3782, 3782]])",
-            "additional-validators": ["CheckDigitType2Validator", "PersonalIdDateValidator", "SerialLengthValidator(9, 9)", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType2Validator()", "PersonalIdDateValidator()", "SerialLengthValidator(9, 9)", "NoClearingCheckDigitValidator()"],
             "example": ["3300", "", "111111111", "6"]
         },
         {
             "classname": "PlusgiroFormat",
             "bank": "BANK_PLUSGIRO",
             "clearing-validator": "ClearingValidator([[9500, 9549], [9960, 9969]])",
-            "additional-validators": ["CheckDigitType2Validator", "StructType2Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType2Validator()", "StructType2Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9500", "", "210918", "9"]
         },
         {
             "classname": "Riksgalden2Format",
             "bank": "BANK_RIKSGALDEN",
             "clearing-validator": "ClearingValidator([[9890, 9899]])",
-            "additional-validators": ["CheckDigitType2Validator", "StructType2Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType2Validator()", "StructType2Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9890", "", "123456789", "7"]
         },
         {
             "classname": "SparbankenSydFormat",
             "bank": "BANK_SPARBANKEN_SYD",
             "clearing-validator": "ClearingValidator([[9570, 9579]])",
-            "additional-validators": ["CheckDigitType2Validator", "StructType2Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType2Validator()", "StructType2Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9570", "", "123456789", "7"]
         },
         {
@@ -272,14 +272,14 @@
             "bank": "BANK_SWEDBANK",
             "comment": "Sparbanken Öresund merged with Swedbank in 2014/2015",
             "clearing-validator": "ClearingValidator([[9300, 9329], [9330, 9349]])",
-            "additional-validators": ["CheckDigitType2Validator", "StructType2Validator", "NoClearingCheckDigitValidator"],
+            "additional-validators": ["CheckDigitType2Validator()", "StructType2Validator()", "NoClearingCheckDigitValidator()"],
             "example": ["9300", "", "123456789", "7"]
         },
         {
             "classname": "Swedbank2Format",
             "bank": "BANK_SWEDBANK",
             "clearing-validator": "ClearingValidator([[8000, 8999]])",
-            "additional-validators": ["CheckDigitType2Validator", "ClearingCheckDigitValidator", "StructType2Validator"],
+            "additional-validators": ["CheckDigitType2Validator()", "ClearingCheckDigitValidator()", "StructType2Validator()"],
             "example": ["8214", "9", "923472612", "4"]
         }
     ],
@@ -287,7 +287,7 @@
         "classname": "UnknownFormat",
         "bank": "BANK_UNKNOWN",
         "clearing-validator": "ClearingValidator([[1000, 9999]])",
-        "additional-validators": ["SerialLengthValidator(6, 11)", "NoClearingCheckDigitValidator"],
+        "additional-validators": ["SerialLengthValidator(6, 11)", "NoClearingCheckDigitValidator()"],
         "example": ["1000", "", "123456", "7"]
     }
 }

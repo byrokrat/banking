@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Validator;
 
@@ -17,7 +17,7 @@ class StructType1ValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Success::CLASS,
-            (new StructType1Validator)->validate($number->reveal())
+            (new StructType1Validator())->validate($number->reveal())
         );
     }
 
@@ -28,7 +28,7 @@ class StructType1ValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new StructType1Validator)->validate($number->reveal())
+            (new StructType1Validator())->validate($number->reveal())
         );
     }
 
@@ -39,7 +39,7 @@ class StructType1ValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new StructType1Validator)->validate($number->reveal())
+            (new StructType1Validator())->validate($number->reveal())
         );
     }
 }

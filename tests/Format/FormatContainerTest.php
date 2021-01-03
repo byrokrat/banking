@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format;
 
@@ -32,6 +32,6 @@ class FormatContainerTest extends \PHPUnit\Framework\TestCase
     public function testExceptionOnUnknownClearing()
     {
         $this->expectException(InvalidClearingNumberException::CLASS);
-        (new FormatContainer)->getFormatFromClearing($this->createMock(AccountNumber::CLASS));
+        (new FormatContainer())->getFormatFromClearing($this->createMock(AccountNumber::CLASS));
     }
 }

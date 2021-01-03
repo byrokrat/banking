@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -15,7 +15,7 @@ class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_PLUSGIRO,
-            (new PlusgiroFactory)->createAccount('58056201')->getBankName()
+            (new PlusgiroFactory())->createAccount('58056201')->getBankName()
         );
     }
 
@@ -23,7 +23,7 @@ class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_PLUSGIRO,
-            (new PlusgiroFactory)->createAccount('5805620-1')->getBankName()
+            (new PlusgiroFactory())->createAccount('5805620-1')->getBankName()
         );
     }
 
@@ -31,7 +31,7 @@ class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             BankNames::BANK_PLUSGIRO,
-            (new PlusgiroFactory)->createAccount('0000000058056201')->getBankName()
+            (new PlusgiroFactory())->createAccount('0000000058056201')->getBankName()
         );
     }
 
@@ -56,12 +56,12 @@ class PlusgiroFactoryTest extends \PHPUnit\Framework\TestCase
     public function testExceptionOnInvalidStructure(string $raw)
     {
         $this->expectException(InvalidAccountNumberException::CLASS);
-        (new PlusgiroFactory)->createAccount($raw);
+        (new PlusgiroFactory())->createAccount($raw);
     }
 
     public function testExceptionOnInvalidCheckDigit()
     {
         $this->expectException(InvalidAccountNumberException::CLASS);
-        (new PlusgiroFactory)->createAccount('58056200');
+        (new PlusgiroFactory())->createAccount('58056200');
     }
 }

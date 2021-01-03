@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Formatter;
 
@@ -19,7 +19,7 @@ class BankgiroFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '123-4567',
-            (new BankgiroFormatter)->format($number->reveal())
+            (new BankgiroFormatter())->format($number->reveal())
         );
     }
 
@@ -32,7 +32,7 @@ class BankgiroFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1234-5678',
-            (new BankgiroFormatter)->format($number->reveal())
+            (new BankgiroFormatter())->format($number->reveal())
         );
     }
 }

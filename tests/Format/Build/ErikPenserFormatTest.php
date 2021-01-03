@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class ErikPenserFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_ERIK_PENSER,
-            (new ErikPenserFormat)->getBankName()
+            (new ErikPenserFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new ErikPenserFormat)->isValidClearing(
+            (new ErikPenserFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class ErikPenserFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new ErikPenserFormat)->validate($this->getAccount())->isValid()
+            (new ErikPenserFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

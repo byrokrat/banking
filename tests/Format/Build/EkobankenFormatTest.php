@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class EkobankenFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_EKOBANKEN,
-            (new EkobankenFormat)->getBankName()
+            (new EkobankenFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new EkobankenFormat)->isValidClearing(
+            (new EkobankenFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class EkobankenFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new EkobankenFormat)->validate($this->getAccount())->isValid()
+            (new EkobankenFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

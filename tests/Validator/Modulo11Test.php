@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Validator;
 
@@ -25,12 +25,12 @@ class Modulo11Test extends \PHPUnit\Framework\TestCase
     public function testInvalidStructure($number)
     {
         $this->expectException(LogicException::CLASS);
-        (new Modulo11)->calculateCheckDigit($number);
+        (new Modulo11())->calculateCheckDigit($number);
     }
 
     public function testCalculateCheckDigit()
     {
-        $modulo11 = new Modulo11;
+        $modulo11 = new Modulo11();
         $this->assertSame('7', $modulo11->calculateCheckDigit('036532'));
         $this->assertSame('2', $modulo11->calculateCheckDigit('392844404'));
         $this->assertSame('9', $modulo11->calculateCheckDigit('013139139'));

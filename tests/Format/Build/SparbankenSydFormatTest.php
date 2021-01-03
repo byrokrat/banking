@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class SparbankenSydFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_SPARBANKEN_SYD,
-            (new SparbankenSydFormat)->getBankName()
+            (new SparbankenSydFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new SparbankenSydFormat)->isValidClearing(
+            (new SparbankenSydFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class SparbankenSydFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new SparbankenSydFormat)->validate($this->getAccount())->isValid()
+            (new SparbankenSydFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

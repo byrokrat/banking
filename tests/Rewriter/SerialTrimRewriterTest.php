@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Rewriter;
 
@@ -22,7 +22,7 @@ class SerialTrimRewriterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1-2,3-4',
-            (new SerialTrimRewriter)->rewrite($number->reveal())->getNumber()
+            (new SerialTrimRewriter())->rewrite($number->reveal())->getNumber()
         );
     }
 

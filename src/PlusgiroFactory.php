@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -20,7 +20,7 @@ class PlusgiroFactory implements AccountFactoryInterface
 
     public function __construct()
     {
-        $this->validator = new CheckDigitType2Validator;
+        $this->validator = new CheckDigitType2Validator();
     }
 
     public function createAccount(string $number): AccountNumber

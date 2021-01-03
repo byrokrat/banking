@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class KlarnaFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_KLARNA,
-            (new KlarnaFormat)->getBankName()
+            (new KlarnaFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new KlarnaFormat)->isValidClearing(
+            (new KlarnaFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class KlarnaFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new KlarnaFormat)->validate($this->getAccount())->isValid()
+            (new KlarnaFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

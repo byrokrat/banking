@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Formatter;
 
@@ -19,7 +19,7 @@ class PlusgiroFormatterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '33333333-4',
-            (new PlusgiroFormatter)->format($number->reveal())
+            (new PlusgiroFormatter())->format($number->reveal())
         );
     }
 }

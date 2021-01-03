@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class BluestepFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_BLUESTEP,
-            (new BluestepFormat)->getBankName()
+            (new BluestepFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new BluestepFormat)->isValidClearing(
+            (new BluestepFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class BluestepFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new BluestepFormat)->validate($this->getAccount())->isValid()
+            (new BluestepFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

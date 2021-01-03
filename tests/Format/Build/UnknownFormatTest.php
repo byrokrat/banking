@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class UnknownFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_UNKNOWN,
-            (new UnknownFormat)->getBankName()
+            (new UnknownFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new UnknownFormat)->isValidClearing(
+            (new UnknownFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class UnknownFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new UnknownFormat)->validate($this->getAccount())->isValid()
+            (new UnknownFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

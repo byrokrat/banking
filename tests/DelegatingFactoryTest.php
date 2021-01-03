@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -29,7 +29,7 @@ class DelegatingFactoryTest extends \PHPUnit\Framework\TestCase
         $accountNumber = $this->createMock(AccountNumber::CLASS);
 
         $factory1 = $this->prophesize(AccountFactoryInterface::CLASS);
-        $factory1->createAccount('123')->willThrow(new Exception\InvalidAccountNumberException);
+        $factory1->createAccount('123')->willThrow(new Exception\InvalidAccountNumberException());
 
         $factory2 = $this->prophesize(AccountFactoryInterface::CLASS);
         $factory2->createAccount('123')->willReturn($accountNumber);
@@ -43,7 +43,7 @@ class DelegatingFactoryTest extends \PHPUnit\Framework\TestCase
     public function testExceptionIfAllFactoriesFail()
     {
         $factory1 = $this->prophesize(AccountFactoryInterface::CLASS);
-        $factory1->createAccount('123')->willThrow(new Exception\InvalidAccountNumberException);
+        $factory1->createAccount('123')->willThrow(new Exception\InvalidAccountNumberException());
 
         $this->expectException(Exception::CLASS);
         (new DelegatingFactory($factory1->reveal()))->createAccount('123');

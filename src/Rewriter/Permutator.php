@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Rewriter;
 
@@ -57,7 +57,7 @@ class Permutator
         if (empty($set)) {
             yield $permutations;
         } else {
-            for ($i = count($set)-1; $i>=0; $i--) {
+            for ($i = count($set) - 1; $i >= 0; $i--) {
                 $newSet = $set;
                 $newPermutations = $permutations;
                 list($foo) = array_splice($newSet, $i, 1);

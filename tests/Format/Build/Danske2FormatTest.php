@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class Danske2FormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_DANSKE,
-            (new Danske2Format)->getBankName()
+            (new Danske2Format())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new Danske2Format)->isValidClearing(
+            (new Danske2Format())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class Danske2FormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new Danske2Format)->validate($this->getAccount())->isValid()
+            (new Danske2Format())->validate($this->getAccount())->isValid()
         );
     }
 }

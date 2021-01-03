@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class SparbankenOresundFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_SWEDBANK,
-            (new SparbankenOresundFormat)->getBankName()
+            (new SparbankenOresundFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new SparbankenOresundFormat)->isValidClearing(
+            (new SparbankenOresundFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class SparbankenOresundFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new SparbankenOresundFormat)->validate($this->getAccount())->isValid()
+            (new SparbankenOresundFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

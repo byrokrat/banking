@@ -9,7 +9,7 @@ use byrokrat\banking\Exception\InvalidAccountNumberException;
  */
 class IntegrationTest extends \PHPUnit\Framework\TestCase
 {
-    const TEST_DATA_SOURCE = __DIR__ . '/integrationtestdata.json';
+    public const TEST_DATA_SOURCE = __DIR__ . '/integrationtestdata.json';
 
     /**
      * @var AccountFactoryInterface
@@ -18,7 +18,7 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$accountFactory = new AccountFactory;
+        self::$accountFactory = new AccountFactory();
     }
 
     private static function createAccount(string $raw): AccountNumber

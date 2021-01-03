@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class LanOchSparFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_LAN_OCH_SPAR,
-            (new LanOchSparFormat)->getBankName()
+            (new LanOchSparFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new LanOchSparFormat)->isValidClearing(
+            (new LanOchSparFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class LanOchSparFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new LanOchSparFormat)->validate($this->getAccount())->isValid()
+            (new LanOchSparFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

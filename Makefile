@@ -46,8 +46,7 @@ phpstan: vendor/installed $(PHPSTAN_CMD)
 
 .PHONY: phpcs
 phpcs: $(PHPCS_CMD)
-	$(PHPCS_CMD) src --standard=PSR2 --ignore=src/Format/Build/*
-	$(PHPCS_CMD) tests --standard=PSR2 --ignore=tests/Format/Build/*
+	$(PHPCS_CMD)
 
 composer.lock: composer.json
 	@echo composer.lock is not up to date
@@ -61,9 +60,6 @@ tools/installed:
 	touch $@
 
 $(README_TESTER_CMD): tools/installed
-
 $(PHPSTAN_CMD): tools/installed
-
 $(PHPCS_CMD): tools/installed
-
 $(PHPUNIT_CMD): vendor/installed

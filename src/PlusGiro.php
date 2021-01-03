@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking;
 
@@ -20,11 +20,11 @@ class PlusGiro extends UndefinedAccount
 
     public function getNumber(): string
     {
-        return $this->format(new PlusgiroFormatter);
+        return $this->format(new PlusgiroFormatter());
     }
 
     public function prettyprint(): string
     {
-        return $this->format(new PlusgiroFormatter);
+        return $this->format(new PlusgiroFormatter());
     }
 }

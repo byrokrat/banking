@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class IkanoFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_IKANO,
-            (new IkanoFormat)->getBankName()
+            (new IkanoFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new IkanoFormat)->isValidClearing(
+            (new IkanoFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class IkanoFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new IkanoFormat)->validate($this->getAccount())->isValid()
+            (new IkanoFormat())->validate($this->getAccount())->isValid()
         );
     }
 }

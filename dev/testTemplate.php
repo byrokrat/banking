@@ -1,5 +1,5 @@
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -19,14 +19,14 @@ class <?= $data['classname'] ?>Test extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::<?= $data['bank'] ?>,
-            (new <?= $data['classname'] ?>)->getBankName()
+            (new <?= $data['classname'] ?>())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new <?= $data['classname'] ?>)->isValidClearing(
+            (new <?= $data['classname'] ?>())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -35,7 +35,7 @@ class <?= $data['classname'] ?>Test extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new <?= $data['classname'] ?>)->validate($this->getAccount())->isValid()
+            (new <?= $data['classname'] ?>())->validate($this->getAccount())->isValid()
         );
     }
 }

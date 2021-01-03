@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Rewriter;
 
@@ -22,7 +22,7 @@ class ClearingCheckDigitRewriterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1-2,3-4',
-            (new ClearingCheckDigitRewriter)->rewrite($number->reveal())->getNumber()
+            (new ClearingCheckDigitRewriter())->rewrite($number->reveal())->getNumber()
         );
     }
 
@@ -38,7 +38,7 @@ class ClearingCheckDigitRewriterTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame(
             '1,-2',
-            (new ClearingCheckDigitRewriter)->rewrite($number->reveal())->getNumber()
+            (new ClearingCheckDigitRewriter())->rewrite($number->reveal())->getNumber()
         );
     }
 }

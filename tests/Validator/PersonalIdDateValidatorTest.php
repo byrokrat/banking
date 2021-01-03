@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Validator;
 
@@ -18,7 +18,7 @@ class PersonalIdDateValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Success::CLASS,
-            (new PersonalIdDateValidator)->validate($number->reveal())
+            (new PersonalIdDateValidator())->validate($number->reveal())
         );
     }
 
@@ -30,7 +30,7 @@ class PersonalIdDateValidatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(
             Failure::CLASS,
-            (new PersonalIdDateValidator)->validate($number->reveal())
+            (new PersonalIdDateValidator())->validate($number->reveal())
         );
     }
 }

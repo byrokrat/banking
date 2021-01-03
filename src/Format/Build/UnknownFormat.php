@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -30,7 +30,7 @@ class UnknownFormat implements \byrokrat\banking\Format\FormatInterface
     {
         return [
             new \byrokrat\banking\Validator\SerialLengthValidator(6, 11),
-            new \byrokrat\banking\Validator\NoClearingCheckDigitValidator,
+            new \byrokrat\banking\Validator\NoClearingCheckDigitValidator(),
         ];
     }
 }

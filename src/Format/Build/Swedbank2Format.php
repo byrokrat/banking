@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -29,9 +29,9 @@ class Swedbank2Format implements \byrokrat\banking\Format\FormatInterface
     protected function getAdditionalValidators(): array
     {
         return [
-            new \byrokrat\banking\Validator\CheckDigitType2Validator,
-            new \byrokrat\banking\Validator\ClearingCheckDigitValidator,
-            new \byrokrat\banking\Validator\StructType2Validator,
+            new \byrokrat\banking\Validator\CheckDigitType2Validator(),
+            new \byrokrat\banking\Validator\ClearingCheckDigitValidator(),
+            new \byrokrat\banking\Validator\StructType2Validator(),
         ];
     }
 }

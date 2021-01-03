@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -29,9 +29,9 @@ class BnpParibasFormat implements \byrokrat\banking\Format\FormatInterface
     protected function getAdditionalValidators(): array
     {
         return [
-            new \byrokrat\banking\Validator\CheckDigitType1BValidator,
-            new \byrokrat\banking\Validator\StructType1Validator,
-            new \byrokrat\banking\Validator\NoClearingCheckDigitValidator,
+            new \byrokrat\banking\Validator\CheckDigitType1BValidator(),
+            new \byrokrat\banking\Validator\StructType1Validator(),
+            new \byrokrat\banking\Validator\NoClearingCheckDigitValidator(),
         ];
     }
 }

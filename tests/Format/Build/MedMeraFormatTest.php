@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace byrokrat\banking\Format\Build;
 
@@ -20,14 +20,14 @@ class MedMeraFormatTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertSame(
             \byrokrat\banking\BankNames::BANK_MEDMERA,
-            (new MedMeraFormat)->getBankName()
+            (new MedMeraFormat())->getBankName()
         );
     }
 
     public function testIsValidClearing()
     {
         $this->assertTrue(
-            (new MedMeraFormat)->isValidClearing(
+            (new MedMeraFormat())->isValidClearing(
                 $this->getAccount()
             )
         );
@@ -36,7 +36,7 @@ class MedMeraFormatTest extends \PHPUnit\Framework\TestCase
     public function testValidate()
     {
         $this->assertTrue(
-            (new MedMeraFormat)->validate($this->getAccount())->isValid()
+            (new MedMeraFormat())->validate($this->getAccount())->isValid()
         );
     }
 }
